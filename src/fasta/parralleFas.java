@@ -5,7 +5,7 @@
  */
 package fasta;
 
-import gff3.kgf;
+import gff3.wheatkgfTo42map;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -21,13 +21,13 @@ import utils.IOUtils;
  * @author xuebozhao
  */
 public class parralleFas {
-    Fasta A;
+    wheatFastaToAppend A;
     Map<String,List> gff3 = new HashMap<String,List>();
-    public parralleFas(Fasta A){
+    public parralleFas(wheatFastaToAppend A){
         this.A = A;
     }
     public void getParralle(String output,String gff3){
-        kgf g = new kgf();
+        wheatkgfTo42map g = new wheatkgfTo42map();
         g.readKgf(gff3);
         Map<String, List<String>> cds = g.returnMap();
         A.chr

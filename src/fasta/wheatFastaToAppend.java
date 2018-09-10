@@ -20,10 +20,10 @@ import utils.IOUtils;
  *
  * @author xuebozhao
  */
-public class Fasta {
+public class wheatFastaToAppend {
     List<String> chr = new ArrayList();
     Map<String,StringBuilder> fas = new HashMap();
-    public Fasta(String inFile){
+    public wheatFastaToAppend(String inFile){
         this.readFasta(inFile);
     }
     public void readFasta(String inFile){
@@ -55,7 +55,7 @@ public class Fasta {
             }
             fas.put(key, value);
         } catch (IOException ex) {
-            Logger.getLogger(Fasta.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(wheatFastaToAppend.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 //    public void getParralle(String input,String gff3){

@@ -18,9 +18,9 @@ import utils.IOUtils;
  *
  * @author xuebozhao
  */
-public class kgf {
+public class wheatkgfTo42map {
     Map<String,List<String>> gff3 = new HashMap<String,List<String>>();
-    public kgf(){
+    public wheatkgfTo42map(){
         
     }
     public void readKgf(String inFile){

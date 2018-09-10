@@ -3,17 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package wheat;
+package Args;
 
-import fasta.Fasta;
+import fasta.wheatFastaToAppend;
 import fasta.parralleFas;
-import gff3.kgf;
+import gff3.wheatkgfTo42map;
 
 /**
  *
  * @author xuebozhao
  */
-public class Wheat {
+public class GetWheatCDSsequence {
 
     /**
      * @param args the command line arguments
@@ -46,7 +46,7 @@ public class Wheat {
             outFile = inFile;
         }
 //        new kgf().readKgf(gffFile);
-        Fasta A = new Fasta(inFile);
+        wheatFastaToAppend A = new wheatFastaToAppend(inFile);
         new parralleFas(A).getParralle(outFile, gffFile);
     }
 }
