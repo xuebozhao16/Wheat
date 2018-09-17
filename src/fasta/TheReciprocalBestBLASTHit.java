@@ -7,11 +7,8 @@ package fasta;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Map;
 import java.util.Set;
 import utils.IOUtils;
 
@@ -29,9 +26,9 @@ public class TheReciprocalBestBLASTHit {
     }   
     
     public TheReciprocalBestBLASTHit(String infileS1,String infileS2,String outfileS){
-        //getAllGeneReciprocalBestBLASTHit(infileS1,infileS2,outfileS);
+        getAllGeneReciprocalBestBLASTHit(infileS1,infileS2,outfileS);
         //this.getAllGeneReciprocalBestBLASTHit2(infileS1, infileS2, outfileS);
-        this.getAllGeneReciprocalBestBLASTHit3(infileS1, infileS2, outfileS);
+        //this.getAllGeneReciprocalBestBLASTHit3(infileS1, infileS2, outfileS);
     }
 
     public TheReciprocalBestBLASTHit(String infile,String outfile){
@@ -404,6 +401,8 @@ public class TheReciprocalBestBLASTHit {
         }
     }
     
+    
+    //把各个文件合并起来,首先合并的是第一列
     public void getAllGeneReciprocalBestBLASTHit(String infileS1,String infileS2,String outfileS){
         try{
             int chrNum = 0;
@@ -419,7 +418,6 @@ public class TheReciprocalBestBLASTHit {
             Set<String> allGene = new HashSet();
             while((temp = brReciprocalGene.readLine())!= null){
                 String [] tem = temp.split("\t");
-                //line1 = tem[0];
                 firstline.add(tem[0]);
                 String line23 = tem[1] + "_" + tem[2];
                 hashMapfirstline.put(tem[0],line23);                
@@ -490,6 +488,7 @@ public class TheReciprocalBestBLASTHit {
         }
     }
     
+    //把各个文件合并起来
     public void getAllGeneReciprocalBestBLASTHit3(String infileS1,String infileS2,String outfileS){
         try{
             int chrNum = 0;

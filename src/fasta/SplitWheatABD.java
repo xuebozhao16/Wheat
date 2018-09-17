@@ -17,8 +17,8 @@ import utils.IOUtils;
  */
 public class SplitWheatABD {
     public SplitWheatABD(String infileS,String infileS1,String infileS2,String infileS3,String outfileS1,String outfileS2,String outfileS3){
-        //this.GetSplitABD(infileS,infileS1,infileS2,infileS3,outfileS1,outfileS2,outfileS3);
-        this.getBlastFileForMcscanX(infileS,infileS1,infileS2,infileS3,outfileS1,outfileS2,outfileS3);
+        this.GetSplitABD(infileS,infileS1,infileS2,infileS3,outfileS1,outfileS2,outfileS3);
+        //this.getBlastFileForMcscanX(infileS,infileS1,infileS2,infileS3,outfileS1,outfileS2,outfileS3);
           }       
     public void GetSplitABD(String infileS,String infileS1,String infileS2,String infileS3,String outfileS1,String outfileS2,String outfileS3){
         try{
@@ -41,6 +41,7 @@ public class SplitWheatABD {
             Set D = new HashSet();
             String chr = null;
             String chrtemp = null;
+            String chrtemptemp =null;
             while((temp = brA.readLine())!= null){
                 A.add(temp);
             }
@@ -59,19 +60,20 @@ public class SplitWheatABD {
                     System.out.println("It's time to" + i);
                 }
                 if(tempAll.startsWith(">")){
-                      chrtemp = tempAll.split(("_"))[0];
+                      chrtemp = tempAll.split(("\t"))[0];
+                      chrtemptemp = tempAll.split(("\t"))[1];
                       //System.out.println(chrtemp);
                       chr = chrtemp.substring(1,chrtemp.length());
                       //System.out.println(chr);
                       if(!A.add(chr)){
-                        bwA.write(tempAll);
+                        bwA.write(chrtemp + "_" + chrtemptemp);
                         bwA.newLine();
                         wa = true;
                         wb = false;
                         wd = false;
                       }else if(!B.add(chr)){
                          A.remove(chr);
-                         bwB.write(tempAll);
+                         bwB.write(chrtemp + "_" + chrtemptemp);
                          bwB.newLine();
                          wa = false;
                          wb = true;                     
@@ -79,7 +81,7 @@ public class SplitWheatABD {
                       }else if(!D.add(chr)){
                           A.remove(chr);
                           B.remove(chr);
-                          bwD.write(tempAll);
+                          bwD.write(chrtemp + "_" + chrtemptemp);
                           bwD.newLine();
                           wa = false;
                           wb = false;

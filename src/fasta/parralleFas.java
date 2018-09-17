@@ -95,7 +95,8 @@ public class parralleFas {
     public void writeCDSsequence(String Chr,String gene,StringBuilder fastaAll, String outfileS1){
         try{
         String headcutter = null;                  
-                headcutter =  ">" + Chr +  "\t" + gene + "\n";   
+                //headcutter =  ">" + Chr +  "\t" + gene + "\n";   
+                headcutter =  ">" + gene + "\n";   
                 getWriteStreamAppend(outfileS1,headcutter);
                 getWriteStreamAppend(outfileS1,fastaAll + "\n");
         }

@@ -566,7 +566,7 @@ public class WheatNewGeneFeature {
 //                            description = te[j].replaceFirst("description=", "");
 //                        }
 //                    }
-                    genes[index] = new Gene (query, Integer.valueOf(tem[0]), Integer.valueOf(tem[3]), Integer.valueOf(tem[4])+1, (byte)(tem[6].equals("+")? 1:0));
+                    genes[index] = new Gene (query, Integer.valueOf(tem[0]), Integer.valueOf(tem[3])-1, Integer.valueOf(tem[4]), (byte)(tem[6].equals("+")? 1:0));
                 }
             }
             for (int i = 0; i < info.length; i++) {
@@ -577,7 +577,7 @@ public class WheatNewGeneFeature {
                     String geneName = transcriptName.split("\\.")[0];
                     System.out.println(geneName);
                     int geneIndex = Arrays.binarySearch(geneNames, geneName);
-                    Transcript t = new Transcript (te[0].split("=")[1], Integer.valueOf(tem[0]), Integer.valueOf(tem[3]), Integer.valueOf(tem[4])+1, (byte)(tem[6].equals("+")? 1:0));
+                    Transcript t = new Transcript (te[0].split("=")[1], Integer.valueOf(tem[0]), Integer.valueOf(tem[3])-1, Integer.valueOf(tem[4]), (byte)(tem[6].equals("+")? 1:0));
                     genes[geneIndex].addTranscript(t);
                 }
             }
@@ -591,7 +591,7 @@ public class WheatNewGeneFeature {
                     geneName = transcriptName.split("\\.")[0];
                     int geneIndex = Arrays.binarySearch(geneNames, geneName);
                     int transcriptIndex = genes[geneIndex].getTranscriptIndex(transcriptName);
-                    genes[geneIndex].ts.get(transcriptIndex).addCDS(Integer.valueOf(tem[0]), Integer.valueOf(tem[3]), Integer.valueOf(tem[4])+1);
+                    genes[geneIndex].ts.get(transcriptIndex).addCDS(Integer.valueOf(tem[0]), Integer.valueOf(tem[3])-1, Integer.valueOf(tem[4]));
                 }
                 else if (tem[2].startsWith("five_prime_UTR")) {
                     String[] te = tem[8].split("=");
@@ -600,7 +600,7 @@ public class WheatNewGeneFeature {
                     geneName = transcriptName.split("\\.")[0];
                     int geneIndex = Arrays.binarySearch(geneNames, geneName);
                     int transcriptIndex = genes[geneIndex].getTranscriptIndex(transcriptName);
-                    genes[geneIndex].ts.get(transcriptIndex).add5UTR(Integer.valueOf(tem[0]), Integer.valueOf(tem[3]), Integer.valueOf(tem[4])+1);
+                    genes[geneIndex].ts.get(transcriptIndex).add5UTR(Integer.valueOf(tem[0]), Integer.valueOf(tem[3])-1, Integer.valueOf(tem[4]));
                 }
                 else if (tem[2].startsWith("three_prime_UTR")) {
                     String[] te = tem[8].split("=");
@@ -609,7 +609,7 @@ public class WheatNewGeneFeature {
                     geneName = transcriptName.split("\\.")[0];
                     int geneIndex = Arrays.binarySearch(geneNames, geneName);
                     int transcriptIndex = genes[geneIndex].getTranscriptIndex(transcriptName);
-                    genes[geneIndex].ts.get(transcriptIndex).add3UTR(Integer.valueOf(tem[0]), Integer.valueOf(tem[3]), Integer.valueOf(tem[4])+1);
+                    genes[geneIndex].ts.get(transcriptIndex).add3UTR(Integer.valueOf(tem[0]), Integer.valueOf(tem[3])-1, Integer.valueOf(tem[4]));
                 }
             }
             for (int i = 0; i < this.genes.length; i++) {
