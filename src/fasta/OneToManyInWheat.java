@@ -11,11 +11,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import static java.util.Spliterators.iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import static org.apache.commons.lang.time.DateUtils.iterator;
 import utils.IOUtils;
 
 /**
@@ -26,7 +29,7 @@ public class OneToManyInWheat {
     
     public OneToManyInWheat(String infile,String outfile){
         //this.filterAToB(infile, outfile);
-        //this.filterAToB_N(infile, outfile);
+        this.filterAToB_N(infile, outfile);
     }
     public OneToManyInWheat(String infileS1,String infileS2,String outfileS){
         //this.getReciprocalBest1To1(infileS1, infileS2, outfileS);
@@ -39,12 +42,18 @@ public class OneToManyInWheat {
         
     }
     
-    public OneToManyInWheat(String infileS1,String infileS2,String outfileS1,String outfileS2){
-        //this.get1To1ToNstep2(infileS1, infileS2, outfileS1, outfileS2);
-        //this.getNTo1To1step2(infileS1, infileS2, outfileS1, outfileS2);
-        this.get1ToNTo1step2(infileS1, infileS2, outfileS1, outfileS2);
-        
+//    public OneToManyInWheat(String infileS1,String infileS2,String outfileS1,String outfileS2){
+//        //this.get1To1ToNstep2(infileS1, infileS2, outfileS1, outfileS2);
+//        //this.getNTo1To1step2(infileS1, infileS2, outfileS1, outfileS2);
+//        //this.get1ToNTo1step2(infileS1, infileS2, outfileS1, outfileS2);       
+//    }
+    
+    public OneToManyInWheat(String infileS,String outfileS1,String outfileS2,String outfileS3){
+        //this.getABD1To1ToNgene2(infileS, outfileS1, outfileS2, outfileS3);
+        //this.getABD1ToNTo1gene2(infileS, outfileS1, outfileS2, outfileS3);
+        //this.getABDNTo1To1gene2(infileS, outfileS1, outfileS2, outfileS3);
     }
+    
 //    public void filterAToB(String infile,String outfile1,String outfile2){
 //        try{
 //            BufferedReader br = IOUtils.getTextReader(infile);
@@ -81,8 +90,8 @@ public class OneToManyInWheat {
     //找到crb-blast中没有排序的文件中重复和非重复的
         public void filterAToB(String inFile,String outFile){
             BufferedReader br = IOUtils.getTextReader(inFile);
-            BufferedWriter bw1 = IOUtils.getTextWriter(outFile+"/filterDB_N.txt");
-            BufferedWriter bw2 = IOUtils.getTextWriter(outFile+"/filterDB_1.txt");
+            BufferedWriter bw1 = IOUtils.getTextWriter(outFile+"/filterBD_N.txt");
+            BufferedWriter bw2 = IOUtils.getTextWriter(outFile+"/filterBD_1.txt");
             Set dup = new HashSet();
             Set gene1 = new HashSet();
             List <String> geneList = new ArrayList<String>();
@@ -95,12 +104,12 @@ public class OneToManyInWheat {
                 while ((temp = br.readLine())!=null){
                     //geneList.add(temp);
                     te = temp.split("\t");
-                    te1 = te[0].split("_");
-                    tee = te[1].split("_");
-                    geneList.add(te1[1]  + "\t" + tee[1]);
-                    gene.add(tee[1]);
-                    if(!gene1.add(tee[1])){
-                        dup.add(tee[1]);
+                    //te1 = te[0].split("_");
+                    //tee = te[1].split("_");
+                    geneList.add(te[0]  + "\t" + te[1]);
+                    gene.add(te[1]);
+                    if(!gene1.add(te[1])){
+                        dup.add(te[1]);
                     };
                 }
                 int i=0;
@@ -120,8 +129,9 @@ public class OneToManyInWheat {
                 bw2.flush();
                 bw1.close();
                 bw2.close();
-            } catch (Exception ex) {
-                Logger.getLogger(GeneList.class.getName()).log(Level.SEVERE, null, ex);
+            } 
+            catch(Exception e){
+            e.printStackTrace();
             }
         }
 //    public void filterAToB_N(String infile,String outfile){
@@ -482,7 +492,7 @@ public class OneToManyInWheat {
                         Aline.remove(temtem[1]);
                         bw.write(temp2 + "\n");                        
                     }else{
-                        bw.write(temtem[0] + "\t" +  temtem[1] + "\t" +"N" + "\n");                         
+                        //bw.write(temtem[0] + "\t" +  temtem[1] + "\t" +"N" + "\n");                         
                         Aline.remove(temtem[1]);
                     }
             }
@@ -516,7 +526,7 @@ public class OneToManyInWheat {
                         Aline.remove(temtem[0]);
                         bw.write(temp2 + "\n");                        
                     }else{
-                        bw.write(temtem[0] + "\t" +  "N" + "\t" +temtem[2] + "\n");                         
+                        //bw.write(temtem[0] + "\t" +  "N" + "\t" +temtem[2] + "\n");                         
                         //Aline.remove(temtem[1]);
                     }
             }
@@ -550,12 +560,162 @@ public class OneToManyInWheat {
                         Aline.remove(temtem[1]);
                         bw.write(temp2 + "\n");                        
                     }else{
-                        bw.write("N" + "\t" +  temtem[1] + "\t" +temtem[2] + "\n");                         
+                        //bw.write("N" + "\t" +  temtem[1] + "\t" +temtem[2] + "\n");                         
                         //Aline.remove(temtem[1]);
                     }
             }
             bw.flush();
             bw.close();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
+    //之前的ABD1To1ToNgene.txt文件基因是有重复的，这次的目的是把重复去掉，而且把A:N和B:N的所有分别输出到一个文件里
+    public void getABD1To1ToNgene2(String infileS,String outfileS1,String outfileS2,String outfileS3){
+        try{
+            String temp = null;
+            String temp2 = null;
+            int ddnum = 0;
+            BufferedReader brABD1ToNTo1 = IOUtils.getTextReader(infileS);
+            BufferedWriter bw1 = IOUtils.getTextWriter(outfileS1);
+            BufferedWriter bw2 = IOUtils.getTextWriter(outfileS2);
+            BufferedWriter bw3 = IOUtils.getTextWriter(outfileS3);
+            Set<String> Dgene = new HashSet();
+            StringBuilder Dvalue = new StringBuilder();
+            while((temp = brABD1ToNTo1.readLine())!= null){
+                String [] tem = temp.split("\t");
+                String [] temtem = tem[2].split(";");
+                for(int i = 0; i < temtem.length;i++){
+                    Dgene.add(temtem[i]);
+                }
+//                for(int j=0;j < Dgene.size();j++) {
+//                    System.out.println(Dgene.get(j));
+//                    bw2.write("\n" + tem[0] + "\t" + tem [1] + "\t" + Dgene[j]);
+//                }    
+                Iterator iter = Dgene.iterator();
+                while (iter.hasNext()) {
+                    Object DD = iter.next();
+                    bw2.write(tem[0] + "\t" + DD + "\n");      
+                    bw3.write(tem[1] + "\t" + DD + "\n"); 
+                    Dvalue.append(DD+";");
+                    //Dgene.remove(DD);
+                }
+                Dgene = new HashSet();
+                String DDvalue = Dvalue.substring(0, Dvalue.length()-1);
+                String [] DDnum = DDvalue.split(";");
+                ddnum = ddnum + DDnum.length;
+                bw1.write(tem[0] + "\t" + tem[1] + "\t" + DDvalue + "\n");
+                Dvalue = new StringBuilder();
+            }
+            System.out.println(ddnum);
+            bw1.flush();
+            bw2.flush();
+            bw3.flush();
+            bw1.close();
+            bw2.close();
+            bw3.close();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
+    //之前的ABD1ToNTo1gene.txt文件基因是有重复的，这次的目的是把重复去掉，而且把A:N和D:N的所有分别输出到一个文件里
+    public void getABD1ToNTo1gene2(String infileS,String outfileS1,String outfileS2,String outfileS3){
+        try{
+            String temp = null;
+            String temp2 = null;
+            int ddnum = 0;
+            BufferedReader brABD1ToNTo1 = IOUtils.getTextReader(infileS);
+            BufferedWriter bw1 = IOUtils.getTextWriter(outfileS1);
+            BufferedWriter bw2 = IOUtils.getTextWriter(outfileS2);
+            BufferedWriter bw3 = IOUtils.getTextWriter(outfileS3);
+            Set<String> Dgene = new HashSet();
+            StringBuilder Dvalue = new StringBuilder();
+            while((temp = brABD1ToNTo1.readLine())!= null){
+                String [] tem = temp.split("\t");
+                String [] temtem = tem[1].split(";");
+                for(int i = 0; i < temtem.length;i++){
+                    Dgene.add(temtem[i]);
+                }
+//                for(int j=0;j < Dgene.size();j++) {
+//                    System.out.println(Dgene.get(j));
+//                    bw2.write("\n" + tem[0] + "\t" + tem [1] + "\t" + Dgene[j]);
+//                }    
+                Iterator iter = Dgene.iterator();
+                while (iter.hasNext()) {
+                    Object DD = iter.next();
+                    bw2.write(tem[0] + "\t" + DD + "\n");      
+                    bw3.write(tem[2] + "\t" + DD + "\n"); 
+                    Dvalue.append(DD+";");
+                    //Dgene.remove(DD);
+                }
+                Dgene = new HashSet();
+                String DDvalue = Dvalue.substring(0, Dvalue.length()-1);
+                String [] DDnum = DDvalue.split(";");
+                ddnum = ddnum + DDnum.length;
+                bw1.write(tem[0] + "\t" + DDvalue + "\t" + tem[2] + "\n");
+                Dvalue = new StringBuilder();
+            }
+            System.out.println(ddnum);
+            bw1.flush();
+            bw2.flush();
+            bw3.flush();
+            bw1.close();
+            bw2.close();
+            bw3.close();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
+    //之前的ABDNTo1To1gene.txt文件基因是有重复的，这次的目的是把重复去掉，而且把B:N和D:N的所有分别输出到一个文件里
+    public void getABDNTo1To1gene2(String infileS,String outfileS1,String outfileS2,String outfileS3){
+        try{
+            String temp = null;
+            String temp2 = null;
+            int ddnum = 0;
+            BufferedReader brABD1ToNTo1 = IOUtils.getTextReader(infileS);
+            BufferedWriter bw1 = IOUtils.getTextWriter(outfileS1);
+            BufferedWriter bw2 = IOUtils.getTextWriter(outfileS2);
+            BufferedWriter bw3 = IOUtils.getTextWriter(outfileS3);
+            Set<String> Dgene = new HashSet();
+            StringBuilder Dvalue = new StringBuilder();
+            while((temp = brABD1ToNTo1.readLine())!= null){
+                String [] tem = temp.split("\t");
+                String [] temtem = tem[0].split(";");
+                for(int i = 0; i < temtem.length;i++){
+                    Dgene.add(temtem[i]);
+                }
+//                for(int j=0;j < Dgene.size();j++) {
+//                    System.out.println(Dgene.get(j));
+//                    bw2.write("\n" + tem[0] + "\t" + tem [1] + "\t" + Dgene[j]);
+//                }    
+                Iterator iter = Dgene.iterator();
+                while (iter.hasNext()) {
+                    Object DD = iter.next();
+                    bw2.write(tem[1] + "\t" + DD + "\n");      
+                    bw3.write(tem[2] + "\t" + DD + "\n"); 
+                    Dvalue.append(DD+";");
+                    //Dgene.remove(DD);
+                }
+                Dgene = new HashSet();
+                String DDvalue = Dvalue.substring(0, Dvalue.length()-1);
+                String [] DDnum = DDvalue.split(";");
+                ddnum = ddnum + DDnum.length;
+                bw1.write(DDvalue + "\t" + tem[1] + "\t" + tem[2] + "\n");
+                Dvalue = new StringBuilder();
+            }
+            System.out.println(ddnum);
+            bw1.flush();
+            bw2.flush();
+            bw3.flush();
+            bw1.close();
+            bw2.close();
+            bw3.close();
         }
         catch(Exception e){
             e.printStackTrace();
