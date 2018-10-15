@@ -57,19 +57,19 @@ public class WheatEntrance {
 //        String outfileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatHomology/TheReciprocalBestBLAST1_1/filterSortN/get1ToNTo1step2gene.txt";
 //        new OneToManyInWheat(infileS1,infileS2,outfileS1,outfileS2);
 
-//        String infileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatHomology/TheReciprocalBestBLAST1_1/TheReciprocalAll/WheatHomeologousGenes.txt";
-//        String infileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatgenome/NumNoUnKGF.gff3";
-//        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatgenome/GeneFeature/crb_blast/TheReciprocalAll/lineA.txt";
-//        new TheReciprocalBestBLASTHit(infileS1,infileS2,outfileS);
+        String infileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatHomology/TheReciprocalBestBLAST1_1/TheReciprocalAll/WheatHomeologousGenes.txt";
+        String infileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatgenome/V1_1/NumNoUnKGF1_1.txt";
+        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatHomology/TheReciprocalBestBLAST1_1/TheReciprocalAll/lineD.txt";
+        new TheReciprocalBestBLASTHit(infileS1,infileS2,outfileS);
         
 //        String infileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatHomology/TheReciprocalBestBLAST1_1/TheReciprocalAll/ABDN11/ABDNTo1To1.txt";
 //        String infileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatHomology/TheReciprocalBestBLAST1_1/TheReciprocalAll/The0BD.txt";
 //        String outfileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatHomology/TheReciprocalBestBLAST1_1/TheReciprocalAll/The0BDolny.txt";
 //        new OneToManyInWheat(infileS1,infileS2,outfileS1);
 
-        String infileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatgenome/GeneFeature/WheatgenesReplaceNumNoUn.gff3";
-        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatgenome/GeneFeature/WheatgenesNumNoUnCDSlong.txt";
-        new WheatNewGeneFeature (infileS ,outfileS);
+//        String infileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatgenome/V1_1/GeneLulabNoUn1_1.gff3";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatgenome/V1_1/NumNoUnKGF1_1.txt";
+//        new WheatNewGeneFeature (infileS ,outfileS);
         
 //        String infileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatHomology/TheReciprocalBestBLAST1_1/TheReciprocalAll/ABDNTo1To1gene.txt";
 //        String outfileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatHomology/TheReciprocalBestBLAST1_1/TheReciprocalAll/ABDNTo1To1gene2.txt";

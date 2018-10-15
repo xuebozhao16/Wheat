@@ -33,10 +33,11 @@ public class WheatNewGeneFeature {
      * @param infileS 
      */
     public WheatNewGeneFeature (String infileS,String outfileS) {
-        this.readFromWheatGFF(infileS);
-        //this.writeAllFile(outfileS);
+        //this.readFromWheatGFF(infileS);
+        this.readFromWheatGFF1_1(infileS);
+        this.writeAllFile(outfileS);
         //this.writeTheLongestCDSFile(outfileS);
-        this.writeTheCDSAllFile(outfileS);
+        //this.writeTheCDSAllFile(outfileS);
         
     }
     
@@ -55,45 +56,45 @@ public class WheatNewGeneFeature {
 //                sb.append("\t").append(this.getGeneBiotype(i)).append("\t").append(this.getGeneDescription(i));
                 bw.write(sb.toString());
                 bw.newLine();
-                sb = new StringBuilder("TranscriptNumber\t");
-                sb.append(this.getTranscriptNumber(i)).append("\t").append(genes[i].longestTranscriptIndex);
-                bw.write(sb.toString());
-                bw.newLine();
-                for (int j = 0; j < this.getTranscriptNumber(i); j++) {
-                    sb = new StringBuilder();
-                    sb.append("Transcript\t").append(this.getTranscriptName(i, j)).append("\t").append(this.getTranscriptChromosome(i, j)).append("\t").append(this.getTranscriptStart(i, j)).append("\t").append(this.getTranscriptEnd(i, j)).append("\t").append(this.getTranscriptStrand(i,j));
-                    bw.write(sb.toString());
-                    bw.newLine();
-                    sb = new StringBuilder();
-                    sb.append("5'UTR\t");
-                    if (this.isThere5UTR(i, j)) {
-                        sb.append(this.get5UTRPositionString(i, j));
-                    }
-                    else {
-                        sb.append("NA");
-                    }
-                    bw.write(sb.toString());
-                    bw.newLine();
-                    bw.write("CDS\t"+this.getCDSPositionString(i, j));
-                    bw.newLine();
-                    if (this.getIntronPositionString(i, j).equals("")) {
-                        bw.write("Intron\t"+"NA");
-                    }
-                    else {
-                        bw.write("Intron\t"+this.getIntronPositionString(i, j));
-                    }
-                    bw.newLine();
-                    sb = new StringBuilder();
-                    sb.append("3'UTR\t");
-                    if (this.isThere3UTR(i, j)) {
-                        sb.append(this.get3UTRPositionString(i, j));
-                    }
-                    else {
-                        sb.append("NA");
-                    }
-                    bw.write(sb.toString());
-                    bw.newLine();
-                }
+//                sb = new StringBuilder("TranscriptNumber\t");
+//                sb.append(this.getTranscriptNumber(i)).append("\t").append(genes[i].longestTranscriptIndex);
+//                bw.write(sb.toString());
+//                bw.newLine();
+//                for (int j = 0; j < this.getTranscriptNumber(i); j++) {
+//                    sb = new StringBuilder();
+//                    sb.append("Transcript\t").append(this.getTranscriptName(i, j)).append("\t").append(this.getTranscriptChromosome(i, j)).append("\t").append(this.getTranscriptStart(i, j)).append("\t").append(this.getTranscriptEnd(i, j)).append("\t").append(this.getTranscriptStrand(i,j));
+//                    bw.write(sb.toString());
+//                    bw.newLine();
+//                    sb = new StringBuilder();
+//                    sb.append("5'UTR\t");
+//                    if (this.isThere5UTR(i, j)) {
+//                        sb.append(this.get5UTRPositionString(i, j));
+//                    }
+//                    else {
+//                        sb.append("NA");
+//                    }
+//                    bw.write(sb.toString());
+//                    bw.newLine();
+//                    bw.write("CDS\t"+this.getCDSPositionString(i, j));
+//                    bw.newLine();
+//                    if (this.getIntronPositionString(i, j).equals("")) {
+//                        bw.write("Intron\t"+"NA");
+//                    }
+//                    else {
+//                        bw.write("Intron\t"+this.getIntronPositionString(i, j));
+//                    }
+//                    bw.newLine();
+//                    sb = new StringBuilder();
+//                    sb.append("3'UTR\t");
+//                    if (this.isThere3UTR(i, j)) {
+//                        sb.append(this.get3UTRPositionString(i, j));
+//                    }
+//                    else {
+//                        sb.append("NA");
+//                    }
+//                    bw.write(sb.toString());
+//                    bw.newLine();
+//                }
             }
             bw.flush();
             bw.close();
@@ -537,6 +538,111 @@ public class WheatNewGeneFeature {
             ArrayList<String> geneList = new ArrayList();
             String[] tem = null;
             while ((temp = br.readLine()) != null) {
+                List<String> tList= PStringUtils.fastSplit(temp);
+                tem = tList.toArray(new String[tList.size()]);
+                //if (tem[2].startsWith("exon")) continue;
+                if (tem[2].startsWith("gene")) {
+                    String[] te = tem[8].split(";");
+                    geneList.add(te[0].split("=")[1]);
+                }
+                infoList.add(temp);
+            }
+            String[] geneNames = geneList.toArray(new String[geneList.size()]);
+            Arrays.sort(geneNames);
+            genes = new Gene[geneNames.length];
+            String[] info = infoList.toArray(new String[infoList.size()]);
+            for (int i = 0; i < info.length; i++) {
+                tem = info[i].split("\t");
+                if (tem[2].startsWith("gene")) {
+                    String[] te = tem[8].split(";");
+                    String query = te[0].split("=")[1];
+                    int index = Arrays.binarySearch(geneNames, query);
+//                    String biotype = "NA";
+//                    String description = "NA";
+//                    for (int j = 1; j < te.length; j++) {
+//                        if (te[j].startsWith("biotype")) {
+//                            biotype = te[j].replaceFirst("biotype=", "");
+//                        }
+//                        else if (te[j].startsWith("description")) {
+//                            description = te[j].replaceFirst("description=", "");
+//                        }
+//                    }
+                    genes[index] = new Gene (query, Integer.valueOf(tem[0]), Integer.valueOf(tem[3])-1, Integer.valueOf(tem[4]), (byte)(tem[6].equals("+")? 1:0));
+                }
+            }
+            for (int i = 0; i < info.length; i++) {
+                tem = info[i].split("\t");
+                if (tem[2].startsWith("mRNA")) {
+                    String[] te = tem[8].split(";");
+                    String transcriptName = te[0].split("=")[1];
+                    String geneName = transcriptName.split("\\.")[0];
+                    System.out.println(geneName);
+                    int geneIndex = Arrays.binarySearch(geneNames, geneName);
+                    Transcript t = new Transcript (te[0].split("=")[1], Integer.valueOf(tem[0]), Integer.valueOf(tem[3])-1, Integer.valueOf(tem[4]), (byte)(tem[6].equals("+")? 1:0));
+                    genes[geneIndex].addTranscript(t);
+                }
+            }
+            for (int i = 0; i < genes.length; i++) genes[i].sortTranscriptsByName();
+            for (int i = 0; i < info.length; i++) {
+                tem = info[i].split("\t");
+                if (tem[2].startsWith("CDS")) {
+                    String[] te = tem[8].split(";");
+                    String transcriptName = te[0].split("=")[1];
+                    String geneName;
+                    geneName = transcriptName.split("\\.")[0];
+                    int geneIndex = Arrays.binarySearch(geneNames, geneName);
+                    int transcriptIndex = genes[geneIndex].getTranscriptIndex(transcriptName);
+                    genes[geneIndex].ts.get(transcriptIndex).addCDS(Integer.valueOf(tem[0]), Integer.valueOf(tem[3])-1, Integer.valueOf(tem[4]));
+                }
+                else if (tem[2].startsWith("five_prime_UTR")) {
+                    String[] te = tem[8].split("=");
+                    String transcriptName = te[1];
+                    String geneName;
+                    geneName = transcriptName.split("\\.")[0];
+                    int geneIndex = Arrays.binarySearch(geneNames, geneName);
+                    int transcriptIndex = genes[geneIndex].getTranscriptIndex(transcriptName);
+                    genes[geneIndex].ts.get(transcriptIndex).add5UTR(Integer.valueOf(tem[0]), Integer.valueOf(tem[3])-1, Integer.valueOf(tem[4]));
+                }
+                else if (tem[2].startsWith("three_prime_UTR")) {
+                    String[] te = tem[8].split("=");
+                    String transcriptName = te[1];
+                    String geneName;
+                    geneName = transcriptName.split("\\.")[0];
+                    int geneIndex = Arrays.binarySearch(geneNames, geneName);
+                    int transcriptIndex = genes[geneIndex].getTranscriptIndex(transcriptName);
+                    genes[geneIndex].ts.get(transcriptIndex).add3UTR(Integer.valueOf(tem[0]), Integer.valueOf(tem[3])-1, Integer.valueOf(tem[4]));
+                }
+            }
+            for (int i = 0; i < this.genes.length; i++) {
+                for (int j = 0; j < genes[i].ts.size(); j++) {
+                    genes[i].ts.get(j).sort5UTRByPosition();
+                    genes[i].ts.get(j).sortCDSByPosition();
+                    genes[i].ts.get(j).sort3UTRByPosition();
+                    genes[i].ts.get(j).calculateIntron();
+                }
+                genes[i].calculateLongestTranscriptIndex();
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        this.sortGeneByStartPosition();
+    }
+    
+    
+    public void readFromWheatGFF1_1 (String infileS) {
+        try {
+            BufferedReader br;
+            if (infileS.endsWith("gz")) br = IOUtils.getTextGzipReader(infileS);
+            else br = IOUtils.getTextReader(infileS);
+            //String temp = br.readLine();
+            String temp = null;
+            ArrayList<String> infoList = new ArrayList();
+            ArrayList<String> geneList = new ArrayList();
+            String[] tem = null;
+            while ((temp = br.readLine()) != null) {
+                char s = temp.charAt(0);
+                if ((int)s < 48 || (int)s > 57) continue;
                 List<String> tList= PStringUtils.fastSplit(temp);
                 tem = tList.toArray(new String[tList.size()]);
                 //if (tem[2].startsWith("exon")) continue;

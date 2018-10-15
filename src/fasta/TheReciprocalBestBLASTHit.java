@@ -22,13 +22,13 @@ public class TheReciprocalBestBLASTHit {
         //this.getReciprocalBestBLASTHit(infileS1,infileS2,infileS3,outfileS1);
         //this.getReciprocalBestBLASTHitA(infileS1, infileS2, infileS3, outfileS1);
         //this.getReciprocalBestBLASTHitB(infileS1, infileS2, infileS3, outfileS1);
-        this.getReciprocalBestBLASTHitD(infileS1, infileS2, infileS3, outfileS1);
+        //this.getReciprocalBestBLASTHitD(infileS1, infileS2, infileS3, outfileS1);
     }   
     
     public TheReciprocalBestBLASTHit(String infileS1,String infileS2,String outfileS){
-        getAllGeneReciprocalBestBLASTHit(infileS1,infileS2,outfileS);
+        //getAllGeneReciprocalBestBLASTHit(infileS1,infileS2,outfileS);
         //this.getAllGeneReciprocalBestBLASTHit2(infileS1, infileS2, outfileS);
-        //this.getAllGeneReciprocalBestBLASTHit3(infileS1, infileS2, outfileS);
+        this.getAllGeneReciprocalBestBLASTHit3(infileS1, infileS2, outfileS);
     }
 
     public TheReciprocalBestBLASTHit(String infile,String outfile){
