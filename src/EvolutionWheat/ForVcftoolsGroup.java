@@ -20,6 +20,7 @@ import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStreamWriter;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.TreeSet;
 import java.util.zip.GZIPInputStream;
@@ -34,7 +35,8 @@ public class ForVcftoolsGroup {
      
     public ForVcftoolsGroup(String infileS,String outfileS){
         //this.forVcftoolsFileS(infileS, outfileS);
-        this.forVcftoolsFileSForR(infileS, outfileS);
+        ////this.forVcftoolsFileSForR(infileS, outfileS);
+        this.forVcftoolsFileSForR_chrnum(infileS, outfileS);
         //this.forXpclrAllFileS1(infileS, outfileS);
         //this.forXpclrAllFileS2(infileS, outfileS);
     }
@@ -57,79 +59,106 @@ public class ForVcftoolsGroup {
             e.printStackTrace();
         }
     }
-    
+    public void forVcftoolsFileSForR_chrnum(String infileS,String outfileS){
+        try{
+            String temp = null;
+            BufferedReader br = IOUtils.getTextReader(infileS);
+            BufferedWriter bw = IOUtils.getTextWriter(outfileS);
+            while((temp = br.readLine()) != null){
+                String tem[] = temp.split(" ");
+                //System.out.println(tem[5]);
+                if(tem[5].equals("inf") | tem[5].equals("-0.000000") | tem[5].equals("0.000000") | tem[5].equals("-nan")){
+                    
+                }else {
+                    double q = Math.pow(10,-Double.valueOf(tem[5]));
+                    String p = formatDouble(q);
+                    String pos = tem[3].split("\\.")[0];
+                    bw.write(tem[0] + "\t" + pos + "\t" + p + "\n");
+                }              
+            }
+            bw.flush();
+            bw.close();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
     public void forVcftoolsFileSForR(String infileS,String outfileS){
         try{
             String temp = null;
             BufferedReader br = IOUtils.getTextReader(infileS);
             BufferedWriter bw = IOUtils.getTextWriter(outfileS);
             while((temp = br.readLine()) != null){
-                String tem[] = temp.split("\t");
+                String tem[] = temp.split(" ");
+                //System.out.println(tem[5]);
                 if(tem[5].equals("inf") | tem[5].equals("-0.000000") | tem[5].equals("0.000000") | tem[5].equals("-nan")){
                     
                 }else {
+                    double q = Math.pow(10,-Double.valueOf(tem[5]));
+                    String p = formatDouble(q);
+                    String pos = tem[3].split("\\.")[0];
                     if(tem[0].equals("1") |tem[0].equals("2")){
-                        bw.write("1A" + "\t" + tem[3] + "\t" + tem[5] + "\n");
+                        bw.write("1A" + "\t" + pos + "\t" + p + "\n");
                     }
                     if(tem[0].equals("3") |tem[0].equals("4")){
-                        bw.write("1B" + "\t" + tem[3] + "\t" + tem[5] + "\n");
+                        bw.write("1B" + "\t" + pos + "\t" + p + "\n");
                     }
                     if(tem[0].equals("5") |tem[0].equals("6")){
-                        bw.write("1D" + "\t" + tem[3] + "\t" + tem[5] + "\n");
+                        bw.write("1D" + "\t" + pos + "\t" + p + "\n");
                     }
                     if(tem[0].equals("7") |tem[0].equals("8")){
-                        bw.write("2A" + "\t" + tem[3] + "\t" + tem[5] + "\n");
+                        bw.write("2A" + "\t" + pos + "\t" + p + "\n");
                     }
                     if(tem[0].equals("9") |tem[0].equals("10")){
-                        bw.write("2B" + "\t" + tem[3] + "\t" + tem[5] + "\n");
+                        bw.write("2B" + "\t" + pos + "\t" + p + "\n");
                     }
                     if(tem[0].equals("11") |tem[0].equals("12")){
-                        bw.write("2D" + "\t" + tem[3] + "\t" + tem[5] + "\n");
+                        bw.write("2D" + "\t" + pos + "\t" + p + "\n");
                     }
                     if(tem[0].equals("13") |tem[0].equals("14")){
-                        bw.write("3A" + "\t" + tem[3] + "\t" + tem[5] + "\n");
+                        bw.write("3A" + "\t" + pos + "\t" + p + "\n");
                     }
                     if(tem[0].equals("15") |tem[0].equals("16")){
-                        bw.write("3B" + "\t" + tem[3] + "\t" + tem[5] + "\n");
+                        bw.write("3B" + "\t" + pos + "\t" + p + "\n");
                     }
                     if(tem[0].equals("17") |tem[0].equals("18")){
-                        bw.write("3D" + "\t" + tem[3] + "\t" + tem[5] + "\n");
+                        bw.write("3D" + "\t" + pos + "\t" + p + "\n");
                     }
                     if(tem[0].equals("19") |tem[0].equals("20")){
-                        bw.write("4A" + "\t" + tem[3] + "\t" + tem[5] + "\n");
+                        bw.write("4A" + "\t" + pos + "\t" + p + "\n");
                     }
                     if(tem[0].equals("21") |tem[0].equals("22")){
-                        bw.write("4B" + "\t" + tem[3] + "\t" + tem[5] + "\n");
+                        bw.write("4B" + "\t" + pos + "\t" + p + "\n");
                     }
                     if(tem[0].equals("23") |tem[0].equals("24")){
-                        bw.write("4D" + "\t" + tem[3] + "\t" + tem[5] + "\n");
+                        bw.write("4D" + "\t" + tem[3] + "\t" + p + "\n");
                     }
                     if(tem[0].equals("25") |tem[0].equals("26")){
-                        bw.write("5A" + "\t" + tem[3] + "\t" + tem[5] + "\n");
+                        bw.write("5A" + "\t" + pos + "\t" + p + "\n");
                     }
                     if(tem[0].equals("27") |tem[0].equals("28")){
-                        bw.write("5B" + "\t" + tem[3] + "\t" + tem[5] + "\n");
+                        bw.write("5B" + "\t" + pos + "\t" + p + "\n");
                     }
                     if(tem[0].equals("29") |tem[0].equals("30")){
-                        bw.write("5D" + "\t" + tem[3] + "\t" + tem[5] + "\n");
+                        bw.write("5D" + "\t" + pos + "\t" + p + "\n");
                     }
                     if(tem[0].equals("31") |tem[0].equals("32")){
-                        bw.write("6A" + "\t" + tem[3] + "\t" + tem[5] + "\n");
+                        bw.write("6A" + "\t" + pos + "\t" + p + "\n");
                     }
                     if(tem[0].equals("33") |tem[0].equals("34")){
-                        bw.write("6B" + "\t" + tem[3] + "\t" + tem[5] + "\n");
+                        bw.write("6B" + "\t" + pos + "\t" + p + "\n");
                     }
                     if(tem[0].equals("35") |tem[0].equals("36")){
-                        bw.write("6D" + "\t" + tem[3] + "\t" + tem[5] + "\n");
+                        bw.write("6D" + "\t" + pos + "\t" + p + "\n");
                     }
                     if(tem[0].equals("37") |tem[0].equals("38")){
-                        bw.write("7A" + "\t" + tem[3] + "\t" + tem[5] + "\n");
+                        bw.write("7A" + "\t" + pos + "\t" + p + "\n");
                     }
                     if(tem[0].equals("39") |tem[0].equals("40")){
-                        bw.write("7B" + "\t" + tem[3] + "\t" + tem[5] + "\n");
+                        bw.write("7B" + "\t" + pos + "\t" + p + "\n");
                     }
                     if(tem[0].equals("41") |tem[0].equals("42")){
-                        bw.write("7D" + "\t" + tem[3] + "\t" + tem[5] + "\n");
+                        bw.write("5A" + "\t" + pos + "\t" + p + "\n");
                     }
                 }              
             }
@@ -140,7 +169,10 @@ public class ForVcftoolsGroup {
             e.printStackTrace();
         }
     }
-    
+    public String formatDouble(double s) {
+		DecimalFormat fmt = new DecimalFormat("##0.0");
+		return fmt.format(s);
+	}
     public void forXpclrAllFileS1(String infileS,String outfileS){
         try{    
             String temp = null;
