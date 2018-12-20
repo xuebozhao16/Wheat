@@ -35,10 +35,13 @@ public class ForVcftoolsGroup {
      
     public ForVcftoolsGroup(String infileS,String outfileS){
         //this.forVcftoolsFileS(infileS, outfileS);
-        ////this.forVcftoolsFileSForR(infileS, outfileS);
-        this.forVcftoolsFileSForR_chrnum(infileS, outfileS);
+        this.forVcftoolsFileSForR(infileS, outfileS);
+        //this.forVcftoolsFileSForR_chrnum(infileS, outfileS);
         //this.forXpclrAllFileS1(infileS, outfileS);
         //this.forXpclrAllFileS2(infileS, outfileS);
+    }
+    public ForVcftoolsGroup(String infileS1,String infileS2,String outfileS){
+        this.forMerge2xpclr(infileS1, infileS2, outfileS);
     }
 
     public void forVcftoolsFileS(String infileS,String outfileS){
@@ -59,6 +62,8 @@ public class ForVcftoolsGroup {
             e.printStackTrace();
         }
     }
+    
+    //这个方法的作用是去掉xpclr结果中的NA等值,并对第5列的值取-log
     public void forVcftoolsFileSForR_chrnum(String infileS,String outfileS){
         try{
             String temp = null;
@@ -83,6 +88,8 @@ public class ForVcftoolsGroup {
             e.printStackTrace();
         }
     }
+    
+    //这个方法是去掉NA等值之后换染色体
     public void forVcftoolsFileSForR(String infileS,String outfileS){
         try{
             String temp = null;
@@ -94,8 +101,9 @@ public class ForVcftoolsGroup {
                 if(tem[5].equals("inf") | tem[5].equals("-0.000000") | tem[5].equals("0.000000") | tem[5].equals("-nan")){
                     
                 }else {
-                    double q = Math.pow(10,-Double.valueOf(tem[5]));
-                    String p = formatDouble(q);
+                    //double q = Math.pow(10,-Double.valueOf(tem[5]));
+                    //String p = formatDouble(q);
+                    String p = tem[5];
                     String pos = tem[3].split("\\.")[0];
                     if(tem[0].equals("1") |tem[0].equals("2")){
                         bw.write("1A" + "\t" + pos + "\t" + p + "\n");
@@ -158,7 +166,7 @@ public class ForVcftoolsGroup {
                         bw.write("7B" + "\t" + pos + "\t" + p + "\n");
                     }
                     if(tem[0].equals("41") |tem[0].equals("42")){
-                        bw.write("5A" + "\t" + pos + "\t" + p + "\n");
+                        bw.write("7D" + "\t" + pos + "\t" + p + "\n");
                     }
                 }              
             }
@@ -173,6 +181,51 @@ public class ForVcftoolsGroup {
 		DecimalFormat fmt = new DecimalFormat("##0.0");
 		return fmt.format(s);
 	}
+    
+    //xpclr的结果是一个染色体有两个文件，文件都是从0开始，现在画图，合成一个
+    public void forMerge2xpclr(String infileS1,String infileS2,String outfileS){
+        try{
+            String temp1 = null;
+            String temp2 = null;    
+            BufferedReader br1 = IOUtils.getTextReader(infileS1);
+            BufferedReader br2 = IOUtils.getTextReader(infileS2);
+            BufferedWriter bw = IOUtils.getTextWriter(outfileS);
+            while((temp1 = br1.readLine()) != null){
+                String tem[] = temp1.split(" ");
+                if(tem[5].equals("inf") | tem[5].equals("-0.000000") | tem[5].equals("0.000000") | tem[5].equals("-nan")){
+                    
+                }else {              
+                    String p = tem[5];
+                    String pos = tem[3].split("\\.")[0];
+                    bw.write(tem[0] + "\t" + pos + "\t" + p + "\n");
+                }              
+            }
+            while((temp2 = br2.readLine()) != null){
+                String tem[] = temp2.split(" ");
+                if(tem[5].equals("inf") | tem[5].equals("-0.000000") | tem[5].equals("0.000000") | tem[5].equals("-nan")){
+                    
+                }else {     
+                    String p = tem[5];
+                    int pos = Integer.valueOf(tem[3].split("\\.")[0]);
+                    ////chr 3A
+                    int pos1 = pos + 454103970;
+                    ////chr 3B
+                    //int pos1 = pos + 448155269;
+                    ////chr 3D
+                    //int pos1 = pos + 476235359;
+                    bw.write(tem[0] + "\t" + pos1 + "\t" + p + "\n");
+                }              
+            }
+            bw.flush();
+            bw.close();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
+
+    //这个是对文件夹的操作，可以对一个文件夹指定后缀的文件进行操作
     public void forXpclrAllFileS1(String infileS,String outfileS){
         try{    
             String temp = null;
@@ -200,6 +253,7 @@ public class ForVcftoolsGroup {
         }
     }
     
+    //这个是对文件夹的操作，可以对一个文件夹指定后缀的文件进行操作
     public void forXpclrAllFileS2(String infileS,String outfileS){
         try{    
             String temp = null;

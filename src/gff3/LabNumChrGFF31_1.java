@@ -31,11 +31,12 @@ public class LabNumChrGFF31_1 {
                     System.out.println("It's time to" + i);
                 }
                 String[] tem = temp.split("\t");
-//                if(temp.startsWith("chrUn")){
-//                    temp = temp.replaceAll("chrUn", "0");
-//                    bw.write(temp + "\n");
-//                }
-                if(temp.startsWith("chr1A"))  {
+                if(temp.startsWith("chrUn")){
+                    temp = temp.replaceAll("chrUn", "0");
+                    bw.write(temp + "\n");
+                    //System.out.println(temp.split("\t")[2]);
+                }
+                else if(temp.startsWith("chr1A"))  {
                     if(Integer.valueOf(tem[4]) < 471304005){
                         temp = temp.replaceAll("chr1A", "1");
                     }else{
@@ -245,12 +246,13 @@ public class LabNumChrGFF31_1 {
                     }
                     bw.write(temp + "\n");
                 }  
-                else if(temp.startsWith("chrUn"))  {
-                    
-                } 
+//                else if(temp.startsWith("chrUn"))  {
+//                    
+//                } 
                 else {
                     //System.out.println(temp);
                     bw.write(temp + "\n");
+                    System.out.println(temp);
                 } 
                 //bw.write(temp + "\n");
             }

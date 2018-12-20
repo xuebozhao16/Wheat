@@ -26,17 +26,17 @@ public class XPEHHandXPCLRregion {
     public XPEHHandXPCLRregion(String infileS,String outfileS){
         //this.regionForXpehh(infileS, outfileS);
         //this.forxpclrFileSForR(infileS, outfileS);
-        //this.regionForXpclr(infileS, outfileS);
+        this.regionForXpclr(infileS, outfileS);
         //this.forGFF3gene(infileS, outfileS);
     }
-//    public XPEHHandXPCLRregion(String infileS1,String infileS2,String outfileS){
-//        //this.getReciprocalRiceToA(infileS1, infileS2, outfileS);
-//        //this.forRegionGene(infileS1, infileS2, outfileS);
-//    }
-    
-    public XPEHHandXPCLRregion(String infileS,String outfileS1,String outfileS2){
-       this.forGOandGENE(infileS, outfileS1, outfileS2);
+    public XPEHHandXPCLRregion(String infileS1,String infileS2,String outfileS){
+        //this.getReciprocalRiceToA(infileS1, infileS2, outfileS);
+        this.forRegionGene(infileS1, infileS2, outfileS);
     }
+    
+//    public XPEHHandXPCLRregion(String infileS,String outfileS1,String outfileS2){
+//       this.forGOandGENE(infileS, outfileS1, outfileS2);
+//    }
 //    public XPEHHandXPCLRregion(String infileS1,String infileS2, String outfileS1,String outfileS2,String outfileS3){
 //        this.forGOandGENEforspecifiedGene(infileS1, infileS2, outfileS1, outfileS2,outfileS3);
 //    }

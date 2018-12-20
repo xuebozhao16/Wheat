@@ -8,6 +8,7 @@ package Args;
 import fasta.OneToManyInWheat;
 import fasta.SplitWheatABD;
 import fasta.TheReciprocalBestBLASTHit;
+import gff3.LabNumChrGFF31_1;
 import gff3.WheatNewGeneFeature;
 
 /**
@@ -16,6 +17,10 @@ import gff3.WheatNewGeneFeature;
  */
 public class WheatEntrance {
     public static void main(String args[]) {
+        String infile = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatgenome/V1_1/IWGSC1_1/IWGSC_v1.1_HC_20170706.gtf";
+        String outfile = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatgenome/V1_1/GeneLulab1_1.gtf";
+        new LabNumChrGFF31_1(infile, outfile);
+        
         
 //        String infileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatgenome/GeneFeature/AllCDSsequence.fa";
 //        String infileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatgenome/SplitABD_pseudogenome/SplitSubGenomeA.txt";
@@ -57,10 +62,10 @@ public class WheatEntrance {
 //        String outfileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatHomology/TheReciprocalBestBLAST1_1/filterSortN/get1ToNTo1step2gene.txt";
 //        new OneToManyInWheat(infileS1,infileS2,outfileS1,outfileS2);
 
-        String infileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatHomology/TheReciprocalBestBLAST1_1/TheReciprocalAll/WheatHomeologousGenes.txt";
-        String infileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatgenome/V1_1/NumNoUnKGF1_1.txt";
-        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatHomology/TheReciprocalBestBLAST1_1/TheReciprocalAll/lineD.txt";
-        new TheReciprocalBestBLASTHit(infileS1,infileS2,outfileS);
+//        String infileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatHomology/TheReciprocalBestBLAST1_1/TheReciprocalAll/WheatHomeologousGenes.txt";
+//        String infileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatgenome/V1_1/NumNoUnKGF1_1.txt";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatHomology/TheReciprocalBestBLAST1_1/TheReciprocalAll/lineD.txt";
+//        new TheReciprocalBestBLASTHit(infileS1,infileS2,outfileS);
         
 //        String infileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatHomology/TheReciprocalBestBLAST1_1/TheReciprocalAll/ABDN11/ABDNTo1To1.txt";
 //        String infileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatHomology/TheReciprocalBestBLAST1_1/TheReciprocalAll/The0BD.txt";
