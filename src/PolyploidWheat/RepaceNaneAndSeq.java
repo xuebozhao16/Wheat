@@ -9,6 +9,7 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.util.HashMap;
+import utils.IOUtils;
 
 /**
  * 这个方法是为了重复science的文章，使用BEAST计算每个保守基因的进化时间，BEAST会产生一个xml的文件，用这个一个文件为模板，对一个文件夹内的所有比对文件进行操作
@@ -177,13 +178,15 @@ public class RepaceNaneAndSeq {
                                     bw.write(temp2New + "\n");
                                 } 
                             }
-                        }else if(temp2.contains(" ABCDmodel")){                            
-                            temp2New = temp2.replace(" ABCDmodel", i + "_" + xmlname);
+                        }else if(temp2.contains("group2")){                            
+                            temp2New = temp2.replace("group2", i + "_" + xmlname);
                             bw.write(temp2New + "\n");
-                        }else if(temp2.contains("ABCDmodel.log")){
-                            temp2New = temp2.replace("ABCDmodel.log", i + "_" + xmlname + ".log");
-                            bw.write(temp2New + "\n");
-                        }else{
+                        }
+//                        else if(temp2.contains("ABCDmodel.log")){
+//                            temp2New = temp2.replace("ABCDmodel.log", i + "_" + xmlname + ".log");
+//                            bw.write(temp2New + "\n");
+//                        }
+                        else{
                             //System.out.println(temp2);
                             bw.write(temp2 + "\n");
                         }

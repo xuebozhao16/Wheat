@@ -25,8 +25,8 @@ public class XPEHHandXPCLRregion {
 
     public XPEHHandXPCLRregion(String infileS,String outfileS){
         //this.regionForXpehh(infileS, outfileS);
-        //this.forxpclrFileSForR(infileS, outfileS);
-        this.regionForXpclr(infileS, outfileS);
+        this.forxpclrFileSForR(infileS, outfileS);
+        //this.regionForXpclr(infileS, outfileS);
         //this.forGFF3gene(infileS, outfileS);
     }
     public XPEHHandXPCLRregion(String infileS1,String infileS2,String outfileS){
@@ -37,12 +37,12 @@ public class XPEHHandXPCLRregion {
 //    public XPEHHandXPCLRregion(String infileS,String outfileS1,String outfileS2){
 //       this.forGOandGENE(infileS, outfileS1, outfileS2);
 //    }
-//    public XPEHHandXPCLRregion(String infileS1,String infileS2, String outfileS1,String outfileS2,String outfileS3){
-//        this.forGOandGENEforspecifiedGene(infileS1, infileS2, outfileS1, outfileS2,outfileS3);
-//    }
-    public XPEHHandXPCLRregion(String infileS1,String infileS2, String infileS3,String outfileS1,String outfileS2){
-        this.forKEGGforspecifiedGene(infileS1, infileS2, infileS3, outfileS1, outfileS2);
+    public XPEHHandXPCLRregion(String infileS1,String infileS2, String outfileS1,String outfileS2,String outfileS3){
+        this.forGOandGENEforspecifiedGene(infileS1, infileS2, outfileS1, outfileS2,outfileS3);
     }
+//    public XPEHHandXPCLRregion(String infileS1,String infileS2, String infileS3,String outfileS1,String outfileS2){
+//        this.forKEGGforspecifiedGene(infileS1, infileS2, infileS3, outfileS1, outfileS2);
+//    }
  
     //对0.01的Xpehh的结果取region
     public void regionForXpehh(String infileS,String outfileS){
@@ -129,8 +129,9 @@ public class XPEHHandXPCLRregion {
             while((temp = br.readLine()) != null){
                 String tem[] = temp.split(" ");
                 //System.out.println(tem[5]);
-                if(tem[5].equals("inf") | tem[5].equals("-0.000000") | tem[5].equals("0.000000") | tem[5].equals("-nan")){
+//                if(tem[5].equals("inf") | tem[5].equals("-0.000000") | tem[5].equals("0.000000") | tem[5].equals("-nan")){
                     
+                if(tem[5].equals("inf") | tem[5].equals("-nan")){    
                 }else {
                     //double q = Math.pow(10,-Double.valueOf(tem[5]));
                     //String p = formatDouble(q);

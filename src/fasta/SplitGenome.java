@@ -7,6 +7,7 @@ package fasta;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import utils.IOUtils;
 //import utils.IOUtils;
 
 /**
