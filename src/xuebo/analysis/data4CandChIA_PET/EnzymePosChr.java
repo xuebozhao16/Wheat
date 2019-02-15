@@ -21,20 +21,15 @@ import static xuebo.analysis.data4CandChIA_PET.ReducedLibrary.getWriteStreamAppe
 public class EnzymePosChr {
     
      EnzymePosChr(String infileS,String cutter,String outfileS) {
-
         this.SecondFiltering(infileS,cutter,outfileS);
     }
-
     public void SecondFiltering(String infileS,String cutter,String outfileS) {
-        try{
-            
-           BufferedReader br;            
-           br = XueboIOUtils.getTextReader(infileS);
-           
+        try{          
+            BufferedReader br;            
+            br = XueboIOUtils.getTextReader(infileS);          
             String temp = null;
             StringBuilder temp2 = new StringBuilder();
-            int i = 0;
-           
+            int i = 0;    
             try{
                 BufferedWriter bw1 = XueboIOUtils.getTextWriter(outfileS);
                 bw1.write("");
@@ -44,35 +39,26 @@ public class EnzymePosChr {
             catch (Exception e){
                 e.printStackTrace();
             }
-            String chr ="";
-            
-            List <Integer> Pos = null;
-            
-            while (( temp = br.readLine()) != null) {
-               
-                if(temp.startsWith(">")){
-                    
+            String chr ="";            
+            List <Integer> Pos = null;            
+            while (( temp = br.readLine()) != null) {               
+                if(temp.startsWith(">")){                   
                     System.out.println("Processing chromosome " + i + "...");
-                    if(i > 0){     
-                        
-                        chr = Integer.toString(i);  
-                        
+                    if(i > 0){                            
+                        chr = Integer.toString(i);                          
                         Pos = binaryCutter(temp2,cutter);
-                        getReducedLibrary(chr,Pos,temp2,outfileS);
-                    }
-                    
-                    i++; 
-                    
+                        getReducedLibrary(chr,Pos,temp2,cutter,outfileS);
+                    }                   
+                    i++;                     
                     temp2.delete(0, temp2.length());
                 }
                 else {                    
                     temp2.append(temp);                   
-                }
-                
+                }               
             }
             chr = Integer.toString(i);
             Pos = binaryCutter(temp2,cutter);
-            getReducedLibrary(chr,Pos,temp2,outfileS);
+            getReducedLibrary(chr,Pos,temp2,cutter,outfileS);
         }
         catch (Exception e){
             e.printStackTrace();
@@ -82,7 +68,7 @@ public class EnzymePosChr {
     public List<Integer> binaryCutter(StringBuilder inChr,String cutter){
         String query = null;
         List<Integer> pos = new ArrayList<>();
-        for(int i = 0 ; i < inChr.length()-cutter.length() ; i++){
+        for(int i = 0 ; i < inChr.length()-cutter.length(); i++){
             query = inChr.substring(i, i + cutter.length());
             if(query.equals(cutter)){
                 pos.add(i);
@@ -91,24 +77,18 @@ public class EnzymePosChr {
         return pos;
     }
     
-    public void getReducedLibrary(String Chr,List<Integer> pos,StringBuilder inChr,
-            String outfileS){
+    public void getReducedLibrary(String Chr,List<Integer> pos,StringBuilder inChr,String cutter, String outfileS){
         try{
-        String cutterinChr = null;
-        String headcutterinchr = null;
         String headcutterbed = null;
-//        BufferedWriter bw = XueboIOUtils.getTextWriter(outfileS);
             for(int i = 0;i < pos.size();i = i+1){
-                int aa = Integer.valueOf(pos.get(i)) + 5 ;
+                int aa = Integer.valueOf(pos.get(i)) + cutter.length() ; 
                 headcutterbed = Chr + "\t" + pos.get(i) + "\t" + aa + "\t0" + "\n";
                 getWriteStreamAppend(outfileS,headcutterbed);
             }
         }
         catch (Exception e){
             e.printStackTrace();
-        }
-        
-        
+        }       
     }
 
     public static void getWriteStreamAppend(String file, String conent) {                         
@@ -128,8 +108,5 @@ public class EnzymePosChr {
                 e.printStackTrace();                                                
             }                                                                       
         }                                                                           
-    }   
-    
-    
-    
+    }       
 }

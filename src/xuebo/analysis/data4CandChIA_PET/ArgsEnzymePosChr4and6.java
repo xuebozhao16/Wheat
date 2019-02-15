@@ -9,7 +9,7 @@ package xuebo.analysis.data4CandChIA_PET;
  *
  * @author xuebozhao
  */
-public class ArgsEnzymePosChr {
+public class ArgsEnzymePosChr4and6 {
     
     public static void main(String[] args) {
         
@@ -40,14 +40,11 @@ public class ArgsEnzymePosChr {
                 default:
                     break;
             }
-        }
-        
-        
+        }        
         if(outfileS.equals("")){
             String[] temp = infileS.split("/");
             outfileS = temp[temp.length -1].split("\\.")[0] + ".EnzymePosChr.bed";
-        }
-        
+        }       
         new EnzymePosChr(infileS ,cutter, outfileS); 
         
     }

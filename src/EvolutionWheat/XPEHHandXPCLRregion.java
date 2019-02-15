@@ -25,8 +25,8 @@ public class XPEHHandXPCLRregion {
 
     public XPEHHandXPCLRregion(String infileS,String outfileS){
         //this.regionForXpehh(infileS, outfileS);
-        this.forxpclrFileSForR(infileS, outfileS);
-        //this.regionForXpclr(infileS, outfileS);
+        //this.forxpclrFileSForR(infileS, outfileS);
+        this.regionForXpclr(infileS, outfileS);
         //this.forGFF3gene(infileS, outfileS);
     }
     public XPEHHandXPCLRregion(String infileS1,String infileS2,String outfileS){
@@ -292,7 +292,8 @@ public class XPEHHandXPCLRregion {
             }
             for (Object str1 : GoAnnotation1) {
                 String GOgene = str1.toString();
-                bw1.write(GOgene.split("_")[0] + "," + GOgene.split("_")[1] + "\n");
+                //bw1.write(GOgene.split("_")[0] + "," + GOgene.split("_")[1] + "\n");
+                bw1.write(GOgene.split("_")[1] + "\t" + GOgene.split("_")[0] + "\n");
             }      
             for (Object str : GoAnnotation) {
                 String Go = str.toString();

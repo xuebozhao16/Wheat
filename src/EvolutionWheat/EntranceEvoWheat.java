@@ -16,8 +16,8 @@ public class EntranceEvoWheat {
 //        new ForVcftoolsGroup(infileS,outfileS);
 
         String infileS1 ="/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatgenome/readmeByFei_table.txt";
-        String infileS2 ="/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/xpclr/figures/ABD_23_10k.xpclr.txt";
-        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/xpclr/figures/ABD_23_10k.txt";
+        String infileS2 ="/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/Pi/ABD.pi.txt";
+        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/Pi/Chr_ABD.pi.txt";
         new ForManhattanPlot(infileS1,infileS2,outfileS);
         
 //        String infileS1 ="/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/tree/Treefigures/itol/setcolor/color2/color2.txt";

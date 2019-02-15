@@ -9,7 +9,7 @@ package xuebo.analysis.data4CandChIA_PET;
  *
  * @author xuebozhao
  */
-public class ArgsContaining {
+public class ArgsContaining1and2 {
     /**
      * @param args the command line arguments
      * -i: input file name 1
@@ -69,7 +69,7 @@ public class ArgsContaining {
             outfileS2 = temp[temp.length -1].split("\\.")[0] + ".contained.fq.gz";
         }
         
-        new Containing(infileS1 ,infileS2 , outfileS1,outfileS2); 
+        new Containing2(infileS1 ,infileS2 , outfileS1,outfileS2); 
         
     }
     

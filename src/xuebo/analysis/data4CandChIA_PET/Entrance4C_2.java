@@ -9,21 +9,7 @@ package xuebo.analysis.data4CandChIA_PET;
  *
  * @author xuebozhao
  */
-//public class Entrance4C {
-//    public static void main (String[] args) { 
-//            String infileS1 = "/Users/xuebozhao/Documents/4Cdata/4C_data_1/test/1.txt";
-//            String infileS2 = "/Users/xuebozhao/Documents/4Cdata/4C_data_1/test/2.txt";
-//            String outfileS1 = "/Users/xuebozhao/Documents/4Cdata/4C_data_1/test/test1111.out.gz";
-//            String outfileS2 = "/Users/xuebozhao/Documents/4Cdata/4C_data_1/test/test2222.out.gz";
-//           
-//            new Containing(infileS1 ,infileS2 , outfileS1,outfileS2);
-//    }
-//}
-
-
-
-public class Entrance4C{
-    
+public class Entrance4C_2{
     public static void main (String[] args) {
 //        
 //        String infileS = "/Users/xuebozhao/Documents/4Cdata/Library/addL23567.sorted.bed";
@@ -53,21 +39,30 @@ public class Entrance4C{
 //        String outfileS = "/Users/xuebozhao/Documents/LuLab/4C/4Cdata/Library/realproduct/perimask/perimask5/K5Noadjusted001ForCircos.bed";       
 //        new GetCircosBed (infileS,outfileS);
         
+
+
+
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/4C/4Cdata/Library/realproduct/K9_K12/rangeblank.txt";       
+//        new ForDensityPlot (outfileS);
         
-        String infileS = "/Users/xuebozhao/Documents/allSIFTpredictions.txt";
-        String outfileS = "/Users/xuebozhao/Documents/123.txt";       
-        new GetCircosBed (infileS,outfileS);
+//        String infileS1 = "/Users/xuebozhao/Documents/LuLab/4C/4Cdata/Library/realproduct/K9_K12/rangeblank.txt";   
+//        String infileS2 = "/Users/xuebozhao/Documents/LuLab/4C/4Cdata/Library/realproduct/K9_K12/K12/positiveK12_hits_allNoadjusted.bed";   
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/4C/4Cdata/Library/realproduct/K9_K12/K12/DebsityRange_12.txt";       
+//        new ForDensityPlot (infileS1, infileS2, outfileS);
+//        
+   
+        String infileS = "/Users/xuebozhao/Documents/LuLab/4C/4Cdata/Library/realproduct/K9_K12/bait_around/K12_100k.txt";   
+        String outfileS = "/Users/xuebozhao/Documents/LuLab/4C/4Cdata/Library/realproduct/K9_K12/bait_around/K12_100k_site.txt";       
+        new ForDensityPlot (infileS,outfileS);
+
+//        String infileS = "/Users/xuebozhao/Documents/LuLab/4C/4Cdata/Library/realproduct/TAIRGenome/TAIR10_GFF3_genes.gff";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/4C/4Cdata/Library/realproduct/TAIRGenome/TAIR10_GFF3_onlyGene.txt";
+//        new Tair10_gff3(infileS,outfileS);
+        
+//        String infileS1 = "/Users/xuebozhao/Documents/LuLab/4C/4Cdata/Library/realproduct/TAIRGenome/TAIR10_GFF3_onlyGene.txt";
+//        String infileS2 = "/Users/xuebozhao/Documents/LuLab/4C/4Cdata/Library/realproduct/K9_K12/K12/positiveK12_hits_allNoadjusted.bed";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/4C/4Cdata/Library/realproduct/K9_K12/K12/positiveK12_allNoadjusted_gene.txt";
+//        new Tair10_gff3(infileS1,infileS2,outfileS);
         
     }
 }
-
-//public class Entrance4C{
-//   
-//        public static void main (String[] args) {
-//        
-//            String infileS = "/Users/xuebozhao/Documents/4Cdata/Library/1.txt";
-//            String outfileS = "/Users/xuebozhao/Documents/4Cdata/Library/11111.txt";
-//            new ReducedLibrary(infileS,"TTAA","AGATCT",outfileS);
-//        }
-//        
-//}
