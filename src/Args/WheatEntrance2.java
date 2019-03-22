@@ -61,38 +61,40 @@ public class WheatEntrance2 {
 //        new SplitWheatABD1_1(infileS,infileS1,infileS2,infileS3,outfileS1,outfileS2,outfileS3);
 
 
-//        String infileS ="/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR/max_milli/ABD_milli.txt";
-//        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR/max_milli/milli_ABD_region.txt";
+//        String infileS ="/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR/max_milli/AB_cul5_milli.txt";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR/max_milli/milli_AB_cul5_region.txt";
 //        new XPEHHandXPCLRregion(infileS,outfileS);
         
-//        String infileS ="/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR/max_milli/ABD_milli.xpclr.txt";
-//        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR/max_milli/ABD_milli.txt";
+//        String infileS ="/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR/max_milli/AB_cul5_milli.xpclr.txt";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR/max_milli/AB_cul5_milli.txt";
 //        new XPEHHandXPCLRregion(infileS,outfileS);
-//        String infileS ="/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/Brgene/indel/Btr1_3D/ABD.Br1.3D.indel.vcf.recode.vcf";
-//        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/Brgene/indel/Btr1_3D/Br1.ABD_3D.txt";
+
+//        String infileS ="/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/tb1gene/snp_V10/chr23_tb1_D.vcf";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/tb1gene/snp_V10/tb1_D.txt";
 //        new ForXpehh_bin(infileS,outfileS);
 //        
-//        String infileS ="/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/Brgene/snp/chr15btr1_5K.heatmap.nobeagle.vcf";
-//        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/Brgene/snp/3Bbtr1_5K.heatmapNoB.txt";
+//        String infileS ="/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/Qgene/chr26_Q.vcf";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/Qgene/chr26_Q.txt";
 //        new ForXpehh_bin(infileS,outfileS);
      
         //String infileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/convergentEvo/xpclr_region/textgene.txt";
         /////////region to gene *********************************
-//        String infileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatgenome/V1_1/GeneLulab1_1onlyGene.txt";
-//        String infileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/Pi/max_milli/ABD_milli.pi.txt";
-//        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/Pi/max_milli/milli_ABD_gene.txt";
-//        new XPEHHandXPCLRregion(infileS1,infileS2,outfileS);
+        
+        String infileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatgenome/V1_1/GeneLulab1_1onlyGene.txt";
+        String infileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/Pi/100K/max_mili/AB_cul5.milli.txt";
+        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/Pi/100K/max_mili/milli_AB_cul5_gene.txt";
+        new XPEHHandXPCLRregion(infileS1,infileS2,outfileS);
 
 //        String infileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/convergentEvo/mart_export.txt";
 //        String outfileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR/max_milli/GO/Go_gene2.csv";
 //        String outfileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR/max_milli/GO/Go_annotation.csv";
 //        new XPEHHandXPCLRregion(infileS,outfileS1,outfileS2);
         
-//        String infileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR/max_milli/overlap/overlap_AB15_AB45.txt";
+//        String infileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/Pi/10K/max_milli/milli_AB_cul5_gene.txt";
 //        String infileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/convergentEvo/mart_export.txt";
-//        String outfileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR/max_milli/overlap/AB15_AB45_Go_gene.csv";
-//        String outfileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR/max_milli/overlap/AB15_AB45_Go_annotation.csv";
-//        String outfileS3 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR/max_milli/overlap/AB15_AB45_gene.csv";
+//        String outfileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/Pi/10K/max_milli/GO/AB_cul5_Go_gene.csv";
+//        String outfileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/Pi/10K/max_milli/GO/AB_cul5_Go_annotation.csv";
+//        String outfileS3 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/Pi/10K/max_milli/GO/AB_cul5_gene.csv";
 //        new XPEHHandXPCLRregion(infileS1,infileS2,outfileS1,outfileS2,outfileS3);
         
         

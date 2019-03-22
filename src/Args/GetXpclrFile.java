@@ -6,6 +6,7 @@
 package Args;
 
 import EvolutionWheat.ForVcftoolsGroup;
+import EvolutionWheat.Redundancy_selection;
 import fasta.wheatFastaToAppend;
 import fasta.parralleFas;
 import gff3.wheatkgfTo42map;
@@ -37,7 +38,8 @@ public class GetXpclrFile {
                     break;
             }
         }
-        new ForVcftoolsGroup(infileS, outfileS);
+        //new ForVcftoolsGroup(infileS, outfileS);
+        new Redundancy_selection(infileS, outfileS);
         
     }
 }

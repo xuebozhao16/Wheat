@@ -17,6 +17,9 @@ public class LabNumChrGFF31_1 {
     public LabNumChrGFF31_1(String infileS,String outfileS){
         this.ReplaceGFF3ToNum1_1(infileS,outfileS);
     }
+    public LabNumChrGFF31_1(String infileS){
+        this.SumAandBandDgene(infileS);
+    }
     public void ReplaceGFF3ToNum1_1(String infileS,String outfileS){
         try{
             int chrNum = 0;
@@ -264,6 +267,40 @@ public class LabNumChrGFF31_1 {
         }
     }
     
-    
+    //这个方法是统计A B D 基因组各含有多少基因
+    //A  35345
+    //B  35643
+    //D  34212
+    public void SumAandBandDgene(String infileS){
+        try{
+            String temp = null;
+            int Acount = 0;
+            int Bcount = 0;
+            int Dcount = 0;
+            BufferedReader br = IOUtils.getTextReader(infileS);
+            //BufferedWriter bw = IOUtils.getTextWriter(outfileS);
+            while((temp = br.readLine()) != null){
+                String chr = temp.split("\t")[0];
+                if(chr.equals("1")|chr.equals("2")|chr.equals("7")|chr.equals("8")|chr.equals("13")|chr.equals("14")|chr.equals("19")|chr.equals("20")|chr.equals("25")|chr.equals("26")|
+                        chr.equals("31")|chr.equals("32")|chr.equals("37")|chr.equals("38")){
+                        Acount = Acount+1;
+                }
+                if(chr.equals("3")|chr.equals("4")|chr.equals("9")|chr.equals("10")|chr.equals("15")|chr.equals("16")|chr.equals("21")|chr.equals("22")|chr.equals("27")|chr.equals("28")|
+                        chr.equals("33")|chr.equals("34")|chr.equals("39")|chr.equals("40")){
+                        Bcount = Bcount+1;
+                }
+                if(chr.equals("5")|chr.equals("6")|chr.equals("11")|chr.equals("12")|chr.equals("17")|chr.equals("18")|chr.equals("23")|chr.equals("24")|chr.equals("29")|chr.equals("30")|
+                        chr.equals("35")|chr.equals("36")|chr.equals("41")|chr.equals("42")){
+                        Dcount = Dcount+1;
+                }
+            }
+            System.out.println(Acount);
+            System.out.println(Bcount);
+            System.out.println(Dcount);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
     
 }

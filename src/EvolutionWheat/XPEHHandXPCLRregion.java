@@ -30,6 +30,7 @@ public class XPEHHandXPCLRregion {
         //this.forGFF3gene(infileS, outfileS);
     }
     public XPEHHandXPCLRregion(String infileS1,String infileS2,String outfileS){
+        //this.forsynteny_site_gene(infileS1, infileS2, outfileS);
         //this.getReciprocalRiceToA(infileS1, infileS2, outfileS);
         this.forRegionGene(infileS1, infileS2, outfileS);
     }
@@ -44,6 +45,10 @@ public class XPEHHandXPCLRregion {
 //        this.forKEGGforspecifiedGene(infileS1, infileS2, infileS3, outfileS1, outfileS2);
 //    }
  
+    public XPEHHandXPCLRregion(String infileS1,String infileS2,String infileS3,String infileS4,
+                                       String outfileS1,String outfileS2,String outfileS3){
+        this.forsynteny_site_gene_2(infileS1, infileS2, infileS3, infileS4, outfileS1, outfileS2, outfileS3);
+    }
     //对0.01的Xpehh的结果取region
     public void regionForXpehh(String infileS,String outfileS){
         try{
@@ -97,7 +102,7 @@ public class XPEHHandXPCLRregion {
             e.printStackTrace();
         }
     }
-     //对0.01的Xpclr的结果取region
+     //对0.01的Xpclr的结果取region  Integer.valueOf(tem[1]) + 10000 - 1,要记住是+10K
     public void regionForXpclr(String infileS,String outfileS){
         try{
             String temp = null;
@@ -108,9 +113,9 @@ public class XPEHHandXPCLRregion {
             int bp = 0;
             while((temp = br.readLine()) != null){
                 String tem[] = temp.split("\t");        
-                String lastpos = Integer.toString((Integer.valueOf(tem[1]) - 10000 + 1));
-                bw.write(tem[0] + "\t" + lastpos + "\t" + tem[1] + "\n");
-                bp = Integer.valueOf(tem[1]) - Integer.valueOf(lastpos) + bp;
+                String lastpos = Integer.toString((Integer.valueOf(tem[1]) + 10000 - 1));
+                bw.write(tem[0] + "\t" + tem[1] + "\t" + lastpos + "\n");
+                bp = Integer.valueOf(lastpos) - Integer.valueOf(tem[1]) + bp;
             }
             System.out.println(bp);
             bw.flush();
@@ -419,4 +424,164 @@ public class XPEHHandXPCLRregion {
             e.printStackTrace();
         }
     }
+    //这个方法输入小麦的synteny site 信息，得到这个包含这个site的基因，输入文件：site信息和基因信息；输出文件：基因
+    public void forsynteny_site_gene(String infileS1,String infileS2,String outfileS){
+        try{
+            String temp = null;
+            String temp2 = null;
+            //BufferedReader brgene2 =null;
+            HashMap<String, String> hashMap1 = new HashMap<String, String>();
+            List<Integer> pos = new ArrayList<>();
+            Set  gene = new HashSet();
+            BufferedReader brgene = IOUtils.getTextReader(infileS1);
+            BufferedReader brsyntenySite = IOUtils.getTextReader(infileS2);
+            BufferedWriter bw = IOUtils.getTextWriter(outfileS);
+            while((temp2 = brgene.readLine()) != null){
+                String tem2[] = temp2.split("\t");
+                String key = tem2[2]+"_"+tem2[3];
+                String value = tem2[1];
+                //String value = tem2[0]+"_"+tem2[1];
+                hashMap1.put(key, value);
+                pos.add(Integer.valueOf(tem2[0]));
+                pos.add(Integer.valueOf(tem2[2]));
+                pos.add(Integer.valueOf(tem2[3]));             
+            } 
+            while((temp = brsyntenySite.readLine()) != null){
+                int i;
+                String tem[] = temp.split("\t");
+                String sitechr = tem[0];
+                int sitepos = Integer.valueOf(tem[1]);
+                for(i = 0; i < pos.size();i = i+3 ){
+                    if(Integer.toString(pos.get(i)).equals(sitechr)){
+                        String aa = pos.get(i+1) + "_" + pos.get(i+2);
+                        if(sitepos < pos.get(i+2)+1 && sitepos > pos.get(i+1)-1){
+                            gene.add(hashMap1.get(aa));
+                            break;
+                        }
+                    }
+                }
+                if (Integer.valueOf(sitepos) % 5000 == 0) {
+                    System.out.println("It's " + sitechr + " ....");
+                }
+            }
+            for (Object str : gene) {
+                String remgene = str.toString();
+                bw.write(str + "\n") ;               
+            }
+            System.out.println(hashMap1.size());
+            System.out.println(gene.size());
+            bw.flush();
+            bw.close();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
+    //这个方法输入小麦的synteny site 信息的另一个版本 快。。。。。。。。。。，得到这个包含这个site的基因，输入文件：site信息和基因信息；输出文件：基因
+    public void forsynteny_site_gene_2(String infileS1,String infileS2,String infileS3,String infileS4,
+                                       String outfileS1,String outfileS2,String outfileS3){
+        try{
+            String temp = null;
+            String temp2 = null;
+            //BufferedReader brgene2 =null;
+            HashMap<String, String> hashMap1 = new HashMap<String, String>();
+            //List<Integer> pos = new ArrayList<>();
+            Set  geneA = new HashSet();
+            Set  geneB = new HashSet();
+            Set  geneD = new HashSet();
+            BufferedReader brgene = IOUtils.getTextReader(infileS1);
+            BufferedReader brAsyntenySite = IOUtils.getTextReader(infileS2);
+            BufferedReader brBsyntenySite = IOUtils.getTextReader(infileS3);
+            BufferedReader brDsyntenySite = IOUtils.getTextReader(infileS4);
+            BufferedWriter bwA = IOUtils.getTextWriter(outfileS1);
+            BufferedWriter bwB = IOUtils.getTextWriter(outfileS2);
+            BufferedWriter bwD = IOUtils.getTextWriter(outfileS3);
+            while((temp2 = brgene.readLine()) != null){
+                String[] tem2 = temp2.split("\t");
+                int aa = Integer.valueOf(tem2[2]);
+                int bb = Integer.valueOf(tem2[3]);
+                for(int j = aa;j<bb+1;j++){
+                    if(hashMap1.get(tem2[0]+"_"+j) == null){
+                        String key = tem2[0]+"_"+j;
+                        String value = tem2[1];
+                        hashMap1.put(key, value);
+                    }else{
+                        String key = tem2[0]+"_"+j;
+                        String value = hashMap1.get(key) + "_" +tem2[1];
+                        hashMap1.put(key, value);
+                    }
+                }
+            } 
+            System.out.println("gff3 readed");
+            while((temp = brAsyntenySite.readLine()) != null){
+                int i;
+                String tem[] = temp.split("\t");
+                String sitechr = tem[0] + "_" + tem[1];              
+                if(hashMap1.get(sitechr) == null){
+                    
+                }else{
+                    if(hashMap1.get(sitechr).contains("_")){
+                        geneA.add(hashMap1.get(sitechr).split("_")[0]);
+                        geneA.add(hashMap1.get(sitechr).split("_")[1]);
+                    }else{
+                        geneA.add(hashMap1.get(sitechr));
+                    }
+                }                         
+            }
+            for (Object str : geneA) {
+                bwA.write(str + "\n") ;               
+            }
+            while((temp = brBsyntenySite.readLine()) != null){
+                int i;
+                String tem[] = temp.split("\t");
+                String sitechr = tem[0] + "_" + tem[1];              
+                if(hashMap1.get(sitechr) == null){
+                    
+                }else{
+                    if(hashMap1.get(sitechr).contains("_")){
+                        geneB.add(hashMap1.get(sitechr).split("_")[0]);
+                        geneB.add(hashMap1.get(sitechr).split("_")[1]);
+                    }else{
+                        geneB.add(hashMap1.get(sitechr));
+                    }
+                }                         
+            }
+            for (Object str : geneB) {
+                bwB.write(str + "\n") ;               
+            }
+            while((temp = brDsyntenySite.readLine()) != null){
+                int i;
+                String tem[] = temp.split("\t");
+                String sitechr = tem[0] + "_" + tem[1];              
+                if(hashMap1.get(sitechr) == null){
+                    
+                }else{
+                    if(hashMap1.get(sitechr).contains("_")){
+                        geneD.add(hashMap1.get(sitechr).split("_")[0]);
+                        geneD.add(hashMap1.get(sitechr).split("_")[1]);
+                    }else{
+                        geneD.add(hashMap1.get(sitechr));
+                    }
+                }                         
+            }
+            for (Object str : geneD) {
+                bwD.write(str + "\n") ;               
+            }
+            //System.out.println(hashMap1.size());
+            System.out.println(geneA.size());
+            System.out.println(geneB.size());
+            System.out.println(geneD.size());
+            bwA.flush();
+            bwB.flush();
+            bwD.flush();
+            bwA.close();
+            bwB.close();
+            bwD.close();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
 }

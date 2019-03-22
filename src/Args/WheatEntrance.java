@@ -17,10 +17,12 @@ import gff3.WheatNewGeneFeature;
  */
 public class WheatEntrance {
     public static void main(String args[]) {
-        String infile = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatgenome/V1_1/IWGSC1_1/IWGSC_v1.1_HC_20170706.gtf";
-        String outfile = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatgenome/V1_1/GeneLulab1_1.gtf";
-        new LabNumChrGFF31_1(infile, outfile);
-        
+//        String infile = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatgenome/V1_1/IWGSC1_1/IWGSC_v1.1_HC_20170706.gtf";
+//        String outfile = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatgenome/V1_1/GeneLulab1_1.gtf";
+//        new LabNumChrGFF31_1(infile, outfile);
+
+        String infile = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatgenome/V1_1/GeneLulab1_1onlyGene.txt";
+        new LabNumChrGFF31_1(infile);
         
 //        String infileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatgenome/GeneFeature/AllCDSsequence.fa";
 //        String infileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatgenome/SplitABD_pseudogenome/SplitSubGenomeA.txt";
