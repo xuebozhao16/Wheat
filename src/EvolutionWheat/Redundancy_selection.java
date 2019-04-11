@@ -22,9 +22,9 @@ import utils.IOUtils;
  */
 public class Redundancy_selection {
     public Redundancy_selection(String infileS,String outfileS){
-        //this.Redundancy_selection_regionForXpclr(infileS, outfileS);
+        this.Redundancy_selection_regionForXpclr(infileS, outfileS);
         //this.Redundancy_selection_geneRemoveDuplicates_xp(infileS, outfileS);
-        this.Redundancy_selection_geneRemoveDuplicates_pi(infileS, outfileS);
+        //this.Redundancy_selection_geneRemoveDuplicates_pi(infileS, outfileS);
         
     }
     public Redundancy_selection(String infileS1,String infileS2,String outfileS){
@@ -250,7 +250,7 @@ public class Redundancy_selection {
         }
     }
     
-    //这个方法是对XPCLR的所有点取gene之后去重复，若有两个或以上相同的基因都有pi的值，取最大的那一个
+    //这个方法是对pi的所有点取gene之后去重复，若有两个或以上相同的基因都有pi的值，取最大的那一个
     public void Redundancy_selection_geneRemoveDuplicates_pi(String infileS,String outfileS){
         try{
             String temp = null;

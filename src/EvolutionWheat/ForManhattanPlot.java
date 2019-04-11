@@ -20,9 +20,10 @@ import utils.IOUtils;
 // 这是对XPCLR的直接结果进行转换染色体的操作，去掉inf,nan的值，之后进行染色体转换，输入文件1：染色体对应信息 输入文件2：XPCLR结果
 public class ForManhattanPlot {
     public ForManhattanPlot(String infileS1,String infileS2,String outfileS){
-        this.FortheRealPosFromXPCLR(infileS1, infileS2, outfileS);
-        //this.FortheRealPosFromPi(infileS1, infileS2, outfileS);
+        //this.FortheRealPosFromXPCLR(infileS1, infileS2, outfileS);
+        this.FortheRealPosFromPi(infileS1, infileS2, outfileS);
         //this.FortheRealPosFromFst(infileS1, infileS2, outfileS);
+        //this.FortheRealPosFromTajimaD(infileS1, infileS2, outfileS);
     }
     public void FortheRealPosFromXPCLR(String infileS1,String infileS2,String outfileS){
         try{
@@ -55,7 +56,7 @@ public class ForManhattanPlot {
                     }
                 }
                 else {
-                    if (Double.valueOf(value) >= 150){
+                    if (Double.valueOf(value) >= 500){
                     System.out.println(temp);
                     }
                     if(chr % 2 == 1){
@@ -134,12 +135,12 @@ public class ForManhattanPlot {
             BufferedWriter bw = IOUtils.getTextWriter(outfileS);
             while((temp = br.readLine()) != null){
                 String[] tem = temp.split("\t");
-                if(tem[0].equals("CHROM")){
+                if(tem[3].equals("NA")){
                     
                 }
                 else {
                     int chr = Integer.valueOf(tem[0]);
-                    String value = tem[5];
+                    String value = tem[3];
                     String pos = tem[1];
                     if (Double.valueOf(value) < 0){
                       value = "0";
@@ -155,6 +156,43 @@ public class ForManhattanPlot {
                         bw.write(outchr + "\t" + outpos + "\t" + value + "\n");
                     }
                 }
+            }
+            bw.flush();
+            bw.close();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+    
+    public void FortheRealPosFromTajimaD(String infileS1,String infileS2,String outfileS){
+        try{
+            String temp = null;
+            RowTable<String> genometable = new RowTable<>(infileS1);
+            BufferedReader br = IOUtils.getTextReader(infileS2);
+            BufferedWriter bw = IOUtils.getTextWriter(outfileS);
+            while((temp = br.readLine()) != null){
+                String[] tem = temp.split("\t");
+                if(!tem[0].endsWith("CHROM")){
+                    int chr = Integer.valueOf(tem[0]);
+                    String value = tem[3];
+                    String pos = tem[1];
+                    if(tem[3].equals("nan")){
+                        
+                    }
+                    else {
+                        if(chr % 2 == 1){
+                            String outchr = genometable.getCell(chr-1, 3);
+                            //System.out.println(outchr);
+                            bw.write(outchr + "\t" + pos + "\t" + value + "\n");
+                        }else{
+                            String outchr = genometable.getCell(chr-1, 3);
+                            //System.out.println(outchr);
+                            int outpos = Integer.valueOf(genometable.getCell(chr-1, 4)) + Integer.valueOf(pos);
+                            bw.write(outchr + "\t" + outpos + "\t" + value + "\n");
+                        }
+                    }
+                }   
             }
             bw.flush();
             bw.close();

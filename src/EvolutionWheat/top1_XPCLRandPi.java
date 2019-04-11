@@ -31,20 +31,23 @@ public class top1_XPCLRandPi {
             BufferedReader br = IOUtils.getTextReader(infileS);
             BufferedWriter bw = IOUtils.getTextWriter(outfielS);
             List A = new ArrayList();
+            List AA = new ArrayList();
             while((temp = br.readLine()) != null){
                 String tem[] = temp.split(" ");
+                AA.add(temp);
                 if(tem[5].equals("inf") | tem[5].equals("-nan")| tem[5].equals("nan") ){    
                 }else {
                    A.add(temp);
                 }
             }
-            for (i=0;i< A.size()*0.05;i++) {
-                String temp2 = (String) A.get(i);
+            for (i=0;i< AA.size()*0.05;i++) {
+                String temp2 = (String) AA.get(i);
                 temm2 = temp2.split(" ");
                 String pos = temm2[3].split("\\.")[0];
                 bw.write(temm2[0] + "\t" + pos + "\t" + temm2[5] + "\n");               
             }
             System.out.println(A.size());
+            System.out.println(AA.size());
             System.out.println(i);
             System.out.println(temm2[5]);
             bw.flush();

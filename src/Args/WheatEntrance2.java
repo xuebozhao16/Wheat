@@ -61,8 +61,8 @@ public class WheatEntrance2 {
 //        new SplitWheatABD1_1(infileS,infileS1,infileS2,infileS3,outfileS1,outfileS2,outfileS3);
 
 
-//        String infileS ="/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR/max_milli/AB_cul5_milli.txt";
-//        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR/max_milli/milli_AB_cul5_region.txt";
+//        String infileS ="/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR_recom_rate/top5/AB_cul5_top5.xpclr.txt";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR_recom_rate/top5/AB_cul5_top5_region.txt";
 //        new XPEHHandXPCLRregion(infileS,outfileS);
         
 //        String infileS ="/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR/max_milli/AB_cul5_milli.xpclr.txt";
@@ -81,8 +81,8 @@ public class WheatEntrance2 {
         /////////region to gene *********************************
         
         String infileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatgenome/V1_1/GeneLulab1_1onlyGene.txt";
-        String infileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/Pi/100K/max_mili/AB_cul5.milli.txt";
-        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/Pi/100K/max_mili/milli_AB_cul5_gene.txt";
+        String infileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR_recom_rate/top5/AB_cul5_top5_region.txt";
+        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR_recom_rate/top5/top5_AB_cul5_gene.txt";
         new XPEHHandXPCLRregion(infileS1,infileS2,outfileS);
 
 //        String infileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/convergentEvo/mart_export.txt";

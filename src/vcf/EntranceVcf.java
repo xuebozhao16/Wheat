@@ -13,7 +13,7 @@ package vcf;
 public class EntranceVcf {
     public static void main(String args[]){
         String infileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatScan/hapScanner2/V2_Parameters_hapScanner2_chr1.txt";
-        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatScan/hapScanner2/parameters_file_V2";
+        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatScan/hapScanner2/parameters_file_V12";
         new NewTaxafile(infileS,outfileS);
         
 //        String infileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/Brgene/haplotypeNet/Btr1_3A/wheat_Btr1_3A.fa";

@@ -16,13 +16,13 @@ public class EntranceEvoWheat {
 //        new ForVcftoolsGroup(infileS,outfileS);
 
 //        String infileS1 ="/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatgenome/readmeByFei_table.txt";
-//        String infileS2 ="/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/fst/ABD.fst.txt";
-//        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/fst/Chr_ABD.fst.txt";
+//        String infileS2 ="/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/fst/10k/AB_45.fst.txt";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/fst/10k/Chr_AB_45.fst.txt";
 //        new ForManhattanPlot(infileS1,infileS2,outfileS);
 
 //        String infileS1 ="/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatgenome/readmeByFei_table.txt";
-//        String infileS2 ="/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR/AB_cul5_10k.xpclr.txt";
-//        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR/Chr_AB_cul5.xpclr.txt";
+//        String infileS2 ="/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/Pi/1000snp/AB_cul5_1000snp.txt";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/Pi/1000snp/Chr_AB_cul5.pi.txt";
 //        new ForManhattanPlot(infileS1,infileS2,outfileS);     
 //        
 //        String infileS1 ="/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/tree/Treefigures/itol/setcolor/color2/color2.txt";
@@ -109,9 +109,9 @@ public class EntranceEvoWheat {
 //        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/Redundancy_selection/wild_dom_emmer_RedundancySelection_xp.txt";
 //        new Redundancy_selection(infileS1,infileS2,outfileS);
         
-//        String infileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR/AB_cul5_10k.Sortxpclr.txt";
-//        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR/top1/AB_cul5_top5.xpclr.txt";
-//        new top1_XPCLRandPi(infileS,outfileS);
+        String infileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR_recom_rate/AB_cul5_10k.Sortxpclr.txt";
+        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR_recom_rate/top5/AB_cul5_top5.xpclr.txt";
+        new top1_XPCLRandPi(infileS,outfileS);
         
     }
 }
