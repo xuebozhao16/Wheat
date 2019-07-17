@@ -75,7 +75,7 @@ public class GetWheatCDSsequence {
                     break;
             }
         }
-        //new Redundancy_selection(infileS1,infileS2,outfileS);   
-        new Filefolder_pip(infileS1,infileS2,outfileS);  
+        new Redundancy_selection(infileS1,infileS2,outfileS);   
+        //new Filefolder_pip(infileS1,infileS2,outfileS);  
     }
 }

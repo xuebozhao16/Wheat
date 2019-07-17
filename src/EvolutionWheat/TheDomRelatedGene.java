@@ -16,6 +16,9 @@ import xuebo.analysis.annotation.IOUtils;
  * @author xuebozhao
  */
 public class TheDomRelatedGene {
+    public TheDomRelatedGene(String infileS,String outfielS){
+        this.forgroupGene(infileS, outfielS);
+    }
     public TheDomRelatedGene(String infileS,String outfileS1,String outfileS2){
         this.for6groupGene(infileS, outfileS1, outfileS2);
     }
@@ -28,6 +31,8 @@ public class TheDomRelatedGene {
         this.forDomWheatGene_Pi(infileS1, infileS2, infileS3, infileS4, infileS5, infileS6, infileS7,outfileS1, outfileS2);
     }
     //这个方法是对ortholog的基因进行统计，计算得出每一个的分组情况 eg.LOC_Os06g40080.1	TraesCS7A02G375400.1	TraesCS7B02G277000.1	TraesCS7D02G371900.1和驯化相关的基因的小麦的列表
+    //文件信息   /Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/dom_related_genes/dom_gene/orth_groups.txt
+    //输出文件  /Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/dom_related_genes/dom_gene/Domgene_annotation.txt & Domgene_wheat2.txt
     public void for6groupGene(String infileS,String outfileS1,String outfileS2){
         try{
             String temp = null;
@@ -60,6 +65,36 @@ public class TheDomRelatedGene {
             e.printStackTrace();
         }
     }
+    
+    //这个方法是找出玉米和水稻在驯化和改良过程中小麦的同源基因，
+    //文件夹 /Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/dom_related_genes/maize_rice_ortho/ortho_dom.txt 得出小麦的基因就可以了
+    public void forgroupGene(String infileS,String outfileS){
+        try{
+            String temp = null;
+            BufferedReader br = IOUtils.getTextReader(infileS);
+            BufferedWriter bw = IOUtils.getTextWriter(outfileS);
+            Set orhgeneSet = new HashSet();
+            while((temp = br.readLine()) != null){
+                String[]tem  = temp.split("\t");
+                for(int i=1;i<tem.length;i++){  
+                    String species = tem[i].split("\\|")[0];
+                    String orhgene = tem[i].split("\\|")[1];
+                    if(species.startsWith("Ta")){
+                        orhgeneSet.add(orhgene);
+                    }
+                }
+            }
+            for (Object str : orhgeneSet) {
+                bw.write(str + "\n") ;
+                System.out.println(str);
+            }
+            bw.flush();
+            bw.close();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
     
     public void forDomWheatGene_XPCLR(String infileS1,String infileS2,String infileS3,String infileS4,String infileS5,
                                         String infileS6,String infileS7,String infileS8,String infileS9,String outfileS1,String outfileS2){
@@ -168,6 +203,7 @@ public class TheDomRelatedGene {
         }
     }
     
+    //这是找到XPCLR结果中小麦里面的基因的多少
     public void forDomWheatGene_Pi(String infileS1,String infileS2,String infileS3,String infileS4,String infileS5,
                                         String infileS6,String infileS7,String outfileS1,String outfileS2){
         try{
@@ -179,6 +215,9 @@ public class TheDomRelatedGene {
             int count5 = 0;
             int count6 = 0;
             int count7 = 0;
+                      
+            int countAA = 0;
+            int countAABB = 0;
             BufferedReader br = IOUtils.getTextReader(infileS1);
             BufferedReader br2 = IOUtils.getTextReader(infileS2);
             BufferedReader br3 = IOUtils.getTextReader(infileS3);
@@ -194,8 +233,8 @@ public class TheDomRelatedGene {
             Set br5gene = new HashSet();
             Set br6gene = new HashSet();
             Set br7gene = new HashSet();
-            Set br8gene = new HashSet();
-            Set br9gene = new HashSet();
+            //Set br8gene = new HashSet();
+            //Set br9gene = new HashSet();
             while((temp = br2.readLine()) != null){
                 br2gene.add(temp);
             }
@@ -216,36 +255,50 @@ public class TheDomRelatedGene {
             }
             while((temmp = br.readLine()) != null){
                 if(!br2gene.add(temmp)){
-                    bw2.write("wild einkron–domesticated einkron" + "\t" + temmp + "\n");
+                    bw2.write("Wild einkorn–Domesticated einkorn" + "\t" + temmp + "\n");
                     count2 = count2 + 1;
                 }
                 if(!br3gene.add(temmp)){
-                    bw2.write("wild emmer–domesticated emmer" + "\t" + temmp + "\n");
+                    bw2.write("Wild emmer–Domesticated emmer" + "\t" + temmp + "\n");
                     count3 = count3 + 1;
+                    if(temmp.substring(8, 9).equals("A")){
+                        countAA = countAA + 1;
+                    }
                 }
                 if(!br4gene.add(temmp)){
-                    bw2.write("domesticated emmer–durum" + "\t" + temmp + "\n");
+                    bw2.write("Domesticated emmer–Durum" + "\t" + temmp + "\n");
                     count4 = count4 + 1;
                 }
                 if(!br5gene.add(temmp)){
-                    bw2.write("domesticated emmer–cultivar" + "\t" + temmp + "\n");
+                    bw2.write("landrace–cultivar" + "\t" + temmp + "\n");
                     count5 = count5 + 1;
+                    if(temmp.substring(8, 9).equals("A") | temmp.substring(8, 9).equals("B")){
+                        countAABB = countAABB + 1;
+                    }
                 }
                 if(!br6gene.add(temmp)){
-                    bw2.write("domestication pair overlap gene" + "\t" + temmp + "\n");
+                    bw2.write("Domestication pair overlap gene" + "\t" + temmp + "\n");
                     count6 = count6 + 1;
                 }
                 if(!br7gene.add(temmp)){
-                    bw2.write("improvment pair overlap gene" + "\t" + temmp + "\n");
+                    bw2.write("Improvment pair overlap gene" + "\t" + temmp + "\n");
                     count7 = count7 + 1;
                 }
+                br2gene.remove(temmp);
+                br3gene.remove(temmp);
+                br4gene.remove(temmp);
+                br5gene.remove(temmp);
+                br6gene.remove(temmp);
+                br7gene.remove(temmp);            
             }
-            bw1.write("wild einkron–domesticated einkron" + "\t" + count2 + "\n");
-            bw1.write("wild emmer–domesticated emmer" + "\t" + count3 + "\n");
-            bw1.write("domesticated emmer–durum" + "\t" + count4 + "\n");
-            bw1.write("domesticated emmer–cultivar" + "\t" + count5 + "\n");
-            bw1.write("domestication pair overlap gene" + "\t" + count6 + "\n");
-            bw1.write("improvment pair overlap gene" + "\t" + count7 + "\n");
+            System.out.println(countAA);
+            System.out.println(countAABB);
+            bw1.write("Wild einkron–Domesticated einkron" + "\t" + count2 + "\n");
+            bw1.write("Wild emmer–Domesticated emmer" + "\t" + count3 + "\n");
+            bw1.write("Domesticated emmer–Durum" + "\t" + count4 + "\n");
+            bw1.write("Landrace–Cultivar" + "\t" + count5 + "\n");
+            bw1.write("Domestication pair overlap gene" + "\t" + count6 + "\n");
+            bw1.write("Improvment pair overlap gene" + "\t" + count7 + "\n");
             bw1.flush();
             bw2.flush();
             bw2.close();
@@ -254,4 +307,6 @@ public class TheDomRelatedGene {
             e.printStackTrace();
         }
     }
+    
+    
 }

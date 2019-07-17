@@ -17,11 +17,11 @@ import utils.IOUtils;
  */
 public class ItolTreeParameters {
     public ItolTreeParameters(String infileS1, String infileS2, String outfileS){
-        //this.getItolTreeBrabchColor(infileS1, infileS2, outfileS);
+        this.getItolTreeBrabchColor(infileS1, infileS2, outfileS);
         //this.getItolTreelabelColor(infileS1, infileS2, outfileS);
         //this.getItolTreeRangeColor(infileS1, infileS2, outfileS);
         //this.getItolTreeStripColor(infileS1, infileS2, outfileS);
-        this.getItolTreeBinColor(infileS1, infileS2, outfileS);
+        //this.getItolTreeBinColor(infileS1, infileS2, outfileS);
     }
     public void getItolTreeBrabchColor(String infileS1, String infileS2, String outfileS){
         try{

@@ -36,10 +36,15 @@ public class XPEHHandXPCLRregion {
     }
     
 //    public XPEHHandXPCLRregion(String infileS,String outfileS1,String outfileS2){
-//       this.forGOandGENE(infileS, outfileS1, outfileS2);
+//       //this.forGOandGENE(infileS, outfileS1, outfileS2);
+//       this.forBioticandAbioticgene(infileS, outfileS1, outfileS2);
 //    }
     public XPEHHandXPCLRregion(String infileS1,String infileS2, String outfileS1,String outfileS2,String outfileS3){
-        this.forGOandGENEforspecifiedGene(infileS1, infileS2, outfileS1, outfileS2,outfileS3);
+        //this.forGOandGENEforspecifiedGene(infileS1, infileS2, outfileS1, outfileS2,outfileS3);
+        //this.forBioticandAbioticgene(infileS1, infileS2, outfileS1, outfileS2, outfileS3);
+    }
+    public XPEHHandXPCLRregion(String infileS,String outfileS1,String outfileS2,String outfileS3){
+        this.forBioticandAbioticgene2(infileS, outfileS1, outfileS2, outfileS3);
     }
 //    public XPEHHandXPCLRregion(String infileS1,String infileS2, String infileS3,String outfileS1,String outfileS2){
 //        this.forKEGGforspecifiedGene(infileS1, infileS2, infileS3, outfileS1, outfileS2);
@@ -582,6 +587,111 @@ public class XPEHHandXPCLRregion {
         catch(Exception e){
             e.printStackTrace();
         }
+    }
+    
+    //这个方法是把GO注释文件里面的response to biotic stimulus的基因和response to abiotic stimulus基因挑出来 有关生物胁迫和非生物胁迫的，还有除了这两个部分之外其他的
+    //去重复
+    public void forBioticandAbioticgene(String infileS1,String infileS2,String outfileS1,String outfileS2,String outfileS3){
+        try{
+            String temp = null;
+            String temp2 = null;
+            Set  bioticgene = new HashSet();
+            Set  abioticgene = new HashSet();
+            Set  allgene = new HashSet();
+            BufferedReader br1 = IOUtils.getTextReader(infileS1);
+            BufferedReader br2 = IOUtils.getTextReader(infileS2);
+            BufferedWriter bw1 = IOUtils.getTextWriter(outfileS1);
+            BufferedWriter bw2 = IOUtils.getTextWriter(outfileS2);
+            BufferedWriter bw3 = IOUtils.getTextWriter(outfileS3);
+            while((temp=br1.readLine()) != null){
+                String tem[] = temp.split("\t");
+                if(temp.contains("response to biotic stimulus") && !tem[0].startsWith("TraesCSU")){
+                    bioticgene.add(tem[0]);
+                    //System.out.println(temp);
+                }
+                if(temp.contains("response to abiotic stimulus") && !tem[0].startsWith("TraesCSU")){
+                    abioticgene.add(tem[0]);
+                }
+            }
+            while((temp2=br2.readLine()) != null){
+                String tem2[] = temp2.split("\t");
+                allgene.add(tem2[1]);
+            }
+            for (Object str1 : bioticgene) {
+                String remgene1 = str1.toString();
+                if(allgene.contains(remgene1)){
+                    allgene.remove(remgene1);
+                }
+                bw1.write(str1 + "\n") ;                           
+            }
+            for (Object str2 : abioticgene) {
+                String remgene2 = str2.toString();
+                if(allgene.contains(remgene2)){
+                    allgene.remove(remgene2);
+                }
+                bw2.write(str2 + "\n") ;         
+            }
+            for (Object str3 : allgene) {
+                bw3.write(str3 + "\n") ;  
+            }
+            bw1.flush();
+            bw2.flush();
+            bw3.flush();
+            bw1.close();
+            bw2.close();
+            bw3.close();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }   
+    }
+    
+    
+    //这个方法是把GO注释文件里面的response to biotic stimulus的基因和response to abiotic stimulus基因挑出来 有关生物胁迫和非生物胁迫的，还有没有里面没有stress这个字的
+    //去重复
+    public void forBioticandAbioticgene2(String infileS,String outfileS1,String outfileS2,String outfileS3){
+        try{
+            String temp = null;
+            String temp2 = null;
+            Set  bioticgene = new HashSet();
+            Set  abioticgene = new HashSet();
+            Set  allgene = new HashSet();
+            BufferedReader br1 = IOUtils.getTextReader(infileS);
+            BufferedWriter bw1 = IOUtils.getTextWriter(outfileS1);
+            BufferedWriter bw2 = IOUtils.getTextWriter(outfileS2);
+            BufferedWriter bw3 = IOUtils.getTextWriter(outfileS3);
+            while((temp=br1.readLine()) != null){
+                String tem[] = temp.split("\t");
+                if(temp.contains("response to biotic stimulus") && !tem[0].startsWith("TraesCSU")){
+                    bioticgene.add(tem[0]);
+                    //System.out.println(temp);
+                }
+                if(temp.contains("response to abiotic stimulus") && !tem[0].startsWith("TraesCSU")){
+                    abioticgene.add(tem[0]);
+                }
+                if((!temp.contains("stimulus")) && (!temp.contains("stress")) && (!tem[0].startsWith("TraesCSU"))){
+                    allgene.add(tem[0]);
+                }
+            }
+            for (Object str1 : bioticgene) {
+                bw1.write(str1 + "\n") ;                           
+            }
+            for (Object str2 : abioticgene) {
+                bw2.write(str2 + "\n") ;         
+            }
+            for (Object str3 : allgene) {
+                bw3.write(str3 + "\n") ;  
+            }
+            bw1.flush();
+            bw2.flush();
+            bw3.flush();
+            bw1.close();
+            bw2.close();
+            bw3.close();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }   
     }
     
 }

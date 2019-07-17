@@ -80,9 +80,9 @@ public class WheatEntrance2 {
         //String infileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/convergentEvo/xpclr_region/textgene.txt";
         /////////region to gene *********************************
         
-        String infileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatgenome/V1_1/GeneLulab1_1onlyGene.txt";
-        String infileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR_recom_rate/top5/AB_cul5_top5_region.txt";
-        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR_recom_rate/top5/top5_AB_cul5_gene.txt";
+        String infileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/othergenome/rice/Rice_1onlyGene.txt";
+        String infileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/dom_related_genes/maize_rice_ortho/rice/rice3K/top5rice.xpclr";
+        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/dom_related_genes/maize_rice_ortho/rice/rice3K/top5rice_gene.txt";
         new XPEHHandXPCLRregion(infileS1,infileS2,outfileS);
 
 //        String infileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/convergentEvo/mart_export.txt";
@@ -90,11 +90,11 @@ public class WheatEntrance2 {
 //        String outfileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR/max_milli/GO/Go_annotation.csv";
 //        new XPEHHandXPCLRregion(infileS,outfileS1,outfileS2);
         
-//        String infileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/Pi/10K/max_milli/milli_AB_cul5_gene.txt";
+//        String infileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR_recom_rate/norm20M_10k/top5/overlap/impro_pair_gene.txt";
 //        String infileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/convergentEvo/mart_export.txt";
-//        String outfileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/Pi/10K/max_milli/GO/AB_cul5_Go_gene.csv";
-//        String outfileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/Pi/10K/max_milli/GO/AB_cul5_Go_annotation.csv";
-//        String outfileS3 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/Pi/10K/max_milli/GO/AB_cul5_gene.csv";
+//        String outfileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR_recom_rate/norm20M_10k/top5/overlap/impro_pair_Go_gene.csv";
+//        String outfileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR_recom_rate/norm20M_10k/top5/overlap/impro_pair_Go_annotation.csv";
+//        String outfileS3 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR_recom_rate/norm20M_10k/top5/overlap/impro_pair_gene.csv";
 //        new XPEHHandXPCLRregion(infileS1,infileS2,outfileS1,outfileS2,outfileS3);
         
         
@@ -105,7 +105,11 @@ public class WheatEntrance2 {
 //        String outfileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/convergentEvo/xpclr_region/2kNew/A_Rice_ID.txt";
 //        new XPEHHandXPCLRregion(infileS1,infileS2,infileS3,outfileS1,outfileS2);
         
-        
+//        String infileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/convergentEvo/mart_export.txt";
+//        String outfileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/pi/functional_pi/bioticgene.txt";
+//        String outfileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/pi/functional_pi/abioticgene.txt";
+//        String outfileS3 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/pi/functional_pi/backgroudgene.txt";
+//        new XPEHHandXPCLRregion(infileS,outfileS1,outfileS2,outfileS3);
 
     }
 }

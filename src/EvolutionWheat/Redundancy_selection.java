@@ -7,6 +7,7 @@ package EvolutionWheat;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -22,8 +23,8 @@ import utils.IOUtils;
  */
 public class Redundancy_selection {
     public Redundancy_selection(String infileS,String outfileS){
-        this.Redundancy_selection_regionForXpclr(infileS, outfileS);
-        //this.Redundancy_selection_geneRemoveDuplicates_xp(infileS, outfileS);
+        //this.Redundancy_selection_regionForXpclr(infileS, outfileS);
+        this.Redundancy_selection_geneRemoveDuplicates_xp(infileS, outfileS);
         //this.Redundancy_selection_geneRemoveDuplicates_pi(infileS, outfileS);
         
     }
@@ -86,6 +87,7 @@ public class Redundancy_selection {
     public void emmer_Redundancy_selection_2(String infileS1,String infileS2,String outfileS){
         try{
             int i = 0;
+            int sum = 0;
             String temp = null;  
             String temp2 = null;
             BufferedReader brAB11 = IOUtils.getTextReader(infileS1);
@@ -108,12 +110,12 @@ public class Redundancy_selection {
                     bremmer_B.add(temp2);
                 }
             }
-            for (Object str : bremmer_A) {
+            for (Object str : bremmer_A) {               
                 String Agene = str.toString();
                 System.out.println(str);
                 String valueB = AB11.get(Agene);
                 if(valueB == null){
-                    
+                    sum = sum + 1;
                 }
                 else{
                     if(!bremmer_B.add(valueB)){
@@ -121,7 +123,57 @@ public class Redundancy_selection {
                     }
                 }
             }
-            
+            System.out.println(sum);
+            bwemmerAB11.flush();
+            bwemmerAB11.close();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
+    //这个方法是给所有的基因加上相似度的值，infileS1指的是redundancy的基因，Alieage的redundancy的基因相似度85-100，不是的0-80
+    //Blieage的redundancy的基因相似度100-115，不是的115-200;infileS2指的是XPCLR得出的基因和XPCLR的值
+    public void Redundancy_selection_similarity(String infileS1,String infileS2,String outfileS){
+        try{
+            int i = 0;
+            int sum = 0;
+            String temp = null;  
+            String temp2 = null;
+            BufferedReader brAB11 = IOUtils.getTextReader(infileS1);
+            BufferedReader bremmer = IOUtils.getTextReader(infileS2);
+            BufferedWriter bwemmerAB11 = IOUtils.getTextWriter(outfileS);
+            HashMap<String, String> AB11 = new HashMap<String, String>();
+            Set brAB11_A = new HashSet();
+            Set bremmer_A = new HashSet();
+            Set bremmer_B = new HashSet();
+            while((temp = brAB11.readLine())!= null){
+                AB11.put(temp.split("\t")[0], temp.split("\t")[1]);
+                brAB11_A.add(temp.split("\t")[0]);
+            }
+            while((temp2 = bremmer.readLine()) != null){
+                String sub = temp2.substring(8, 9);
+                if(sub.equals("A")){
+                    bremmer_A.add(temp2);
+                }
+                if(sub.equals("B")){
+                    bremmer_B.add(temp2);
+                }
+            }
+            for (Object str : bremmer_A) {               
+                String Agene = str.toString();
+                System.out.println(str);
+                String valueB = AB11.get(Agene);
+                if(valueB == null){
+                    sum = sum + 1;
+                }
+                else{
+                    if(!bremmer_B.add(valueB)){
+                        bwemmerAB11.write(Agene + "\t" + valueB + "\n");
+                    }
+                }
+            }
+            System.out.println(sum);
             bwemmerAB11.flush();
             bwemmerAB11.close();
         }
@@ -179,17 +231,19 @@ public class Redundancy_selection {
                     int i;
                     String tem[] = temp.split("\t");
                     String regionchr = tem[0];
-                    int regionpos1 = Integer.valueOf(tem[1]);
-                    int regionpos2 = Integer.valueOf(tem[2]);
+                    BigDecimal b1 = new BigDecimal(tem[1]); 
+                    BigDecimal b2 = new BigDecimal(tem[2]); 
+                    int regionpos1 = b1.intValue();
+                    int regionpos2 = b2.intValue();
                     String xpscore = tem[3];
-                    //int aa = pos.size();
+                    //System.out.println(regionpos1);
                     for(i = 0; i < pos.size();i = i+3 ){
                         if(Integer.toString(pos.get(i)).equals(regionchr)){
                             String aa = pos.get(i+1) + "_" + pos.get(i+2);
-                            if(pos.get(i+1)<regionpos2 && pos.get(i+1)>regionpos1){
+                            if(pos.get(i+1)<=regionpos2 && pos.get(i+1)>=regionpos1){
                                 gene.add(hashMap1.get(aa) + "_" + xpscore);
                             }
-                            if(pos.get(i+2)<regionpos2 && pos.get(i+2)>regionpos1){
+                            if(pos.get(i+2)<=regionpos2 && pos.get(i+2)>=regionpos1){
                                 gene.add(hashMap1.get(aa) + "_" + xpscore);
                             }
                             if(pos.get(i+2)>regionpos2 && pos.get(i+1) < regionpos1){
@@ -223,7 +277,7 @@ public class Redundancy_selection {
             HashMap<String, String> gene2 = new HashMap<String, String>();
             while((temp = br.readLine()) != null){
                 String[]  tem= temp.split("\t");  
-                if(tem[1].equals("inf") | tem[1].equals("-nan")){
+                if(tem[1].equals("NA") | tem[1].equals("-nan")){
                         
                 }else{
                     if(!gene.add(tem[0])){

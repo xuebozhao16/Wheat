@@ -12,9 +12,9 @@ package vcf;
  */
 public class EntranceVcf {
     public static void main(String args[]){
-        String infileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatScan/hapScanner2/V2_Parameters_hapScanner2_chr1.txt";
-        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatScan/hapScanner2/parameters_file_V12";
-        new NewTaxafile(infileS,outfileS);
+        //String infileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatScan/hapScanner2/V2_Parameters_hapScanner2_chr1.txt";
+        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatScan/hapScanner2/TaxaRefBam_V11";
+        new NewTaxafile(outfileS);
         
 //        String infileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/Brgene/haplotypeNet/Btr1_3A/wheat_Btr1_3A.fa";
 //        String infileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/Brgene/haplotypeNet/Btr1_3B/btr1_3B_all.txt";
@@ -28,10 +28,15 @@ public class EntranceVcf {
 //        int len = args.length;
 //        String infileS = "";
 //        String outfileS ="";
+//        Integer n = 0; 
 //        for (int i = 0; i < len; i++){
 //            if (null != args[i])switch (args[i]) {
 //                case "--file":
 //                    infileS = args[i+1];
+//                    i++;
+//                    break;
+//                case "--num":
+//                    n = Integer.valueOf(args[i+1]);
 //                    i++;
 //                    break;
 //                case "--out":
@@ -42,6 +47,12 @@ public class EntranceVcf {
 //                    break;
 //            }
 //        }
-//        new SplitGenome(infileS,outfileS);
+//        //new SplitGenome(infileS,outfileS);
+//        new RandomLine(infileS,n,outfileS);
+
+//        String infileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/Brgene/snp/chr15btr1_5K.heatmap.nobeagle.vcf";
+//        int n = 50;
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/Brgene/snp/111.txt";
+//        new RandomLine(infileS,n,outfileS);
     }
 }

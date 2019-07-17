@@ -59,10 +59,15 @@ public class Entrance4C_2{
 //        String outfileS = "/Users/xuebozhao/Documents/LuLab/4C/4Cdata/Library/realproduct/TAIRGenome/TAIR10_GFF3_onlyGene.txt";
 //        new Tair10_gff3(infileS,outfileS);
         
-        String infileS1 = "/Users/xuebozhao/Documents/LuLab/4C/4Cdata/Library/realproduct/TAIRGenome/TAIR10_GFF3_onlyGene.txt";
-        String infileS2 = "/Users/xuebozhao/Documents/LuLab/4C/4Cdata/Library/realproduct/K5_K8/K8/positiveK8_hits_allNoadjusted.bed";
-        String outfileS = "/Users/xuebozhao/Documents/LuLab/4C/4Cdata/Library/realproduct/K5_K8/K8/positiveK8_allNoadjusted_gene.txt";
-        new Tair10_gff3(infileS1,infileS2,outfileS);
+        String infileS = "/Users/xuebozhao/Documents/LuLab/4C/4Cdata/Library/realproduct/TAIRGenome/TAIR10_GFF3_onlyGene.txt";
+        String outfileS1 = "/Users/xuebozhao/Documents/LuLab/4C/4Cdata/Library/realproduct/K5_K8/K8/positiveK8_hits_allNoadjusted.bed";
+        String outfileS2 = "/Users/xuebozhao/Documents/LuLab/4C/4Cdata/Library/realproduct/K5_K8/K8/positiveK8_allNoadjusted_gene.txt";
+        new Tair10_gff3(infileS,outfileS1,outfileS2);
+        
+//        String infileS1 = "/Users/xuebozhao/Documents/LuLab/4C/4Cdata/Library/realproduct/TAIRGenome/TAIR10_GFF3_onlyGene.txt";
+//        String infileS2 = "/Users/xuebozhao/Documents/LuLab/4C/4Cdata/Library/realproduct/K5_K8/K8/positiveK8_hits_allNoadjusted.bed";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/4C/4Cdata/Library/realproduct/K5_K8/K8/positiveK8_allNoadjusted_gene.txt";
+//        new Tair10_gff3(infileS1,infileS2,outfileS);
         
     }
 }

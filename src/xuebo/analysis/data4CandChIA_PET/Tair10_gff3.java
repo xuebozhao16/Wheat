@@ -21,9 +21,12 @@ public class Tair10_gff3 {
     public Tair10_gff3(String infileS,String outfileS){
         this.getTair10_gff3_onlyGene(infileS, outfileS);
     }
-    Tair10_gff3(String infileS1, String infileS2, String outfileS) {
-        this.forRegionGene(infileS1, infileS2, outfileS);
+    public Tair10_gff3(String infileS,String outfileS1,String outfileS2){
+        this.getTair10_gff3_updownStream(infileS, outfileS1, outfileS2);
     }
+//    public Tair10_gff3(String infileS1, String infileS2, String outfileS) {
+//        this.forRegionGene(infileS1, infileS2, outfileS);
+//    }
     
     //转换小麦的gff3文件，每个基因放在一个一列
     public void getTair10_gff3_onlyGene(String infileS,String outfileS){
@@ -40,6 +43,34 @@ public class Tair10_gff3 {
             }
             bw.flush();
             bw.close();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
+    //转换小麦的gff3文件，每个基因放在一个一列的文件是输入文件，输出文件是上游2K的文件和下游2K的文件
+    public void getTair10_gff3_updownStream(String infileS,String outfileS1,String outfileS2){
+        try{
+            BufferedReader br = XueboIOUtils.getTextReader(infileS);
+            BufferedWriter bw1 = XueboIOUtils.getTextWriter(outfileS1);
+            BufferedWriter bw2 = XueboIOUtils.getTextWriter(outfileS2);
+            String temp = null;
+            while((temp = br.readLine()) != null){
+                String[] tem = temp.split("\t");
+                if(tem[4].equals("+")){
+                    bw1.write(tem[0] + "\t" + tem[1] + "\t" +(Integer.valueOf(tem[2])-2000) + "\t" + tem[2] + "\n" );
+                    bw2.write(tem[0] + "\t" + tem[1] + "\t" + tem[3]+  "\t" + (Integer.valueOf(tem[3])+2000) + "\n" );
+                }
+                if(tem[4].equals("-")){
+                    bw1.write(tem[0] + "\t" + tem[1] + "\t" + tem[3]+  "\t" + (Integer.valueOf(tem[3])+2000) + "\n" );
+                    bw2.write(tem[0] + "\t" + tem[1] + "\t" +(Integer.valueOf(tem[2])-2000) + "\t" + tem[2] + "\n" );
+                }
+            }
+            bw1.flush();
+            bw2.flush();
+            bw1.close();
+            bw2.close();
         }
         catch(Exception e){
             e.printStackTrace();
@@ -77,10 +108,10 @@ public class Tair10_gff3 {
                 for(i = 0; i < pos.size();i = i+3 ){
                     if(Integer.toString(pos.get(i)).equals(regionchr)){
                         String aa = pos.get(i+1) + "_" + pos.get(i+2);
-                        if(pos.get(i+1)<regionpos2 && pos.get(i+1)>regionpos1){
+                        if(pos.get(i+1)<=regionpos2 && pos.get(i+1)>=regionpos1){
                             gene.add(hashMap1.get(aa));
                         }
-                        if(pos.get(i+2)<regionpos2 && pos.get(i+2)>regionpos1){
+                        if(pos.get(i+2)<=regionpos2 && pos.get(i+2)>=regionpos1){
                             gene.add(hashMap1.get(aa));
                         }
                         if(pos.get(i+2)>regionpos2 && pos.get(i+1) < regionpos1){

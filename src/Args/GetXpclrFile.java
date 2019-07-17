@@ -5,6 +5,7 @@
  */
 package Args;
 
+import EvolutionWheat.Filefolder_pip;
 import EvolutionWheat.ForVcftoolsGroup;
 import EvolutionWheat.Redundancy_selection;
 import EvolutionWheat.Synteny_site;
@@ -41,7 +42,8 @@ public class GetXpclrFile {
         }
         //new ForVcftoolsGroup(infileS, outfileS);
         //new Redundancy_selection(infileS, outfileS);
-        new Synteny_site(infileS,outfileS);
+        //new Synteny_site(infileS,outfileS);
+        new Filefolder_pip(infileS,outfileS);
         
     }
 }
