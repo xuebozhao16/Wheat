@@ -19,10 +19,11 @@ public class ItolTreeParameters3_forNumSpecies {
     public ItolTreeParameters3_forNumSpecies(String infileS1,String infileS2,String outfileS){
         //this.forNumSpecies(infileS1, infileS2, outfileS);
         //this.getItolTreeBin_location(infileS1, infileS2, outfileS);
-        this.getItolTreeBin_location2(infileS1, infileS2, outfileS);
+        this.getItolTreeBin_location(infileS1, infileS2, outfileS);
     }
     public ItolTreeParameters3_forNumSpecies(String infileS,String outfileS){
-        this.getBrabchColor_forNumSpecies(infileS, outfileS);
+        //this.getBrabchColor_forNumSpecies(infileS, outfileS);
+        this.getBrabchColor_forNumSpecies2(infileS, outfileS);
     }
      
     
@@ -115,6 +116,42 @@ public class ItolTreeParameters3_forNumSpecies {
         }       
     }
     
+    //这个方法是把系统发生树的Brabch找到替代 eg:B023    1_B023
+    public void getBrabchColor_forNumSpecies2(String infileS, String outfileS){
+        try{
+            String temp1 = null;
+            String temp2 = null;
+            int i = 0;
+            BufferedReader groupFileS = null;
+            BufferedWriter bw = IOUtils.getTextWriter(outfileS);
+            bw.write("LABELS" + "\n");
+            bw.write("SEPARATOR TAB" + "\n");
+            bw.write("DATA" + "\n");
+            File f = new File(infileS);
+            File[] fs = IOUtils.listRecursiveFiles(f);
+            File[] sub = IOUtils.listFilesEndsWith(fs, ".txt");
+            for(File fi:sub){
+                i++;
+                groupFileS = IOUtils.getTextReader(fi.getAbsolutePath().toString());
+                System.out.println(fi.getAbsolutePath().toString());
+                String[] pa = fi.getAbsolutePath().toString().split("/");
+                String paname = pa[pa.length-1];
+                String groupnum = paname.split("_")[0];
+                String groupname = paname.split("_")[1];
+                while((temp2 = groupFileS.readLine()) != null){
+                    System.out.println(temp2);
+                    bw.write(temp2 + "\t" + (Integer.valueOf(groupnum) + 3) + "_" + temp2  + "\n");                
+                }
+            }
+            bw.flush();
+            bw.close();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }       
+    }
+    
+    
     //这个方法是地理位置信息 这是分类是6个的
     public void getItolTreeBin_location(String infileS1, String infileS2, String outfileS){
         try{
@@ -131,7 +168,7 @@ public class ItolTreeParameters3_forNumSpecies {
             bw.write("COLOR,#ff0000" + "\n");
             bw.write("FIELD_LABELS,rl0,rl1,rl2,rl3,rl4,rl5" + "\n");
             //"#FF0000","#00F5FF","#FDB462","#FFC0CB","#696969","#CDC9A5"
-            bw.write("FIELD_COLORS,#FF0000,#00F5FF,#FDB462,#FFC0CB,#696969,#CDC9A5" + "\n");
+            bw.write("FIELD_COLORS,#FF0000,#00F5FF,#fdd662,#556B2F,#c443a6,#808080" + "\n");
             //bw.write("FIELD_COLORS,#FF0000FF,#0000FF,#98FB98F,#FFB90F,#FF69B4" + "\n");
             bw.write("FIELD_SHAPES,2,2,2,2,2,2" + "\n");
             bw.write("SHOW_INTERNAL,1" + "\n");

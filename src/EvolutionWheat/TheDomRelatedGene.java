@@ -253,7 +253,17 @@ public class TheDomRelatedGene {
             while((temp = br7.readLine()) != null){
                 br7gene.add(temp);
             }
+            int line = 0;
+            int lineA = 0;
+            int lineAB = 0;
             while((temmp = br.readLine()) != null){
+                line = line + 1;
+                if(temmp.substring(8, 9).equals("A")){
+                        lineA = lineA + 1;
+                }
+                if(temmp.substring(8, 9).equals("B") | temmp.substring(8, 9).equals("A")){
+                        lineAB = lineAB + 1;
+                }
                 if(!br2gene.add(temmp)){
                     bw2.write("Wild einkorn–Domesticated einkorn" + "\t" + temmp + "\n");
                     count2 = count2 + 1;
@@ -293,12 +303,12 @@ public class TheDomRelatedGene {
             }
             System.out.println(countAA);
             System.out.println(countAABB);
-            bw1.write("Wild einkron–Domesticated einkron" + "\t" + count2 + "\n");
-            bw1.write("Wild emmer–Domesticated emmer" + "\t" + count3 + "\n");
-            bw1.write("Domesticated emmer–Durum" + "\t" + count4 + "\n");
-            bw1.write("Landrace–Cultivar" + "\t" + count5 + "\n");
-            bw1.write("Domestication pair overlap gene" + "\t" + count6 + "\n");
-            bw1.write("Improvment pair overlap gene" + "\t" + count7 + "\n");
+            bw1.write("Wild_einkorn–Domesticated_einkorn" + "\t" + count2 + "\t" + lineA + "\t" + br2gene.size() + "\n");
+            bw1.write("Wild_emmer–Domesticated_emmer" + "\t" + count3 + "\t" + lineAB + "\t" + br3gene.size() + "\n");
+            bw1.write("Domesticated_emmer–Durum" + "\t" + count4 + "\t" + lineAB + "\t" + br4gene.size() + "\n");
+            bw1.write("Landrace–Cultivar" + "\t" + count5 + "\t" + line + "\t" + br5gene.size() + "\n");
+            bw1.write("Domestication_pair_overlap_gene" + "\t" + count6 + "\t" + line + "\t" + br6gene.size() + "\n");
+            bw1.write("Improvment_pair_overlap_gene" + "\t" + count7 + "\t" + line + "\t" + br7gene.size() + "\n");
             bw1.flush();
             bw2.flush();
             bw2.close();

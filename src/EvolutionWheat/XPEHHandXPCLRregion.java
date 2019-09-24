@@ -5,11 +5,8 @@
  */
 package EvolutionWheat;
 
-import static EvolutionWheat.ForXpehh_bin.getMaxValue;
-import static EvolutionWheat.ForXpehh_bin.getMinValue;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import static java.lang.Math.abs;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -29,18 +26,18 @@ public class XPEHHandXPCLRregion {
         this.regionForXpclr(infileS, outfileS);
         //this.forGFF3gene(infileS, outfileS);
     }
-    public XPEHHandXPCLRregion(String infileS1,String infileS2,String outfileS){
-        //this.forsynteny_site_gene(infileS1, infileS2, outfileS);
-        //this.getReciprocalRiceToA(infileS1, infileS2, outfileS);
-        this.forRegionGene(infileS1, infileS2, outfileS);
-    }
-    
-//    public XPEHHandXPCLRregion(String infileS,String outfileS1,String outfileS2){
-//       //this.forGOandGENE(infileS, outfileS1, outfileS2);
-//       this.forBioticandAbioticgene(infileS, outfileS1, outfileS2);
+//    public XPEHHandXPCLRregion(String infileS1,String infileS2,String outfileS){
+//        //this.forsynteny_site_gene(infileS1, infileS2, outfileS);
+//        //this.getReciprocalRiceToA(infileS1, infileS2, outfileS);
+//        this.forRegionGene(infileS1, infileS2, outfileS);
 //    }
+    
+    public XPEHHandXPCLRregion(String infileS,String outfileS1,String outfileS2){
+       this.forGOandGENE(infileS, outfileS1, outfileS2);
+       //this.forBioticandAbioticgene(infileS, outfileS1, outfileS2);
+    }
     public XPEHHandXPCLRregion(String infileS1,String infileS2, String outfileS1,String outfileS2,String outfileS3){
-        //this.forGOandGENEforspecifiedGene(infileS1, infileS2, outfileS1, outfileS2,outfileS3);
+        this.forGOandGENEforspecifiedGene(infileS1, infileS2, outfileS1, outfileS2,outfileS3);
         //this.forBioticandAbioticgene(infileS1, infileS2, outfileS1, outfileS2, outfileS3);
     }
     public XPEHHandXPCLRregion(String infileS,String outfileS1,String outfileS2,String outfileS3){
@@ -295,9 +292,9 @@ public class XPEHHandXPCLRregion {
             while((temp = br.readLine()) != null){
                 String tem[] = temp.split("\t");
                 //bw1.write(tem[2] + "," + tem[0] + "\n");
-                GoAnnotation1.add(tem[2] + "_" + tem[0]);
+                //GoAnnotation1.add(tem[2] + "_" + tem[0]);
                 GoAnnotation1.add(tem[4] + "_" + tem[0]);
-                GoAnnotation.add(tem[2]+"_"+tem[3]); 
+                //GoAnnotation.add(tem[2]+"_"+tem[3]); 
                 GoAnnotation.add(tem[4]+"_" +tem[5]);
             }
             for (Object str1 : GoAnnotation1) {
@@ -343,10 +340,10 @@ public class XPEHHandXPCLRregion {
                 String[] tem = temp.split("\t");
                 if(!specifiedGene.add(tem[0])){
                     GoAnnotation1.add(tem[2] + "_" + tem[0]);
-                    GoAnnotation1.add(tem[4] + "_" + tem[0]);
+                    //GoAnnotation1.add(tem[4] + "_" + tem[0]);
                     GoAnnotation11.add(tem[0]);
                     GoAnnotation2.add(tem[2]+"_" +tem[3]);
-                    GoAnnotation2.add(tem[4]+"_" +tem[5]);
+                    //GoAnnotation2.add(tem[4]+"_" +tem[5]);
                 }else{
                     specifiedGene.remove(tem[0]);
                 }

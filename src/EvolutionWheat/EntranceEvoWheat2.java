@@ -38,16 +38,19 @@ public class EntranceEvoWheat2 {
 //        new Synteny_site(infileS,outfileS);
         
         
-        String infileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/tree/Treefigures/itol/setcolor/bin_lacation1/location2_5.txt";
-        String infileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/group/germplasm/location_420.txt";
-        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/tree/Treefigures/itol/setcolor/bin_lacation1/set_location3.txt";
-        new ItolTreeParameters3_forNumSpecies(infileS1,infileS2,outfileS);
+//        String infileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/tree/Treefigures/itol/setcolor/bin_lacation1/location1.txt";
+//        String infileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/group/germplasm/location_420.txt";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/tree/Treefigures/itol/setcolor/bin_lacation1/set_location1.txt";
+//        new ItolTreeParameters3_forNumSpecies(infileS1,infileS2,outfileS);
 //        
         
 //        String infileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/group/group_tree2";
-//        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/tree/Treefigures/itol/setcolor/color3_Numcircos/setbranch_add3.txt";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/tree/Treefigures/itol/setcolor/color3_Numcircos/setbranch_add4.txt";
 //        new ItolTreeParameters3_forNumSpecies(infileS,outfileS);
         
-        
+        String infileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/Crispr_gene/Rice_Maize_gene.txt";
+        String infileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/Crispr_gene/dom312_BestBLASTHitgene.txt";
+        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/Crispr_gene/dom312_orthologGene.txt";
+        new TheCrispr_312genelist(infileS1,infileS2,outfileS);
     }
 }

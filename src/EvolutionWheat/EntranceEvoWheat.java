@@ -16,13 +16,13 @@ public class EntranceEvoWheat {
 //        new ForVcftoolsGroup(infileS,outfileS);
 
 //        String infileS1 ="/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatgenome/readmeByFei_table.txt";
-//        String infileS2 ="/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR_recom_rate/norm20M_10k/D.xpclr";
-//        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR_recom_rate/norm20M_10k/Chr_D.xpclr.txt";
+//        String infileS2 ="/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR_recom_rate/norm20M_10k/negative_control_A_AB/A_AB.xpclr";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR_recom_rate/norm20M_10k/negative_control_A_AB/Chr_A_AB.xpclr.txt";
 //        new ForManhattanPlot(infileS1,infileS2,outfileS);
 
 //        String infileS1 ="/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatgenome/readmeByFei_table.txt";
-//        String infileS2 ="/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/pi/pi_allchr/dicoccon.bed.pi";
-//        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/pi/pi_allchr/allchrpi_dicoccon.txt";
+//        String infileS2 ="/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/pi/pi_allchr/urartu.bed.pi";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/pi/pi_allchr/allchrpi_urartu.txt";
 //        new ForManhattanPlot(infileS1,infileS2,outfileS);     
 //        
 //        String infileS1 ="/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/tree/Treefigures/itol/setcolor/color2/color2.txt";
@@ -92,25 +92,30 @@ public class EntranceEvoWheat {
 //        String outfileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/dom_related_genes/dom_gene/XPCLR_dom_gene_list.txt";
 //        new TheDomRelatedGene(infileS1, infileS2, infileS3, infileS4, infileS5, infileS6, infileS7, infileS8, infileS9, outfileS1, outfileS2);
 
-        String infileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/dom_related_genes/dom_gene/orthologs_onlywheat.txt";
-        String infileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR_recom_rate/norm20M_10k/top5/top5_A_gene.txt";
-        String infileS3 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR_recom_rate/norm20M_10k/top5/top5_AB_15_gene.txt";
-        String infileS4 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR_recom_rate/norm20M_10k/top5/top5_AB_45_gene.txt";
-        String infileS5 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR_recom_rate/norm20M_10k/top5/top5_ABD_small_gene.txt";
-        String infileS6 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR_recom_rate/norm20M_10k/top5/overlap/dom_pair_gene.txt";
-        String infileS7 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR_recom_rate/norm20M_10k/top5/overlap/impro_pair_gene.txt";
-        String outfileS1 ="/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/dom_related_genes/dom_gene/XP_dom_gene_count.txt";
-        String outfileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/dom_related_genes/dom_gene/XP_dom_gene_list.txt";
-        new TheDomRelatedGene(infileS1, infileS2, infileS3, infileS4, infileS5, infileS6, infileS7, outfileS1, outfileS2);
+//        String infileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/dom_related_genes/maize_rice_ortho/maize/ortho_all_onlyWheat.txt";
+//        String infileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR_recom_rate/norm20M_10k/top5/top5_A_gene.txt";
+//        String infileS3 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR_recom_rate/norm20M_10k/top5/top5_AB_15_gene.txt";
+//        String infileS4 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR_recom_rate/norm20M_10k/top5/top5_AB_45_gene.txt";
+//        String infileS5 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR_recom_rate/norm20M_10k/top5/top5_ABD_small_gene.txt";
+//        String infileS6 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR_recom_rate/norm20M_10k/top5/overlap/dom_pair_gene.txt";
+//        String infileS7 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR_recom_rate/norm20M_10k/top5/overlap/impro_pair_gene.txt";
+//        String outfileS1 ="/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/dom_related_genes/maize_rice_ortho/maize/XP_dom_gene_count.txt";
+//        String outfileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/dom_related_genes/maize_rice_ortho/maize/XP_dom_gene_list.txt";
+//        new TheDomRelatedGene(infileS1, infileS2, infileS3, infileS4, infileS5, infileS6, infileS7, outfileS1, outfileS2);
 
 //        String infileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatHomology/TheReciprocalBestBLAST1_1/ReciprocalABBA.txt";
 //        String infileS2 ="/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR_recom_rate/norm20M_10k/top5/top5_ABD_gene.txt";
 //        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/Redundancy_selection/redun_select/ABD_RedundancySelection_xp.txt";
 //        new Redundancy_selection(infileS1,infileS2,outfileS);
         
-//        String infileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/dom_related_genes/maize_rice_ortho/rice/rice3K/rice.Sortxpclr";
-//        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/dom_related_genes/maize_rice_ortho/rice/rice3K/top5rice.xpclr";
+//        String infileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR_recom_rate/norm20M_10k/negative_control_A_AB/A_AB_10k.Sortxpclr";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR_recom_rate/norm20M_10k/negative_control_A_AB/A_AB_top5.xpclr.txt";
 //        new top1_XPCLRandPi(infileS,outfileS);
-        
+
+        String infileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR_recom_rate/norm20M_10k/top5/A_top5.xpclr.txt";
+        String infileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR_recom_rate/norm20M_10k/top5/AB_15_top5.xpclr.txt";
+        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR_recom_rate/norm20M_10k/top5/signal_2M_overlap.txt";
+        new top1_XPCLRandPi(infileS1,infileS2,outfileS); 
+//        
     }
 }
