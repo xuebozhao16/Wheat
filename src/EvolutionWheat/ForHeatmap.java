@@ -434,6 +434,10 @@ public class ForHeatmap {
 //    String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/Crispr_gene/TraesCS5A02G233700/indel/TraesCS5A02G233700_110K_indel.txt";
 //    new ForHeatmap(infileS,outfileS);
     
+//    String infileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/Crispr_gene/TraesCS5A02G233700/indel/chr25_TraesCS5A02G233700_indelmmerge.vcf";
+//    String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/Crispr_gene/TraesCS5A02G233700/indel/TraesCS5A02G233700_indel.txt";
+//    new ForHeatmap(infileS,outfileS);
+    
     public void getgeneHeatmap_noBeagle_indel(String infileS,String outfileS){
         try{
             String temp = null;
