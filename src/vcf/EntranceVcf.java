@@ -13,8 +13,8 @@ package vcf;
 public class EntranceVcf {
     public static void main(String args[]){
         //String infileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatScan/hapScanner2/V2_Parameters_hapScanner2_chr1.txt";
-        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatScan/hapScanner2/TaxaRefBam_V11";
-        new NewTaxafile(outfileS);
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatScan/hapScanner2/TaxaRefBam_V11";
+//        new NewTaxafile(outfileS);
         
 //        String infileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/Brgene/haplotypeNet/Btr1_3A/wheat_Btr1_3A.fa";
 //        String infileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/Brgene/haplotypeNet/Btr1_3B/btr1_3B_all.txt";
@@ -54,5 +54,11 @@ public class EntranceVcf {
 //        int n = 50;
 //        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/Brgene/snp/111.txt";
 //        new RandomLine(infileS,n,outfileS);
+
+
+        String infileS1 = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/vcfE1/testmerge/testmerge.vcf";
+        String infileS2 = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/vcfE1/testmerge/testBlineag.vcf.gz";
+        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/vcfE1/test_diff.txt";
+        new CompareTwoVCFfile(infileS1,infileS2,outfileS);
     }
 }

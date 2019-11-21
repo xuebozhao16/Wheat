@@ -21,12 +21,12 @@ public class Tair10_gff3 {
     public Tair10_gff3(String infileS,String outfileS){
         this.getTair10_gff3_onlyGene(infileS, outfileS);
     }
-    public Tair10_gff3(String infileS,String outfileS1,String outfileS2){
-        this.getTair10_gff3_updownStream(infileS, outfileS1, outfileS2);
-    }
-//    public Tair10_gff3(String infileS1, String infileS2, String outfileS) {
-//        this.forRegionGene(infileS1, infileS2, outfileS);
+//    public Tair10_gff3(String infileS,String outfileS1,String outfileS2){
+//        this.getTair10_gff3_updownStream(infileS, outfileS1, outfileS2);
 //    }
+    public Tair10_gff3(String infileS1, String infileS2, String outfileS) {
+        this.forRegionGene(infileS1, infileS2, outfileS);
+    }
     
     //转换小麦的gff3文件，每个基因放在一个一列
     public void getTair10_gff3_onlyGene(String infileS,String outfileS){

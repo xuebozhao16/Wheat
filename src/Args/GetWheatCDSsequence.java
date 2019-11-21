@@ -11,6 +11,11 @@ import EvolutionWheat.XPEHHandXPCLRregion;
 import fasta.wheatFastaToAppend;
 import fasta.parralleFas;
 import gff3.wheatkgfTo42map;
+import speciation.BWA;
+import speciation.geneTree;
+import speciation.syntenic_Sgenome;
+import speciation.tree;
+import vcf.CompareTwoVCFfile;
 
 /**
  *
@@ -56,6 +61,7 @@ public class GetWheatCDSsequence {
         int len = args.length;
         String infileS1 = "";
         String infileS2 = "";
+        String infileS3 = "";
         String outfileS = "";
         for (int i = 0; i < len; i++){
             if (null != args[i])switch (args[i]) {
@@ -66,7 +72,11 @@ public class GetWheatCDSsequence {
                 case "--file2":
                     infileS2 = args[i+1];
                     i++;
-                    break;   
+                    break;  
+//                case "--file3":
+//                    infileS3 = args[i+1];
+//                    i++;
+//                    break;  
                 case "--out":
                     outfileS = args[i+1];
                     i++;
@@ -75,7 +85,14 @@ public class GetWheatCDSsequence {
                     break;
             }
         }
-        new Redundancy_selection(infileS1,infileS2,outfileS);   
+        //new Redundancy_selection(infileS1,infileS2,outfileS);   
         //new Filefolder_pip(infileS1,infileS2,outfileS);  
+        //new BWA(infileS1,infileS2,outfileS);
+        //new syntenic_Sgenome(infileS1,infileS2,outfileS);
+        //new syntenic_Sgenome(infileS1,outfileS);
+        //new syntenic_Sgenome(infileS1,infileS2,infileS3,outfileS);
+        //new tree(infileS1,outfileS);
+        //new CompareTwoVCFfile(infileS1,infileS2,outfileS);
+        new geneTree(infileS1,infileS2,outfileS);
     }
 }

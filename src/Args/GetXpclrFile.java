@@ -12,6 +12,7 @@ import EvolutionWheat.Synteny_site;
 import fasta.wheatFastaToAppend;
 import fasta.parralleFas;
 import gff3.wheatkgfTo42map;
+import speciation.syntenic_Sgenome;
 
 /**
  *
@@ -24,18 +25,23 @@ public class GetXpclrFile {
      */
     public static void main(String[] args) {
         int len = args.length;
-        String infileS = "";
-        String outfileS ="";
+        String infileS1 = "";
+        String outfileS1 ="";
+        //String ref = "";
+        String outfileS2 ="";
         for (int i = 0; i < len; i++){
             if (null != args[i])switch (args[i]) {
                 case "--file":
-                    infileS = args[i+1];
+                    infileS1 = args[i+1];
                     i++;
                     break;
                 case "--out":
-                    outfileS = args[i+1];
+                    outfileS1 = args[i+1];
                     i++;
                     break;
+                case "--out2":
+                    outfileS2 = args[i+1];
+                    i++;
                 default:
                     break;
             }
@@ -43,7 +49,8 @@ public class GetXpclrFile {
         //new ForVcftoolsGroup(infileS, outfileS);
         //new Redundancy_selection(infileS, outfileS);
         //new Synteny_site(infileS,outfileS);
-        new Filefolder_pip(infileS,outfileS);
+        //new Filefolder_pip(infileS,outfileS);
+        new syntenic_Sgenome(infileS1, outfileS1, outfileS2);
         
     }
 }
