@@ -25,8 +25,8 @@ public class ForDiversityMean {
     public ForDiversityMean(String infileS1,String infileS2,String outfileS){
         //this.for25FileMean(infileS1, infileS2, outfileS);
         //this.forlineagePiMean(infileS1, infileS2, outfileS);
-        //this.forallPiFileMerge(infileS1, infileS2, outfileS);
-        this.forlineagePiFileMerge(infileS1, infileS2, outfileS);
+        this.forallPiFileMerge(infileS1, infileS2, outfileS);
+        //this.forlineagePiFileMerge(infileS1, infileS2, outfileS);
     }
     
     

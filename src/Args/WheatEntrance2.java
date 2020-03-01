@@ -73,9 +73,13 @@ public class WheatEntrance2 {
 //        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/tb1gene/snp_V10/tb1_D.txt";
 //        new ForHeatmap(infileS,outfileS);
 //        
-        String infileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/Crispr_gene/TraesCS5A02G233700/indel/chr25_TraesCS5A02G233700_110K_indelmmerge.vcf";
-        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/Crispr_gene/TraesCS5A02G233700/indel/TraesCS5A02G233700_110K_indel.txt";
-        new ForHeatmap(infileS,outfileS);
+//        String infileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/cooperation_fu/OTUB1/haplogroup/mac_chr39_TraesCS7B02G161900_2K_4_6.vcf";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/cooperation_fu/OTUB1/haplogroup/chr39_TraesCS7B02G161900_2K_4_6.txt";
+//        new ForHeatmap(infileS,outfileS);
+        
+//        String infileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/cooperation_fu/Crispr_gene/TraesCS5A02G233700/SNP/mac_WD_AB.vcf";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/cooperation_fu/Crispr_gene/TraesCS5A02G233700/SNP/mac_WD_AB.txt";
+//        new ForHeatmap(infileS,outfileS);
      
         //String infileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/convergentEvo/xpclr_region/textgene.txt";
         /////////region to gene *********************************
@@ -110,6 +114,11 @@ public class WheatEntrance2 {
 //        String outfileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/pi/functional_pi/abioticgene.txt";
 //        String outfileS3 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/pi/functional_pi/backgroudgene.txt";
 //        new XPEHHandXPCLRregion(infileS,outfileS1,outfileS2,outfileS3);
+
+        String infileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatgenome/V1_1/GeneLulab1_1onlyGene.txt";
+        String infileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR_recom_rate/norm20M_10k/topmili_5/A_topmili_5.xpclr.txt";
+        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR_recom_rate/norm20M_10k/NoOverlap/topmili_5/topmili_5_A_gene_NoOverlap.txt";
+        new XPEHHandXPCLRregion(infileS1,infileS2,outfileS);
 
     }
 }

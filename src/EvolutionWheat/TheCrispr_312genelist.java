@@ -5,10 +5,13 @@
  */
 package EvolutionWheat;
 
+import format.table.RowTable;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import xuebo.analysis.annotation.IOUtils;
 
@@ -26,9 +29,17 @@ public class TheCrispr_312genelist {
         //this.get312gene_BestBLASTHitgene_2(infileS1, infileS2, outfileS);
         //this.get312gene_ricemaizegene(infileS1, infileS2, outfileS);
         //this.get312gene_ricemaizegene_2(infileS1, infileS2, outfileS);
-        this.get312gene_orthologRiceGENE(infileS1, infileS2, outfileS);
+        //this.get312gene_orthologRiceGENE(infileS1, infileS2, outfileS);
+        this.getlongitude_latitude(infileS1, infileS2, outfileS);
     }
     
+    public TheCrispr_312genelist(String outfileS){
+        //this.longitude_latitude(outfileS);
+    }
+
+    TheCrispr_312genelist(String infileS, String outfileS) {
+        this.FortheSNP2fasta(infileS, outfileS);
+    }
 //        String infileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR_recom_rate/norm20M_10k/allgeneXPCLRscore/xp_A_geneScore.sort.txt";
 //        String infileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR_recom_rate/norm20M_10k/allgeneXPCLRscore/xp_AB_15_geneScore.sort.txt";
 //        String infileS3 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR_recom_rate/norm20M_10k/top5/overlap/dom_pair_gene.txt";        
@@ -321,4 +332,105 @@ public class TheCrispr_312genelist {
             e.printStackTrace();
         }
     }
+    
+    //这个方法是为了得到相隔5度的地理位置信息的文件
+    //经度0°——180°（东行，标注E）0°——180°（西行，标注W）
+    //纬度0°——90°N、0°——90°S 这里维度的阈值可以表示为-70~70
+//    String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/cooperation_fu/OTUB1/haplogroup/longitude_latitude.txt";    
+//        new TheCrispr_312genelist(outfileS);
+    public void longitude_latitude(String outfileS){
+        try{
+            BufferedWriter bw = IOUtils.getTextWriter(outfileS);
+            HashMap<String,StringBuilder> HashMAp1 = new HashMap<String,StringBuilder>();
+            //Set Set1 = new HashSet();
+            //bw.write(outfileS);
+            for(int i=-180;i<=180;i=i+10){
+                for(int j=-70;j<=70;j=j+5){
+                    bw.write(j + "\t" + i + "\n");
+                }
+            }
+            bw.flush();
+            bw.close();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
+    
+    //这个方法是为了得到四倍体和六倍体的经纬度落在哪一个格子里面
+    //
+    public void getlongitude_latitude(String infileS1,String infileS2,String outfileS){
+        try{
+            String temp1 = null;
+            String temp2 = null;
+            BufferedReader br1 = IOUtils.getTextReader(infileS1);
+            BufferedReader br2 = IOUtils.getTextReader(infileS2);
+            BufferedWriter bw = IOUtils.getTextWriter(outfileS);
+            HashMap<String,StringBuilder> HashMAp1 = new HashMap<String,StringBuilder>();
+            Set Set1 = new HashSet();
+            List<Double> list1 = new ArrayList<Double> ();  
+            List<Double> list2 = new ArrayList<Double> ();  
+            while((temp1 = br1.readLine()) != null){
+                String tem[] = temp1.split("\t");
+                list1.add(Double.valueOf(tem[0]));
+                list2.add(Double.valueOf(tem[1]));
+            }
+            bw.write(br2.readLine());
+            bw.newLine();
+            while((temp2 = br2.readLine()) != null){
+                String tem[] = temp2.split(",");
+                if(!tem[0].equals("NA") && !tem[2].equals("NA")){
+                    double Lat = Double.valueOf(tem[0]);
+                    double Long = Double.valueOf(tem[1]);
+                    for(int n=0;n<list1.size();n++){                        
+                        if(Lat>=list1.get(n) && Lat<(list1.get(n)+5)){
+                            if(Long>=list2.get(n) && Long<(list2.get(n)+10)){
+                                bw.write(list1.get(n) + "\t" + list2.get(n) + "\t" + tem[2] + "\t" + tem[3] + "\n");
+                            }                           
+                        }
+                    }
+                }
+            }
+            bw.flush();
+            bw.close();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
+    //现在这个方法是对换成0，1，2的VCF文件进一步处理，
+    //输入文件：CHROM	POS	REF	ALT	A009	A010	A011	A012	A013	A016
+    //25	449255023	C	A	2	2	NA	NA	NA
+    //25	449255055	A	G	2	2	0	0	0
+    //输出文件： A009 AG
+    //         A010 AG  A011 CA
+    public void FortheSNP2fasta(String infileS1,String outfileS){
+        try{
+            String temp = null;
+            RowTable<String> genometable = new RowTable<>(infileS1);
+            BufferedWriter bw = utils.IOUtils.getTextWriter(outfileS);
+            //br.readLine();
+            //System.out.print(genometable.getCell(1, 1)+ "\t");
+            for(int i=4;i<genometable.getColumnNumber()-1;i++){
+                bw.write("\n");
+                System.out.print(genometable.getHeader().get(i));
+                bw.write(genometable.getHeader().get(i) + "\t");
+                for(int j=1;j<genometable.getRowNumber();j++){
+                    if(genometable.getCell(j-1, i).equals("2")){
+                        bw.write(genometable.getCell(j-1, 3));
+                    }else{
+                        bw.write(genometable.getCell(j-1, 2));
+                    }
+                }
+            }
+            bw.flush();
+            bw.close();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+    
+    
+    
 }

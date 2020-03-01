@@ -7,6 +7,7 @@ package speciation;
 
 import com.google.common.collect.Sets;
 import com.google.common.collect.Sets.SetView;
+import gnu.trove.list.array.TDoubleArrayList;
 import gnu.trove.list.array.TIntArrayList;
 import gnu.trove.set.hash.TIntHashSet;
 import java.io.BufferedReader;
@@ -21,6 +22,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.IntStream;
+import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
 import utils.IOUtils;
 import static utils.IOUtils.getTextReader;
 import static utils.IOUtils.listFilesEndsWith;
@@ -32,12 +34,13 @@ import utils.PArrayUtils;
  * @author xuebozhao
  */
 public class syntenic_Sgenome {
-    public syntenic_Sgenome(String infileS1,String infileS2,String outfileS){
-        //this.getSgenome_SyntenicSite(infileS1, infileS2, outfileS);
-        //this.getSgenome_SyntenicVCF(infileS1, infileS2, outfileS);
-        this.getTwoVCFfile_merge(infileS1, infileS2, outfileS);
-        
-    }
+//    public syntenic_Sgenome(String infileS1,String infileS2,String outfileS){
+//        //this.getSgenome_SyntenicSite(infileS1, infileS2, outfileS);
+//        //this.getSgenome_SyntenicVCF(infileS1, infileS2, outfileS);
+//       
+//        //this.getTwoVCFfile_merge(infileS1, infileS2, outfileS);
+//        
+//    }
     public syntenic_Sgenome(){
         //this.mergePosList();
     }
@@ -45,13 +48,17 @@ public class syntenic_Sgenome {
 //        //this.readfilder(infileS, outfileS, ref);
 //    }
     
-//    public syntenic_Sgenome(String infileS1,String outfileS1,String outfileS2){
-//        this.getScan_hapPosANDposAllelefiles(infileS1, outfileS1, outfileS2);
-//    }
+    public syntenic_Sgenome(String infileS1,String outfileS1,String outfileS2){
+        //this.getScan_hapPosANDposAllelefiles(infileS1, outfileS1, outfileS2);
+        this.C19_getScan_hapPosANDposAllelefiles(infileS1, outfileS1, outfileS2);
+          
+    }
     
     public syntenic_Sgenome(String infileS,String outfileS){
         this.getNewTaxafile(infileS, outfileS);
         //this.getVCFfile_info1(infileS, outfileS);  
+        //this.C3_DepthandSD(infileS, outfileS);
+        //this.C4_DepthandSD(infileS, outfileS);
     }
    
     public syntenic_Sgenome(String infileS1,String infileS2,String infileS3,String outfileS){
@@ -63,7 +70,7 @@ public class syntenic_Sgenome {
     //java -jar -Xms10g -Xmx50g /data1/home/xuebo/Projects/Speciation/javaCode/getSgenome_SyntenicSite.jar --file1 /data1/home/xuebo/Projects/Speciation/syntenic_Sgenome/all_SyntenicSite/chr${chr}.txt \
   //--file2 /data1/home/xuebo/Projects/Speciation/bamS10/Depth/depth.${chr}.txt.gz --out /data1/home/xuebo/Projects/Speciation/syntenic_Sgenome/getSgenome_SyntenicSite/S001.chr${chr}.SyntenicSite.txt & 
 
-    public void getSgenome_SyntenicSite(String infileS1,String infileS2,String outfileS){
+    public void C2_getSgenome_SyntenicSite(String infileS1,String infileS2,String outfileS){
         try {
             String temp1 = null;
             String temp2 = null;
@@ -106,6 +113,84 @@ public class syntenic_Sgenome {
             e.printStackTrace();
         }
     }
+    
+    //得到depth和SD的关系
+    public void C3_DepthandSD(String infileS,String outfileS){
+         try{    
+            String temp = null; 
+            //String temporder = null;
+            BufferedReader Depth = null;
+            //BufferedReader br = IOUtils.getTextReader(infileS);
+            BufferedWriter bw = IOUtils.getTextWriter(outfileS);
+            HashMap<String, Double> hashMapMean = new HashMap<String, Double>();
+            File f = new File(infileS);
+            File[] fs = listRecursiveFiles(f);
+            File[] sub = listFilesEndsWith(fs, "gz");
+            for(File fi:sub){
+                Depth = IOUtils.getTextGzipReader(fi.toString());
+                //Depth = IOUtils.getTextReader(fi.toString());
+                String taxaNamelist[] = fi.toString().split("/");
+                String taxaName = taxaNamelist[taxaNamelist.length-1].split("\\.")[0];
+                System.out.print("It's " + taxaName + "\n");
+                while((temp = Depth.readLine()) != null){
+                    TDoubleArrayList depthList = new TDoubleArrayList();
+                    String[] tem = temp.split("\t");
+                    //int sum = 0;
+                    //double sd = 0;             
+                    for(int i=2;i<12;i++){
+                        //System.out.println(tem[i]+"\n");
+                        depthList.add(Double.valueOf(tem[i]));
+                    }
+                    double[] dep = depthList.toArray();
+                    DescriptiveStatistics d = new DescriptiveStatistics(dep);
+                    //System.out.println(d.getMean()+"\n");
+                    bw.write(d.getMean() + "\t");
+                    bw.write(d.getStandardDeviation() + "\n"); 
+                }
+            }
+            bw.flush();
+            bw.close();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
+    
+    //得到depth和SD的关系,这次是分着染色体的
+        public void C4_DepthandSD(String infileS,String outfileS){
+             try{    
+                String temp = null; 
+                //String temporder = null;
+                BufferedReader br = null;
+                if (infileS.endsWith("gz")) {
+                    br = IOUtils.getTextGzipReader(infileS);
+                    } else {
+                        br = IOUtils.getTextReader(infileS);
+                    }
+                BufferedWriter bw = IOUtils.getTextWriter(outfileS);
+                while((temp = br.readLine()) != null){
+                    TDoubleArrayList depthList = new TDoubleArrayList();
+                    String[] tem = temp.split("\t");
+                    //int sum = 0;
+                    //double sd = 0;             
+                    for(int i=2;i<12;i++){
+                        //System.out.println(tem[i]+"\n");
+                        depthList.add(Double.valueOf(tem[i]));
+                    }
+                    double[] dep = depthList.toArray();
+                    DescriptiveStatistics d = new DescriptiveStatistics(dep);
+                    //System.out.println(d.getMean()+"\n");
+                    bw.write(d.getMean() + "\t");
+                    bw.write(d.getStandardDeviation() + "\n"); 
+                }        
+                bw.flush();
+                bw.close();
+            }
+            catch(Exception e){
+                e.printStackTrace();
+            }
+        }
     
     //这个方法是为了得到符合depth分布和syntenic分布的VCF文件
     // java -jar -Xms40g -Xmx70g /data1/home/xuebo/Projects/Speciation/javaCode/getSvcf_SyntenicSite.jar --file1 /data1/home/xuebo/Projects/Speciation/syntenic_Sgenome/getSgenome_SyntenicSite/S.chr${chr}.SyntenicSite_120.txt \
@@ -482,7 +567,7 @@ public class syntenic_Sgenome {
     //	java -jar  -Xms20g -Xmx80g /data2/xuebo/Projects/Speciation/javaCode/getScan_hapPosANDposAllelefiles.jar --file /data2/xuebo/Projects/Speciation/E1/E1.chr${chr}.vcf.gz --out /data2/xuebo/Projects/Speciation/hapScan/hapPos/chr${chr}.pos.txt \
 	//--out2 /data2/xuebo/Projects/Speciation/hapScan/posAllele/chr${chr}.allele.txt &
     
-    public void getScan_hapPosANDposAllelefiles(String infileS1,String outfileS1,String outfileS2){
+    public void C19_getScan_hapPosANDposAllelefiles(String infileS1,String outfileS1,String outfileS2){
         try {
             String temp = null;
             BufferedReader br;
@@ -503,7 +588,7 @@ public class syntenic_Sgenome {
                    //System.out.println(temp);
                    String tem[] = temp.split("\t");
                    bw1.write(tem[0] + "\t" + tem[1] + "\n");
-                   bw2.write(tem[0] + "\t" + tem[1] + "\t" + tem[3] + "\t" + tem[4] + " \n");                  
+                   bw2.write(tem[0] + "\t" + tem[1] + "\t" + tem[3] + "\t" + tem[4] + "\n");                  
                 }
             }
             bw1.flush();
@@ -531,24 +616,30 @@ public class syntenic_Sgenome {
             
             //int chrA[] = {1,2,7,8,13,14,19,20,25,26,31,32,37,38};
             //int chrA[] = {3,4,9,10,15,16,21,22,27,28,33,34,39,40};
-            //int chrA[] = {1,2,7,8,13,14,19,20,25,26,31,32,37,38,3,4,9,10,15,16,21,22,27,28,33,34,39,40};
-            int chrA[] = {1,2,7,8,13,14,19,20,25,26,31,32,37,38,3,4,9,10,15,16,21,22,27,28,33,34,39,40,5,6,11,12,17,18,23,24,29,30,35,36,41,42};
+            int chrA[] = {1,2,7,8,13,14,19,20,25,26,31,32,37,38,3,4,9,10,15,16,21,22,27,28,33,34,39,40};
+            //int chrA[] = {1,2,7,8,13,14,19,20,25,26,31,32,37,38,3,4,9,10,15,16,21,22,27,28,33,34,39,40,5,6,11,12,17,18,23,24,29,30,35,36,41,42};
             //int chrA[] = {5,6,11,12,17,18,23,24,29,30,35,36,41,42};
+            //int chrA[] = {1,2,7,8,13,14,19,20,25,26,31,32,37,38,5,6,11,12,17,18,23,24,29,30,35,36,41,42};
             
             for(int i = 0; i < chrA.length;i++ ){
                 BufferedReader br = IOUtils.getTextReader(infileS);
                 int line = 1;
-                bw = IOUtils.getTextWriter(outfileS+"/parameters_hapScannerBarley_chr"+chrA[i]+".txt");
+                //bw = IOUtils.getTextWriter(outfileS+"/parameters_hapScannerAABBDD_chr"+chrA[i]+".txt");
+                //bw = IOUtils.getTextWriter(outfileS+"/parameters_hapScannerBarley_chr"+chrA[i]+".txt");
+                bw = IOUtils.getTextWriter(outfileS+"/parameters_hapScannerAe_chr"+chrA[i]+".txt");
                 while((temp = br.readLine())!=null){
                     if(line==9){
-                        bw.write("/data2/xuebo/Projects/Speciation/tree/barleybam/scan_barley/TaxaBarley/TaxaRefBamChr" + chrA[i]);
+                        bw.write("/data2/xuebo/Projects/Speciation/introgression/scanAe/TaxaRefBam/TaxaRefBamChr" + chrA[i]);
+                        //bw.write("/data2/xuebo/Projects/Speciation/E5/hapSacn/TaxaRefBam/TaxaRefBamAABBDD.txt");
                         bw.newLine();
                     }else if(line==11){
-                        bw.write("/data2/xuebo/Projects/Speciation/tree/barleybam/scan_barley/posAllele/chr"+chrA[i]+".allele.txt");
+                        //bw.write("/data2/xuebo/Projects/Speciation/E5/hapSacn/posAllele/chr"+chrA[i]+".allele.txt");
+                        bw.write("/data2/xuebo/Projects/Speciation/hapScan/posAllele/chr"+chrA[i]+".allele.txt");
                         bw.newLine();
                     }
                     else if(line==13){
-                        bw.write("/data2/xuebo/Projects/Speciation/tree/barleybam/scan_barley/hapPos/chr"+chrA[i]+".pos.txt");
+                        //bw.write("/data2/xuebo/Projects/Speciation/E5/hapSacn/hapPos/chr"+chrA[i]+".pos.txt");
+                        bw.write("/data2/xuebo/Projects/Speciation/hapScan/hapPos/chr"+chrA[i]+".pos.txt");
                         bw.newLine();
                     }
                     else if(line==15){
@@ -558,7 +649,7 @@ public class syntenic_Sgenome {
                         bw.write("/data1/home/xuebo/anaconda3/bin/samtools");
                         bw.newLine();
                     }else if(line==21){
-                        bw.write("/data2/xuebo/Projects/Speciation/tree/barleybam/scan_barley/outchr"+chrA[i]);
+                        bw.write("/data2/xuebo/Projects/Speciation/introgression/scanAe/outchr"+chrA[i]);
                         bw.newLine();
                     }else{
                         bw.write(temp);

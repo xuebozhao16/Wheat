@@ -8,6 +8,7 @@ package EvolutionWheat;
 import format.table.RowTable;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -22,11 +23,12 @@ import utils.IOUtils;
 public class ForManhattanPlot {
     public ForManhattanPlot(String infileS1,String infileS2,String outfileS){
         //this.FortheRealPosFromXPCLR(infileS1, infileS2, outfileS);
-        this.FortheRealPosFromNomXPCLR(infileS1, infileS2, outfileS);
+        //this.FortheRealPosFromNomXPCLR(infileS1, infileS2, outfileS);
         //this.FortheRealPosFromPi(infileS1, infileS2, outfileS);
         //this.FortheRealPosFromPi2(infileS1, infileS2, outfileS);
         //this.FortheRealPosFromFst(infileS1, infileS2, outfileS);
         //this.FortheRealPosFromTajimaD(infileS1, infileS2, outfileS);
+        this.FortheRealPosFromFd(infileS1, infileS2, outfileS);
     }
     //这个是对XPCLR出来的直接结果进行染色体的转换
     public void FortheRealPosFromXPCLR(String infileS1,String infileS2,String outfileS){
@@ -173,6 +175,10 @@ public class ForManhattanPlot {
     }
     
     //为了行数统一，把NA换成0
+//    String infileS1 ="/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatgenome/readmeByFei_table.txt";
+//        String infileS2 ="/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/pi/pi_allchr/urartu.bed.pi";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/pi/pi_allchr/allchrpi_urartu.txt";
+//        new ForManhattanPlot(infileS1,infileS2,outfileS);     
     public void FortheRealPosFromPi2(String infileS1,String infileS2,String outfileS){
         try{
             String temp = null;
@@ -318,4 +324,69 @@ public class ForManhattanPlot {
             e.printStackTrace();
         }
     }
+    
+    public void FortheRealPosFromFd(String infileS1,String infileS2,String outfileS){
+        try{
+            String temp = null;
+            RowTable<String> genometable = new RowTable<>(infileS1);
+            BufferedReader br = IOUtils.getTextReader(infileS2);
+            BufferedWriter bw = IOUtils.getTextWriter(outfileS);
+            br.readLine();
+            while((temp = br.readLine()) != null){
+                String[] tem = temp.split("\t");
+                if(tem[6].equals("NA")){
+                    
+                }
+                else if(tem[7].equals("-Inf") || tem[7].equals("nan")|| tem[7].equals("NA")){
+                    
+                }
+//                else if(Double.valueOf(tem[7]) < 0 || Double.valueOf(tem[7]) >1){
+//                    
+//                }
+                else {
+                    int chr = Integer.valueOf(tem[0]);
+                    //Double value = getDoubleNumber(tem[7]);
+                    String value = tem[7];
+                    String pos = tem[1];
+                    if (Double.valueOf(tem[7]) < 0){
+                      value = "0";
+                    }
+//                    if (value.contains("e")){
+//                      value = "0";
+//                    }
+                    if (Double.valueOf(tem[7]) > 1){
+                      value = "0";
+                    }
+                    if(chr % 2 == 1){
+                        String outchr = genometable.getCell(chr-1, 3);
+                        //System.out.println(outchr);
+                        bw.write(outchr + "\t" + pos + "\t" + value + "\n");
+                    }else{
+                        String outchr = genometable.getCell(chr-1, 3);
+                        //System.out.println(outchr);
+                        int outpos = Integer.valueOf(genometable.getCell(chr-1, 4)) + Integer.valueOf(pos);
+                        bw.write(outchr + "\t" + outpos + "\t" + value + "\n");
+                    }
+                }
+            }
+            bw.flush();
+            bw.close();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+    
+        private double getDoubleNumber(String str){
+            double number = 0;
+            BigDecimal bd = new BigDecimal(str);  
+	    number =  Double.parseDouble(bd.toPlainString());
+            return number;
+	}
+
+        
+        
 }
+
+
+

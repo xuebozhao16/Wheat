@@ -6,6 +6,7 @@
 package Args;
 
 import EvolutionWheat.Filefolder_pip;
+import EvolutionWheat.ForManhattanPlot;
 import EvolutionWheat.Redundancy_selection;
 import EvolutionWheat.XPEHHandXPCLRregion;
 import fasta.wheatFastaToAppend;
@@ -13,6 +14,7 @@ import fasta.parralleFas;
 import gff3.wheatkgfTo42map;
 import speciation.BWA;
 import speciation.geneTree;
+import speciation.introgression;
 import speciation.syntenic_Sgenome;
 import speciation.tree;
 import vcf.CompareTwoVCFfile;
@@ -92,7 +94,12 @@ public class GetWheatCDSsequence {
         //new syntenic_Sgenome(infileS1,outfileS);
         //new syntenic_Sgenome(infileS1,infileS2,infileS3,outfileS);
         //new tree(infileS1,outfileS);
+        //new tree(infileS1,infileS2,infileS3,outfileS);
+        //new tree(infileS1,infileS2,outfileS);
         //new CompareTwoVCFfile(infileS1,infileS2,outfileS);
-        new geneTree(infileS1,infileS2,outfileS);
+        //new geneTree(infileS1,infileS2,outfileS);
+        //new geneTree(infileS1,outfileS);
+        new ForManhattanPlot(infileS1,infileS2,outfileS);
+        //new introgression(infileS1,infileS2,outfileS);
     }
 }

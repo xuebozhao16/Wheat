@@ -22,8 +22,8 @@ public class ForHeatmap {
         //this.getXpehh_bin(infileS, outfileS);
         //this.getQgeneHeatmap(infileS, outfileS);
         //this.getQgeneHeatmap_noBeagle(infileS, outfileS);
-        //this.getgeneHeatmap_noBeagle_SNP(infileS, outfileS);
-        this.getgeneHeatmap_noBeagle_indel(infileS, outfileS);
+        this.getgeneHeatmap_noBeagle_SNP(infileS, outfileS);
+        //this.getgeneHeatmap_noBeagle_indel(infileS, outfileS);
     }
     public ForHeatmap(String infileS1,String infileS2,String outfileS){
         this.getgeneHeatmap_noBeagle_merge(infileS1, infileS2, outfileS);
@@ -262,7 +262,13 @@ public class ForHeatmap {
         try{
             String temp = null;
             int i;
-            BufferedReader br = IOUtils.getTextReader(infileS);
+            //BufferedReader br = IOUtils.getTextReader(infileS);
+            BufferedReader br = null;
+            if (infileS.endsWith("gz")) {
+                br = IOUtils.getTextGzipReader(infileS);
+            } else {
+                br = IOUtils.getTextReader(infileS);
+            }
             BufferedWriter bw = IOUtils.getTextWriter(outfileS);
             while((temp = br.readLine()) != null){
                 String tem[] = temp.split("\t");

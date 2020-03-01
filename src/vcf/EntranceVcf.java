@@ -5,6 +5,8 @@
  */
 package vcf;
 
+import gff3.bedfileSplitchr;
+
 
 /**
  *
@@ -56,9 +58,14 @@ public class EntranceVcf {
 //        new RandomLine(infileS,n,outfileS);
 
 
-        String infileS1 = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/vcfE1/testmerge/testmerge.vcf";
-        String infileS2 = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/vcfE1/testmerge/testBlineag.vcf.gz";
-        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/vcfE1/test_diff.txt";
-        new CompareTwoVCFfile(infileS1,infileS2,outfileS);
+//        String infileS1 = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/vcfE1/testmerge/testmerge.vcf";
+//        String infileS2 = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/vcfE1/testmerge/testBlineag.vcf.gz";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/vcfE1/test_diff.txt";
+//        new CompareTwoVCFfile(infileS1,infileS2,outfileS);
+        
+        String infileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/geneTree/wheatgenomebed10M.txt";
+        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/geneTree/genomebed";
+        new bedfileSplitchr(infileS,outfileS);
+        
     }
 }

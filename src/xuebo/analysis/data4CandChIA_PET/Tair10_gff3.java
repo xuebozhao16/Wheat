@@ -19,7 +19,8 @@ import java.util.Set;
  */
 public class Tair10_gff3 {
     public Tair10_gff3(String infileS,String outfileS){
-        this.getTair10_gff3_onlyGene(infileS, outfileS);
+        //this.getTair10_gff3_onlyGene(infileS, outfileS);
+        this.getTair10_gff3_onlyGene2(infileS, outfileS);
     }
 //    public Tair10_gff3(String infileS,String outfileS1,String outfileS2){
 //        this.getTair10_gff3_updownStream(infileS, outfileS1, outfileS2);
@@ -35,10 +36,35 @@ public class Tair10_gff3 {
             BufferedWriter bw = XueboIOUtils.getTextWriter(outfileS);
             String temp = null;
             while((temp = br.readLine()) != null){
-                String[] tem = temp.split("\t");
-                if(tem[2].equals("gene")){
-                    String geneName = (tem[8].split(";")[0]).split("=")[1];
-                    bw.write(tem[0].substring(tem[0].length()-1, tem[0].length()) + "\t" + geneName + "\t" + tem[3] + "\t" + tem[4] + "\t" + tem[6] + "\n" );
+                if(!temp.startsWith("#")){
+                    String[] tem = temp.split("\t");
+                    if(tem[2].equals("gene")){
+                        String geneName = (tem[8].split(";")[0]).split("=")[1];
+                        bw.write(tem[0].substring(tem[0].length()-1, tem[0].length()) + "\t" + geneName + "\t" + tem[3] + "\t" + tem[4] + "\t" + tem[6] + "\n" );
+                    }
+                }
+            }
+            bw.flush();
+            bw.close();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
+    //转换小麦的gff3文件，每个基因放在一个一列
+    public void getTair10_gff3_onlyGene2(String infileS,String outfileS){
+        try{
+            BufferedReader br = XueboIOUtils.getTextReader(infileS);
+            BufferedWriter bw = XueboIOUtils.getTextWriter(outfileS);
+            String temp = null;
+            while((temp = br.readLine()) != null){
+                if(!temp.startsWith("#")){
+                    String[] tem = temp.split("\t");
+                    if(tem[2].equals("gene")){
+                        String geneName = (tem[8].split(";")[0]).split("=")[1].split(":")[1];
+                        bw.write(tem[0].substring(tem[0].length()-1, tem[0].length()) + "\t" + geneName + "\t" + tem[3] + "\t" + tem[4] + "\t" + tem[6] + "\n" );
+                    }
                 }
             }
             bw.flush();

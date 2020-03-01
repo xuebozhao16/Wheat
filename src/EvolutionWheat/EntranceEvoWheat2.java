@@ -49,9 +49,16 @@ public class EntranceEvoWheat2 {
 //        new ItolTreeParameters3_forNumSpecies(infileS,outfileS);
         
 
-        String infileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/Crispr_gene/rice.txt";
-        String infileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/Crispr_gene/dom312_orthologGene_2.txt";
-        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/Crispr_gene/dom312_list.txt";    
-        new TheCrispr_312genelist(infileS1,infileS2,outfileS);
+//        String infileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/cooperation_fu/OTUB1/haplogroup/longitude_latitude.txt";
+//        String infileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/cooperation_fu/OTUB1/haplogroup/wheatLonLat.csv";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/cooperation_fu/OTUB1/haplogroup/wheatLonLat_norn.txt";    
+//        new TheCrispr_312genelist(infileS1,infileS2,outfileS);
+
+        String infileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/cooperation_fu/Crispr_gene/TraesCS5A02G233700/SNP/mac_WD_AB.txt";
+        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/cooperation_fu/Crispr_gene/TraesCS5A02G233700/SNP/mac_WD_AB.fa";  
+        new TheCrispr_312genelist(infileS,outfileS);
+
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/cooperation_fu/OTUB1/haplogroup/longitude_latitude.txt";    
+//        new TheCrispr_312genelist(outfileS);
     }
 }
