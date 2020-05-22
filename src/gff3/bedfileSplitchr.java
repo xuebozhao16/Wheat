@@ -37,6 +37,7 @@ public class bedfileSplitchr {
                     tempold = tem[0];
                 }else{
                     bw = IOUtils.getTextWriter(outfileS+"/chr"+ tempold +"_10M.txt");
+                    //bw = IOUtils.getTextWriter(outfileS+"/chr"+ tempold +"_1M.txt");
                     bw.write(line.toString());
                     System.out.println(line.toString());
                     line.delete(0, line.length());
@@ -45,7 +46,12 @@ public class bedfileSplitchr {
                     bw.flush();
                     bw.close();
                 } 
-            }         
+            } 
+            bw = IOUtils.getTextWriter(outfileS+"/chr"+ tempold +"_10M.txt");
+            //bw = IOUtils.getTextWriter(outfileS+"/chr"+ tempold +"_1M.txt");
+            bw.write(line.toString());
+            bw.flush();
+            bw.close();
         } catch (Exception e){
             e.printStackTrace();
         }

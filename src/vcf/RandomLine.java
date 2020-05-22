@@ -22,10 +22,10 @@ import utils.IOUtils;
  * @author xuebozhao
  */
 public class RandomLine {
-    public RandomLine(String infileS,Integer n,String outfileS){
-        this.getrandomLine(infileS, n, outfileS);
+    public RandomLine(String infileS,String n,String outfileS){
+        this.C33_getrandomLine(infileS, n, outfileS);
     }
-    public void getrandomLine(String infileS,Integer n,String outfileS){
+    public void C33_getrandomLine(String infileS,String n,String outfileS){
         try{
             FileReader in = new FileReader(infileS);
             LineNumberReader reader = new LineNumberReader(in);
@@ -36,7 +36,8 @@ public class RandomLine {
             BufferedWriter bw = IOUtils.getTextWriter(outfileS);
             String temp = null;
             int i = 0;
-            Set ramnumbber = randonumber2(n,lines);
+            int nn = Integer.valueOf(n);
+            Set ramnumbber = randonumber2(nn,lines);
             while((temp = br.readLine()) !=null){
                 i = i + 1;
                 if(temp.startsWith("#")){

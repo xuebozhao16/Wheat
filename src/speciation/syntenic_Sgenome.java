@@ -5,6 +5,9 @@
  */
 package speciation;
 
+import static EvolutionWheat.ForVcftoolsGroup.getTextReader;
+import static EvolutionWheat.ForVcftoolsGroup.listFilesEndsWith;
+import static EvolutionWheat.ForVcftoolsGroup.listRecursiveFiles;
 import com.google.common.collect.Sets;
 import com.google.common.collect.Sets.SetView;
 import gnu.trove.list.array.TDoubleArrayList;
@@ -17,16 +20,18 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 import java.util.stream.IntStream;
 import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
 import utils.IOUtils;
-import static utils.IOUtils.getTextReader;
-import static utils.IOUtils.listFilesEndsWith;
-import static utils.IOUtils.listRecursiveFiles;
+//import static utils.IOUtils.getTextReader;
+//import static utils.IOUtils.listFilesEndsWith;
+//import static utils.IOUtils.listRecursiveFiles;
 import utils.PArrayUtils;
 
 /**
@@ -55,14 +60,16 @@ public class syntenic_Sgenome {
     }
     
     public syntenic_Sgenome(String infileS,String outfileS){
-        this.getNewTaxafile(infileS, outfileS);
+        //this.getNewTaxafile(infileS, outfileS);
         //this.getVCFfile_info1(infileS, outfileS);  
         //this.C3_DepthandSD(infileS, outfileS);
         //this.C4_DepthandSD(infileS, outfileS);
+        this.getVCFfile_info4(infileS, outfileS);
     }
    
     public syntenic_Sgenome(String infileS1,String infileS2,String infileS3,String outfileS){
-        this.getVCFfile_info2(infileS1, infileS2, infileS3, outfileS);
+        //this.getVCFfile_info2(infileS1, infileS2, infileS3, outfileS);
+        this.getVCFfile_info3(infileS1, infileS2, infileS3, outfileS);
     }
     
     
@@ -124,8 +131,8 @@ public class syntenic_Sgenome {
             BufferedWriter bw = IOUtils.getTextWriter(outfileS);
             HashMap<String, Double> hashMapMean = new HashMap<String, Double>();
             File f = new File(infileS);
-            File[] fs = listRecursiveFiles(f);
-            File[] sub = listFilesEndsWith(fs, "gz");
+            File[] fs = IOUtils.listRecursiveFiles(f);
+            File[] sub = IOUtils.listFilesEndsWith(fs, "gz");
             for(File fi:sub){
                 Depth = IOUtils.getTextGzipReader(fi.toString());
                 //Depth = IOUtils.getTextReader(fi.toString());
@@ -544,8 +551,8 @@ public class syntenic_Sgenome {
             BufferedReader xpclrFile = null;
             BufferedWriter bw = IOUtils.getTextWriter(outfileS);
             File f = new File(infileS);
-            File[] fs = listRecursiveFiles(f);
-            File[] sub = listFilesEndsWith(fs, ".rmdup.bam");
+            File[] fs = IOUtils.listRecursiveFiles(f);
+            File[] sub = IOUtils.listFilesEndsWith(fs, ".rmdup.bam");
             for(File fi:sub){
                 //xpclrFile = getTextReader(fi.toString());
                 String taxaNamelist[] = fi.toString().split("/");
@@ -846,6 +853,246 @@ public class syntenic_Sgenome {
         return set010.size();
     }  
     
+      //在各个群体里面的分离情况进行统计
+    //对Alineage来说，输入文件有3个，AA的个体的VCF文件，AABB的个体的VCF文件，AABBDD的个体的VCF文件
+//    java -jar -Xms50g -Xmx70g /data2/xuebo/Projects/Speciation/javaCode/getVCFfile_info2.jar --file1 /data2/xuebo/Projects/Speciation/E2_all/macSS/chr${chr}.macSS.vcf.gz \
+//	--file2 /data2/xuebo/Projects/Speciation/E2_all/macAABB/chr${chr}.macAABB.vcf.gz  --file3 /data2/xuebo/Projects/Speciation/E2_all/macAABBDD/chr${chr}.macAABBDD.vcf.gz \
+//	--out /data2/xuebo/Projects/Speciation/E2_all/macSS/info2_chr${chr}.txt &
+    //和上面的方法比较，不同的是，之前getVCFfile_info2得到的是数量，但是getVCFfile_info3得到的是位点
+    
+    public void getVCFfile_info3(String infileS1,String infileS2,String infileS3,String outfileS){
+        try{
+            //String temp = null;
+            String temp1 = null;
+            String temp2 = null;
+            String temp3 = null;
+            //int countall = 0;
+            Set AAset = new HashSet();
+            Set AABBset = new HashSet();
+            Set AABBDDset = new HashSet();
+            //HashMap<Integer, String> hashMap1 = new HashMap<Integer, String>();
+            BufferedReader br1; //这里读的是AA个体的文件夹
+            if (infileS1.endsWith("gz")) {
+                br1 = IOUtils.getTextGzipReader(infileS1);
+            } else {
+                br1 = IOUtils.getTextReader(infileS1);
+            }
+            BufferedReader br2; //这里读的是AABB个体的文件夹
+            if (infileS2.endsWith("gz")) {
+                br2 = IOUtils.getTextGzipReader(infileS2);
+            } else {
+                br2 = IOUtils.getTextReader(infileS2);
+            }
+            BufferedReader br3; //这里读的是AABBDD个体的文件夹
+            if (infileS3.endsWith("gz")) {
+                br3 = IOUtils.getTextGzipReader(infileS3);
+            } else {
+                br3 = IOUtils.getTextReader(infileS3);
+            }
+            BufferedWriter bw = null; //写出文件，文件格式是txt格式         
+            //开始读genome的VCF文件
+            while((temp1 = br1.readLine()) != null){
+                String tem1[] = temp1.split("\t");
+                if(tem1[0].startsWith("#")){
+                    //前边的不要,带有注释信息的那一行也不要
+                }               
+                else { //现在开始读的是没有注释的文件
+                    AAset.add(Integer.valueOf(tem1[1]));                  
+                }
+            }
+            System.out.println("Readed AA" + "\n");
+            while((temp2 = br2.readLine()) != null){
+                String tem2[] = temp2.split("\t");
+                if(tem2[0].startsWith("#")){
+                    //前边的不要,带有注释信息的那一行也不要
+                }               
+                else { //现在开始读的是没有注释的文件
+                    AABBset.add(Integer.valueOf(tem2[1]));                  
+                }
+            }
+            System.out.println("Readed AABB" + "\n");
+            while((temp3 = br3.readLine()) != null){
+                String tem3[] = temp3.split("\t");
+                if(tem3[0].startsWith("#")){
+                    //前边的不要,带有注释信息的那一行也不要
+                }               
+                else { //现在开始读的是没有注释的文件
+                    AABBDDset.add(Integer.valueOf(tem3[1]));                  
+                }
+            }
+            System.out.println("Readed AABBDD" + "\n");
+            //现在开始统计交并补集
+            //bw.write("Set111\tSet110\tSet101\tSet011\tSet001\tSet100\tSet010\n");
+            SetView a1 = SetOperations2_111(AAset,AABBset,AABBDDset);
+            bw = IOUtils.getTextWriter(outfileS+"/SetOperations3_111.txt");
+                final List<Integer> list1 = new ArrayList<Integer>();  
+                for(final Object value : a1){  
+                    list1.add((Integer) value);  
+                }  
+                Collections.sort(list1);
+                for(int n=0;n<list1.size();n++){
+                    bw.write(list1.get(n) + "\n");
+                }  
+            bw.flush();
+            bw.close();
+            SetView a2 = SetOperations2_110(AAset,AABBset,AABBDDset);
+            bw = IOUtils.getTextWriter(outfileS+"/SetOperations3_110.txt");
+                final List<Integer> list2 = new ArrayList<Integer>();  
+                for(final Object value : a2){  
+                    list2.add((Integer) value);  
+                }  
+                Collections.sort(list2);
+                for(int n=0;n<list2.size();n++){
+                    bw.write(list2.get(n) + "\n");
+                }  
+            bw.flush();
+            bw.close();
+            SetView a3 = SetOperations2_101(AAset,AABBset,AABBDDset);
+            bw = IOUtils.getTextWriter(outfileS+"/SetOperations3_101.txt");
+                final List<Integer> list3 = new ArrayList<Integer>();  
+                for(final Object value : a3){  
+                    list3.add((Integer) value);  
+                }  
+                Collections.sort(list3);
+                for(int n=0;n<list3.size();n++){
+                    bw.write(list3.get(n) + "\n");
+                }  
+            bw.flush();
+            bw.close();
+            SetView a4 = SetOperations2_011(AAset,AABBset,AABBDDset);
+            bw = IOUtils.getTextWriter(outfileS+"/SetOperations3_011.txt");
+                final List<Integer> list4 = new ArrayList<Integer>();  
+                for(final Object value : a4){  
+                    list4.add((Integer) value);  
+                }  
+                Collections.sort(list4);
+                for(int n=0;n<list4.size();n++){
+                    bw.write(list4.get(n) + "\n");
+                }  
+            bw.flush();
+            bw.close();
+            SetView a5 = SetOperations2_001(AAset,AABBset,AABBDDset);
+            bw = IOUtils.getTextWriter(outfileS+"/SetOperations3_001.txt");
+                final List<Integer> list5 = new ArrayList<Integer>();  
+                for(final Object value : a5){  
+                    list5.add((Integer) value);  
+                }  
+                Collections.sort(list5);
+                for(int n=0;n<list5.size();n++){
+                    bw.write(list5.get(n) + "\n");
+                }  
+            bw.flush();
+            bw.close();
+            SetView a6 = SetOperations2_100(AAset,AABBset,AABBDDset);
+            bw = IOUtils.getTextWriter(outfileS+"/SetOperations3_100.txt");
+                final List<Integer> list6 = new ArrayList<Integer>();  
+                for(final Object value : a6){  
+                    list6.add((Integer) value);  
+                }  
+                Collections.sort(list6);
+                for(int n=0;n<list6.size();n++){
+                    bw.write(list6.get(n) + "\n");
+                }  
+            bw.flush();
+            bw.close();
+            Set a7 = SetOperations2_010(AAset,AABBset,AABBDDset);
+            bw = IOUtils.getTextWriter(outfileS+"/SetOperations3_010.txt");
+                final List<Integer> list7 = new ArrayList<Integer>();  
+                for(final Object value : a7){  
+                    list7.add((Integer) value);  
+                }  
+                Collections.sort(list7);
+                for(int n=0;n<list7.size();n++){
+                    bw.write(list7.get(n) + "\n");
+                }  
+            bw.flush();
+            bw.close();
+
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
+     /** 这是对三个集合的操作,使用SetView完成对交集并集补集的操作,之前是为了得到交集，并集，补集的大小，现在是为了得到位点
+ * 集合的操作：交集、差集、并集  
+ * Sets.intersection()交集
+ * Sets.difference()差集
+ * Sets.union()并集
+ */
+    
+    public SetView<Integer> SetOperations2_111(Set<Integer> AA,Set<Integer> AABB,Set<Integer> AABBDD){
+        SetView<Integer> intersectionAA_AABB = Sets.intersection(AA, AABB);
+        SetView<Integer> set111 = Sets.intersection(intersectionAA_AABB, AABBDD);
+        return set111;
+    }
+    
+    public SetView<Integer> SetOperations2_110(Set<Integer> AA,Set<Integer> AABB,Set<Integer> AABBDD){
+        SetView<Integer> intersectionAA_AABB = Sets.intersection(AA, AABB);
+        SetView<Integer> set110 = Sets.difference(intersectionAA_AABB, AABBDD);
+        return set110;
+    }
+    
+    public SetView<Integer> SetOperations2_101(Set<Integer> AA,Set<Integer> AABB,Set<Integer> AABBDD){
+        SetView<Integer> intersectionAA_AABBDD = Sets.intersection(AA, AABBDD);
+        SetView<Integer> set101 = Sets.difference(intersectionAA_AABBDD, AABB);
+        return set101;
+    }
+    
+    public SetView<Integer> SetOperations2_011(Set<Integer> AA,Set<Integer> AABB,Set<Integer> AABBDD){
+        SetView<Integer> intersectionAABB_AABBDD = Sets.intersection(AABB, AABBDD);
+        SetView<Integer> set011 = Sets.difference(intersectionAABB_AABBDD, AA);
+        return set011;
+    }   
+    
+    public SetView<Integer> SetOperations2_001(Set<Integer> AA,Set<Integer> AABB,Set<Integer> AABBDD){
+        SetView<Integer> unionAA_AABB = Sets.union(AA, AABB);
+        SetView<Integer> set001 = Sets.difference(AABBDD, unionAA_AABB);
+        return set001;
+    }  
+    
+    public SetView<Integer> SetOperations2_100(Set<Integer> AA,Set<Integer> AABB,Set<Integer> AABBDD){
+        SetView<Integer> unionAABB_AABBDD = Sets.union(AABB, AABBDD);
+        SetView<Integer> set100 = Sets.difference(AA, unionAABB_AABBDD);
+        return set100;
+    }  
+    
+    public SetView<Integer> SetOperations2_010(Set<Integer> AA,Set<Integer> AABB,Set<Integer> AABBDD){
+        SetView<Integer> unionAA_AABBDD = Sets.union(AA, AABBDD);
+        SetView<Integer> set010 = Sets.difference(AABB, unionAA_AABBDD);
+        return set010;
+    }  
+    
+    //这个方法是给上面的代码产生的文件前面加上染色体
+    public void getVCFfile_info4(String infileS,String outfileS){
+         try{    
+            String temp = null;
+            BufferedReader siteFile = null;
+            BufferedWriter bw = null;
+            File f = new File(infileS);
+            File[] fs = IOUtils.listRecursiveFiles(f);
+            File[] sub = IOUtils.listFilesEndsWith(fs, ".txt");
+            for(File fi:sub){
+                siteFile = IOUtils.getTextReader(fi.toString());
+                String Namelist[] = fi.toString().split("/");
+                String chrName = Namelist[Namelist.length-2].split("_chr")[1];
+                String fileName = Namelist[Namelist.length-1];
+                System.out.print("It's " + chrName + "\n");
+                bw = IOUtils.getTextWriter(outfileS + "/chr" + fileName);
+                while((temp = siteFile.readLine()) != null){
+                    bw.write(chrName + "\t" + temp + "\n");
+                }   
+                bw.flush();
+                bw.close();
+            } 
+            
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
+
    //这个方法的目的是去掉E2_all里面的空格
     
 //    java -jar  -Xms20g -Xmx80g /data2/xuebo/Projects/Speciation/javaCode/cutALTblank.jar --file1 /data2/xuebo/Projects/Speciation/tree/barleybam/scan_barley/outchr${i}/VCF/chr${chr}.vcf \

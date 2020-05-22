@@ -63,9 +63,13 @@ public class EntranceVcf {
 //        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/vcfE1/test_diff.txt";
 //        new CompareTwoVCFfile(infileS1,infileS2,outfileS);
         
-        String infileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/geneTree/wheatgenomebed10M.txt";
-        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/geneTree/genomebed";
-        new bedfileSplitchr(infileS,outfileS);
+//        String infileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/geneTree/wheatgenomebed10M.txt";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/geneTree/genomebed/10M";
+//        new bedfileSplitchr(infileS,outfileS);
+        
+        String infileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/per_gene/code/normXp1.r";
+        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/per_gene/code/DurumCul";
+        new NewRcode(infileS,outfileS);
         
     }
 }

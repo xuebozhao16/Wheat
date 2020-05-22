@@ -54,11 +54,27 @@ public class EntranceEvoWheat2 {
 //        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/cooperation_fu/OTUB1/haplogroup/wheatLonLat_norn.txt";    
 //        new TheCrispr_312genelist(infileS1,infileS2,outfileS);
 
-        String infileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/cooperation_fu/Crispr_gene/TraesCS5A02G233700/SNP/mac_WD_AB.txt";
-        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/cooperation_fu/Crispr_gene/TraesCS5A02G233700/SNP/mac_WD_AB.fa";  
-        new TheCrispr_312genelist(infileS,outfileS);
+//        String infileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/cooperation_fu/OTUB1/haplogroup/longitude_latitude.txt";
+//        String infileS2 = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/haploNet/Q_haplo.csv";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/haploNet/wheatLonLat_nornQ.txt";    
+//        new TheCrispr_312genelist(infileS1,infileS2,outfileS);
+
+//        String infileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/cooperation_fu/Crispr_gene/TraesCS5A02G233700/SNP/mac_WD_AB.txt";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/cooperation_fu/Crispr_gene/TraesCS5A02G233700/SNP/mac_WD_AB.fa";  
+//        new TheCrispr_312genelist(infileS,outfileS);
 
 //        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/cooperation_fu/OTUB1/haplogroup/longitude_latitude.txt";    
 //        new TheCrispr_312genelist(outfileS);
+
+//        String infileS1 = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/geneTree/genomebed/1M/chr6_1M.txt";
+//        String infileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/snp_calling/depth/chr6.vcf";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/snp_calling/depth/test.txt";    
+//        new Countsnp(infileS1,infileS2,outfileS);
+
+        String infileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/introgression/Dstatistic/individuals/test/finalA_1.txt";
+        String infileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/introgression/Dstatistic/individuals/test/finalAB_1.txt";
+        String outfileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/introgression/Dstatistic/individuals/test/finalall_1.txt";    
+        String outfileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/introgression/Dstatistic/individuals/test/finalcount_A.txt";    
+        new fd_individual(infileS1,infileS2,outfileS1,outfileS2);
     }
 }

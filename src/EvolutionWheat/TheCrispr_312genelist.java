@@ -411,11 +411,11 @@ public class TheCrispr_312genelist {
             BufferedWriter bw = utils.IOUtils.getTextWriter(outfileS);
             //br.readLine();
             //System.out.print(genometable.getCell(1, 1)+ "\t");
-            for(int i=4;i<genometable.getColumnNumber()-1;i++){
+            for(int i=4;i<genometable.getColumnNumber();i++){
                 bw.write("\n");
                 System.out.print(genometable.getHeader().get(i));
                 bw.write(genometable.getHeader().get(i) + "\t");
-                for(int j=1;j<genometable.getRowNumber();j++){
+                for(int j=1;j<genometable.getRowNumber()+1;j++){
                     if(genometable.getCell(j-1, i).equals("2")){
                         bw.write(genometable.getCell(j-1, 3));
                     }else{

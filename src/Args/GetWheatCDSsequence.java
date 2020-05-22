@@ -5,10 +5,13 @@
  */
 package Args;
 
+import EvolutionWheat.Countsnp;
 import EvolutionWheat.Filefolder_pip;
 import EvolutionWheat.ForManhattanPlot;
 import EvolutionWheat.Redundancy_selection;
+import EvolutionWheat.XPCLR_intersection;
 import EvolutionWheat.XPEHHandXPCLRregion;
+import EvolutionWheat.top1_XPCLRandPi;
 import fasta.wheatFastaToAppend;
 import fasta.parralleFas;
 import gff3.wheatkgfTo42map;
@@ -18,6 +21,7 @@ import speciation.introgression;
 import speciation.syntenic_Sgenome;
 import speciation.tree;
 import vcf.CompareTwoVCFfile;
+import vcf.RandomLine;
 
 /**
  *
@@ -99,7 +103,12 @@ public class GetWheatCDSsequence {
         //new CompareTwoVCFfile(infileS1,infileS2,outfileS);
         //new geneTree(infileS1,infileS2,outfileS);
         //new geneTree(infileS1,outfileS);
-        new ForManhattanPlot(infileS1,infileS2,outfileS);
+        //new ForManhattanPlot(infileS1,infileS2,outfileS);
         //new introgression(infileS1,infileS2,outfileS);
+        //new top1_XPCLRandPi(infileS1,infileS2,outfileS);
+        //new XPEHHandXPCLRregion(infileS1,infileS2,outfileS);
+        //new XPCLR_intersection(infileS1,infileS2);
+        //new RandomLine(infileS1,infileS2,outfileS);
+        new Countsnp(infileS1,infileS2,outfileS);
     }
 }

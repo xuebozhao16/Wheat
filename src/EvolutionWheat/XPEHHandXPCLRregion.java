@@ -29,8 +29,9 @@ public class XPEHHandXPCLRregion {
     public XPEHHandXPCLRregion(String infileS1,String infileS2,String outfileS){
         //this.forsynteny_site_gene(infileS1, infileS2, outfileS);
         //this.getReciprocalRiceToA(infileS1, infileS2, outfileS);
-        //this.forRegionGene(infileS1, infileS2, outfileS);
-        this.forRegionGene_NoOverlap(infileS1, infileS2, outfileS);
+        this.forRegionGene(infileS1, infileS2, outfileS);
+        //this.forRegionGene_per50_Overlap(infileS1, infileS2, outfileS);
+        //this.forRegionGene_NoOverlap(infileS1, infileS2, outfileS);
     }
     
 //    public XPEHHandXPCLRregion(String infileS,String outfileS1,String outfileS2){
@@ -278,6 +279,73 @@ public class XPEHHandXPCLRregion {
 //                        if(pos.get(i+2)>regionpos2 && pos.get(i+1) < regionpos1){
 //                            gene.add(hashMap1.get(aa));
 //                        }
+                    }
+                }
+                
+            }
+            //sort(gene);
+            for (Object str : gene) {
+                String remgene = str.toString();
+                //bw.write(remgene.split("_")[0] + "\t" + remgene.split("_")[1] + "\n");
+                bw.write(str + "\n") ;
+                System.out.println(str);
+            }
+            bw.flush();
+            bw.close();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
+    //这个方法输入小麦的region信息，得到这个region的基因,和上面的代码不一样的是，这是Overlap 50%的基因的情况，要求基因必须在这个region里面，输入文件：region信息和基因信息；输出文件：基因
+    public void forRegionGene_per50_Overlap(String infileS1,String infileS2,String outfileS){
+        try{
+            String temp = null;
+            String temp2 = null;
+            //BufferedReader brgene2 =null;
+            HashMap<String, String> hashMap1 = new HashMap<String, String>();
+            List<Integer> pos = new ArrayList<>();
+            Set  gene = new HashSet();
+            BufferedReader brgene = IOUtils.getTextReader(infileS1);
+            BufferedReader brregion = IOUtils.getTextReader(infileS2);
+            BufferedWriter bw = IOUtils.getTextWriter(outfileS);
+            while((temp2 = brgene.readLine()) != null){
+                String tem2[] = temp2.split("\t");
+                String key = tem2[2]+"_"+tem2[3];
+                String value = tem2[1];
+                //String value = tem2[0]+"_"+tem2[1];
+                hashMap1.put(key, value);
+                pos.add(Integer.valueOf(tem2[0]));
+                pos.add(Integer.valueOf(tem2[2]));
+                pos.add(Integer.valueOf(tem2[3]));             
+            } 
+            while((temp = brregion.readLine()) != null){
+                int i;
+                String tem[] = temp.split("\t");
+                String regionchr = tem[0];
+                int regionpos1 = Integer.valueOf(tem[1]);
+                int regionpos2 = Integer.valueOf(tem[2]);
+                //int aa = pos.size();
+                for(i = 0; i < pos.size();i = i+3 ){
+                    if(Integer.toString(pos.get(i)).equals(regionchr)){
+                        String aa = pos.get(i+1) + "_" + pos.get(i+2);
+                        if(pos.get(i+1)>=regionpos1 && pos.get(i+2)<=regionpos2){
+                            gene.add(hashMap1.get(aa));
+                        }
+                        if(pos.get(i+1)<=regionpos1 && pos.get(i+2)>=regionpos2){
+                            gene.add(hashMap1.get(aa));
+                        }
+                        if(pos.get(i+1)<regionpos2 && pos.get(i+1)>regionpos1 && pos.get(i+2)>regionpos2){
+                            if((pos.get(i+2)-regionpos2)<=(regionpos2-pos.get(i+1))){
+                                gene.add(hashMap1.get(aa));
+                            }    
+                        }
+                        if(pos.get(i+2)<regionpos2 && pos.get(i+2)>regionpos1 && pos.get(i+1)<regionpos1){
+                            if((pos.get(i+2)-regionpos1)>=(regionpos1-pos.get(i+1))){
+                                gene.add(hashMap1.get(aa));
+                            }    
+                        }
                     }
                 }
                 

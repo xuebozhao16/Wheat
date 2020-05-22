@@ -22,8 +22,8 @@ public class ForHeatmap {
         //this.getXpehh_bin(infileS, outfileS);
         //this.getQgeneHeatmap(infileS, outfileS);
         //this.getQgeneHeatmap_noBeagle(infileS, outfileS);
-        this.getgeneHeatmap_noBeagle_SNP(infileS, outfileS);
-        //this.getgeneHeatmap_noBeagle_indel(infileS, outfileS);
+        //this.getgeneHeatmap_noBeagle_SNP(infileS, outfileS);
+        this.getgeneHeatmap_noBeagle_indel(infileS, outfileS);
     }
     public ForHeatmap(String infileS1,String infileS2,String outfileS){
         this.getgeneHeatmap_noBeagle_merge(infileS1, infileS2, outfileS);
@@ -261,6 +261,7 @@ public class ForHeatmap {
     public void getgeneHeatmap_noBeagle_SNP(String infileS,String outfileS){
         try{
             String temp = null;
+            String prefix = null;
             int i;
             //BufferedReader br = IOUtils.getTextReader(infileS);
             BufferedReader br = null;
@@ -272,19 +273,21 @@ public class ForHeatmap {
             BufferedWriter bw = IOUtils.getTextWriter(outfileS);
             while((temp = br.readLine()) != null){
                 String tem[] = temp.split("\t");
-                String prefix = tem[0].substring(0, 2);
-                if(prefix.equals("##")){
-                    
-                }
-                else if(prefix.equals("#C")){
-                    //String headline = br.readLine();
-                    String headtem[] = temp.split("\t");
-                    StringBuilder headlineSB = new StringBuilder();
-                    for(int j=9; j<headtem.length;j++){
-                        headlineSB.append(headtem[j]).append("\t");
+                if(temp.startsWith("#")){
+                    prefix = tem[0].substring(0, 2);
+                    if(prefix.equals("##")){
+
                     }
-                    bw.write(headtem[0].substring(1,headtem[0].length()) + "\t" + headtem[1] + "\t" + headtem[3] + "\t" + headtem[4] + "\t" + headlineSB + "\n");
-                }
+                    else if(prefix.equals("#C")){
+                        //String headline = br.readLine();
+                        String headtem[] = temp.split("\t");
+                        StringBuilder headlineSB = new StringBuilder();
+                        for(int j=9; j<headtem.length;j++){
+                            headlineSB.append(headtem[j]).append("\t");
+                        }
+                        bw.write(headtem[0].substring(1,headtem[0].length()) + "\t" + headtem[1] + "\t" + headtem[3] + "\t" + headtem[4] + "\t" + headlineSB + "\n");
+                    }
+                }           
                 else {
                     //String tem[] = temp.split("\t");
                     StringBuilder haplo = new StringBuilder();

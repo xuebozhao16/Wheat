@@ -25,9 +25,14 @@ public class top1_XPCLRandPi {
         //this.top1Pi(infielS, outfielS);
         //this.top5_gene(infielS, outfielS);
     }
-    public top1_XPCLRandPi(String infileS1,String infileS2,String outfileS){
-        this.signal_2M_overlap(infileS1, infileS2, outfileS);
+//    public top1_XPCLRandPi(String infileS1,String infileS2,String outfileS){
+//        //this.signal_2M_overlap(infileS1, infileS2, outfileS);
+//        
+//    }
+    public top1_XPCLRandPi(String infileS,String percentage,String outfielS){
+        this.topnormXPCLR_forallper(infileS, percentage, outfielS);
     }
+    
     //这个方法是对xpclr的结果取0.01
     public void top1XPCLR(String infileS,String outfielS){
         try{
@@ -82,7 +87,7 @@ public class top1_XPCLRandPi {
                    A.add(temp);
                 }
             }
-            for (i=0;i< A.size()*0.05;i++) {
+            for (i=0;i< A.size()*0.001;i++) {
                 String temp2 = (String) AA.get(i);
                 temm2 = temp2.split("\t");
                 sum = sum + Integer.valueOf(temm2[2]) - Integer.valueOf(temm2[1]);
@@ -96,6 +101,47 @@ public class top1_XPCLRandPi {
             System.out.println(i);
             System.out.println(temm2[3]);
             System.out.println(sum);
+            bw.flush();
+            bw.close();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+     
+     //这个方法是对normalization的xpclr的结果取0.05,0.01,0.005,0.001,在服务器上面使用
+     public void topnormXPCLR_forallper(String infileS,String percentage,String outfielS){
+        try{
+            String temp = null;
+            int i;
+            int sum = 0;
+            String[] temm2 = null;
+            BufferedReader br = IOUtils.getTextReader(infileS);
+            BufferedWriter bw = IOUtils.getTextWriter(outfielS);
+            List A = new ArrayList();
+            List AA = new ArrayList();
+            while((temp = br.readLine()) != null){
+                String tem[] = temp.split("\t");
+                AA.add(temp);
+                if(tem[3].equals("NA") | tem[3].equals("-nan")| tem[3].equals("nan") ){    
+                }else {
+                   A.add(temp);
+                }
+            }
+            double nn = Double.valueOf(percentage);
+            for (i=0;i< A.size()*nn;i++) {
+                String temp2 = (String) AA.get(i);
+                temm2 = temp2.split("\t");
+                sum = sum + Integer.valueOf(temm2[2]) - Integer.valueOf(temm2[1]);
+                //String pos = temm2[3].split("\\.")[0];
+                //bw.write(temm2[0] + "\t" + pos + "\t" + temm2[5] + "\n");     
+                bw.write(temp2 + "\n");
+                //bw.write(temm2[0] + "\t" + temm2[1] + "\t" + temm2[2] + "\n");
+            }        
+            System.out.println(A.size() + "\t" + AA.size() + "\t" + i + "\t" + temm2[3] + "\t" + sum + "\n");
+//            System.out.println(AA.size());
+//            System.out.println(i);
+//            System.out.println(temm2[3]);
+//            System.out.println(sum);
             bw.flush();
             bw.close();
         }catch(Exception e){

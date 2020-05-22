@@ -69,8 +69,12 @@ public class speciationEntrace {
 //        String infileS1 = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/vcfE1/test/testBlineag.vcf.gz";
 //        String infileS2 = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/vcfE1/test/testsite11.vcf.gz";
 //        String infileS3 = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/vcfE1/test/test.vcf.gz";
-//        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/vcfE1/count2.txt";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/vcfE1/test/";
 //        new syntenic_Sgenome(infileS1,infileS2,infileS3,outfileS);
+
+        String infileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/vcfE1/test/info3_Dlineage_chr11";
+        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/vcfE1/test/info3_Dlineage_chr11_chr";
+        new syntenic_Sgenome(infileS,outfileS);
 
 //        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/introgression/scanAe/TaxaRefBam";
 //        new tree(outfileS);
@@ -117,8 +121,8 @@ public class speciationEntrace {
 //        String outfileS3 = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/geneTree/assembly/D_best_Synteny_150bp.bed";
 //        new geneTree(infileS1,infileS2,outfileS1,outfileS2,outfileS3);
 
-//        String infileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/phyloNet/B_test.txt";
-//        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/phyloNet/B_phyloNet.txt";
+//        String infileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/phyloNet/phyloNet_10M/B/B_bipartition_10Mtree_part2.txt";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/phyloNet/phyloNet_10M/B/B2_bipartition_10MphyloNet.txt";
 //        new phyloNet(infileS,outfileS);
 
 //        String infileS1 = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/geneTree/assembly/musclename.txt";
@@ -130,10 +134,18 @@ public class speciationEntrace {
 //        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/geneTree/majorAllele/mac3_10M/Btree_10M_topology.txt";
 //        new geneTree(infileS,outfileS);
         
-        String infileS1 = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/geneTree/majorAllele/mac3_10M/numall.txt";
-        String infileS2 = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/geneTree/majorAllele/mac3_10M/Btree_10M_topology.txt";
-        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/geneTree/majorAllele/mac3_10M/Btree_10M_topologyNUM.txt";
-        new geneTree(infileS1,infileS2,outfileS);
+//        String infileS1 = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/geneTree/majorAllele/mac3_10M/numall.txt";
+//        String infileS2 = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/geneTree/majorAllele/mac3_10M/Btree_10M_topology.txt";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/geneTree/majorAllele/mac3_10M/Btree_10M_topologyNUM.txt";
+//        new geneTree(infileS1,infileS2,outfileS);
+
+//        String infileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/geneTree/genomebed/10M_tree";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/geneTree/genomebed/10M_tree/AAA.txt";
+//        new geneTree(infileS,outfileS);
+
+//        String infileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/Cytoscape/B/BInvariantSite.phy";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/Cytoscape/B/BInvariantSite.phy2";
+//        new Cytoscape(infileS,outfileS);
 
     }
 }

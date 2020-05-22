@@ -15,8 +15,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import utils.IOUtils;
+import static utils.IOUtils.listFilesStartsWith;
 
 /**
  *
@@ -35,7 +37,8 @@ public class geneTree {
     public geneTree(String infileS,String outfileS){
         //this.C23_fasta2phy(infileS, outfileS);
         //this.C29_forgene10Mtree_head(infileS, outfileS);
-        this.C30_getTreetopology(infileS, outfileS);
+        //this.C30_getTreetopology(infileS, outfileS);
+        this.C32_RAxML_bestTree(infileS, outfileS);
     }
     
     public geneTree(String infileS1,String infileS2,String outfileS1,String outfileS2,String outfileS3){
@@ -591,7 +594,40 @@ public class geneTree {
     }
     
     
-    
+    //这个方法是对文件夹里面RAxML_bestTree开头的文件进行操作，
+    //例如 文件夹RAxML_bestTree.35_90000000.tree，输出的文件是35\t8000000\t90000000\t文件夹里面的内容
+    public void C32_RAxML_bestTree(String infileS,String outfileS){
+         try{    
+            String temp = null; 
+            BufferedReader piFile = null;
+            //BufferedWriter bw = null;
+            File f = new File(infileS);
+            File[] fs = listRecursiveFiles(f);
+            File[] sub = listFilesEndsWith(fs, ".tree");
+            BufferedWriter bw = IOUtils.getTextWriter(outfileS);
+            //Set<String> features  = new HashSet();
+            //Map<String,ArrayList<String[]>> data = new HashMap();
+            for(File fi:sub){
+                piFile = getTextReader(fi.toString());
+                String taxaNamelist[] = fi.toString().split("/");
+                String taxaName = taxaNamelist[taxaNamelist.length-1].split("\\.")[1];
+                System.out.print("It's " + taxaName + "\n");
+                while((temp = piFile.readLine()) != null){
+                    //System.out.print(taxaName.split("_")[1] + "\n");
+                    String pos1 = taxaName.split("_")[1];
+                    String chr  = taxaName.split("_")[0];
+                    int pos2 = Integer.valueOf(taxaName.split("_")[1]) + 10000000;
+                    String tree  = temp;
+                    bw.write(chr+ "\t" + pos1 + "\t" + pos2 + "\t" + tree + "\n");
+                }
+            } 
+            bw.flush();
+            bw.close();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
     
     
     

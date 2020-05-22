@@ -9,6 +9,7 @@ import EvolutionWheat.Filefolder_pip;
 import EvolutionWheat.ForVcftoolsGroup;
 import EvolutionWheat.Redundancy_selection;
 import EvolutionWheat.Synteny_site;
+import EvolutionWheat.fd_individual;
 import fasta.wheatFastaToAppend;
 import fasta.parralleFas;
 import gff3.wheatkgfTo42map;
@@ -26,6 +27,7 @@ public class GetXpclrFile {
     public static void main(String[] args) {
         int len = args.length;
         String infileS1 = "";
+        String infileS2 = "";
         String outfileS1 ="";
         //String ref = "";
         String outfileS2 ="";
@@ -35,6 +37,10 @@ public class GetXpclrFile {
                     infileS1 = args[i+1];
                     i++;
                     break;
+                case "--file2":
+                    infileS2 = args[i+1];
+                    i++;
+                    break;    
                 case "--out":
                     outfileS1 = args[i+1];
                     i++;
@@ -50,7 +56,7 @@ public class GetXpclrFile {
         //new Redundancy_selection(infileS, outfileS);
         //new Synteny_site(infileS,outfileS);
         //new Filefolder_pip(infileS,outfileS);
-        new syntenic_Sgenome(infileS1, outfileS1, outfileS2);
-        
+        //new syntenic_Sgenome(infileS1, outfileS1, outfileS2);
+        new fd_individual(infileS1,infileS2,outfileS1,outfileS2);
     }
 }

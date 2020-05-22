@@ -7,6 +7,7 @@ package Args;
 
 import EvolutionWheat.ForVcftoolsGroup;
 import EvolutionWheat.ForHeatmap;
+import EvolutionWheat.XPCLR_intersection;
 import EvolutionWheat.XPEHHandXPCLRregion;
 import fasta.RNAseqDataCompare;
 import fasta.SplitWheatABD1_1;
@@ -77,8 +78,12 @@ public class WheatEntrance2 {
 //        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/cooperation_fu/OTUB1/haplogroup/chr39_TraesCS7B02G161900_2K_4_6.txt";
 //        new ForHeatmap(infileS,outfileS);
         
-//        String infileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/cooperation_fu/Crispr_gene/TraesCS5A02G233700/SNP/mac_WD_AB.vcf";
-//        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/cooperation_fu/Crispr_gene/TraesCS5A02G233700/SNP/mac_WD_AB.txt";
+//        String infileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/cooperation_fu/Crispr_gene/TraesCS5A02G233700/indel/mac_WD_ABinel.vcf";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/cooperation_fu/Crispr_gene/TraesCS5A02G233700/indel/mac_WD_ABinel.txt";
+//        new ForHeatmap(infileS,outfileS);
+
+//        String infileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/introgression/6A/260M_430M_200_sort.vcf";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/introgression/6A/260M_430M_200_sort.txt";
 //        new ForHeatmap(infileS,outfileS);
      
         //String infileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/convergentEvo/xpclr_region/textgene.txt";
@@ -115,10 +120,22 @@ public class WheatEntrance2 {
 //        String outfileS3 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/pi/functional_pi/backgroudgene.txt";
 //        new XPEHHandXPCLRregion(infileS,outfileS1,outfileS2,outfileS3);
 
-        String infileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatgenome/V1_1/GeneLulab1_1onlyGene.txt";
-        String infileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR_recom_rate/norm20M_10k/topmili_5/A_topmili_5.xpclr.txt";
-        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR_recom_rate/norm20M_10k/NoOverlap/topmili_5/topmili_5_A_gene_NoOverlap.txt";
-        new XPEHHandXPCLRregion(infileS1,infileS2,outfileS);
+//        String infileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatgenome/V1_1/GeneLulab1_1onlyGene.txt";
+//        String infileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR_recom_rate/norm20M_10k/negative_control_DurumCul/DurumCul_topmili_1.xpclr.txt";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR_recom_rate/norm20M_10k/negative_control_DurumCul/topmili_1_DurumCul_gene.txt";
+//        new XPEHHandXPCLRregion(infileS1,infileS2,outfileS);
+
+//        String infileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR_recom_rate/norm20M_10k/NoOverlap/top5/top5_AB_45_gene_NoOverlap.txt";
+//        String infileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR_recom_rate/norm20M_10k/NoOverlap/top5/top5_ABD_small_gene_NoOverlap.txt";
+//        new XPCLR_intersection(infileS1,infileS2);
+
+        String infileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/per_gene/neg4_DurumCul1024/nohupneg4_top1";
+        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/per_gene/neg4_DurumCul1024/neg4_DurumCul_top1.txt";
+        new XPCLR_intersection(infileS,outfileS);
+
+//        String infileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/per_gene/neg2_WW_WDemmer/nohupneg2_topmili_1";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/per_gene/neg2_WW_WDemmer/neg2_WW_WDemmer_topmili_1.txt";
+//        new XPCLR_intersection(infileS,outfileS);
 
     }
 }

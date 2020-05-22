@@ -9,6 +9,7 @@ import format.table.RowTable;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -23,12 +24,14 @@ import utils.IOUtils;
 public class ForManhattanPlot {
     public ForManhattanPlot(String infileS1,String infileS2,String outfileS){
         //this.FortheRealPosFromXPCLR(infileS1, infileS2, outfileS);
-        //this.FortheRealPosFromNomXPCLR(infileS1, infileS2, outfileS);
+        this.FortheRealPosFromNomXPCLR(infileS1, infileS2, outfileS);
         //this.FortheRealPosFromPi(infileS1, infileS2, outfileS);
         //this.FortheRealPosFromPi2(infileS1, infileS2, outfileS);
         //this.FortheRealPosFromFst(infileS1, infileS2, outfileS);
         //this.FortheRealPosFromTajimaD(infileS1, infileS2, outfileS);
-        this.FortheRealPosFromFd(infileS1, infileS2, outfileS);
+        //this.FortheRealPosFromFd(infileS1, infileS2, outfileS);
+        //this.FortheRealPosFromFd_smooth(infileS1, infileS2, outfileS);
+        //this.FortheRealPosFromTree(infileS1, infileS2, outfileS);
     }
     //这个是对XPCLR出来的直接结果进行染色体的转换
     public void FortheRealPosFromXPCLR(String infileS1,String infileS2,String outfileS){
@@ -385,7 +388,96 @@ public class ForManhattanPlot {
 	}
 
         
+        //这个方法是对fd的结果进行smooth,这样的时候画出来的图比较平缓，1M--10M的smooth都有
+        public void FortheRealPosFromFd_smooth(String infileS1,String infileS2,String outfileS){
+        try{
+            String temp = null;
+            BufferedReader br1 = IOUtils.getTextReader(infileS1);
+            BufferedReader br2 = IOUtils.getTextReader(infileS2);
+            BufferedWriter bw = IOUtils.getTextWriter(outfileS);
+            List<String> poschr = new ArrayList<>();
+            List<Integer> pos = new ArrayList<>();
+            List<Double> posvalue = new ArrayList<>();
+            //现在开始读的是fd的文件
+            while((temp = br1.readLine()) != null){
+                String[] tem = temp.split("\t");
+                poschr.add(tem[0]);
+                pos.add(Integer.valueOf(tem[1]));
+                posvalue.add(Double.valueOf(tem[2]));
+            }
+            //现在读的是bed文件
+            while((temp = br2.readLine()) != null){
+                int i;
+                int n = 0;
+                //double mean = 0;
+                double sum = 0;
+                String tem[] = temp.split("\t");
+                String regionchr = tem[0];
+//                if(regionchr.substring(4, 5).endsWith("D")){
+//                    
+//                }
+                int regionpos1 = Integer.valueOf(tem[1]);
+                int regionpos2 = Integer.valueOf(tem[2]);
+                //int aa = pos.size();
+                for(i = 0; i < poschr.size();i = i+1){
+                    if(poschr.get(i).equals(regionchr)){
+                        if(pos.get(i)>=regionpos1 && pos.get(i)<regionpos2){
+                            sum = sum + posvalue.get(i);
+                            n = n+1;
+                        }
+                    }
+                }
+                if(n==0){
+                    //bw.write(regionchr + "\t" + regionpos1 + "\t" + "0" + "\n");
+                }
+                else if (sum == 0 && n != 0){
+                    bw.write(regionchr + "\t" + regionpos1 + "\t" + "0" + "\n");
+                }
+                else if ((sum != 0 && n != 0)){
+                    bw.write(regionchr + "\t" + regionpos1 + "\t" + sum/n + "\n");
+                }
+            }
+            bw.flush();
+            bw.close();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
         
+        public void FortheRealPosFromTree(String infileS1,String infileS2,String outfileS){
+        try{
+            String temp = null;
+            RowTable<String> genometable = new RowTable<>(infileS1);
+            BufferedReader br = IOUtils.getTextReader(infileS2);
+            BufferedWriter bw = IOUtils.getTextWriter(outfileS);
+            while((temp = br.readLine()) != null){
+                String[] tem = temp.split("\t");
+                if(tem[3].equals("NA")){
+                    
+                }
+                else {
+                    int chr = Integer.valueOf(tem[0]);
+                    String value = tem[3];
+                    String pos = tem[1];
+                    if(chr % 2 == 1){
+                        String outchr = genometable.getCell(chr-1, 3);
+                        //System.out.println(outchr);
+                        bw.write(outchr + "\t" + pos + "\t" + value + "\n");
+                    }else{
+                        String outchr = genometable.getCell(chr-1, 3);
+                        int outpos = Integer.valueOf(genometable.getCell(chr-1, 4)) + Integer.valueOf(pos);
+                        bw.write(outchr + "\t" + outpos + "\t" + value + "\n");
+                    }
+                }
+            }
+            bw.flush();
+            bw.close();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }
 
 
