@@ -72,9 +72,9 @@ public class speciationEntrace {
 //        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/vcfE1/test/";
 //        new syntenic_Sgenome(infileS1,infileS2,infileS3,outfileS);
 
-        String infileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/vcfE1/test/info3_Dlineage_chr11";
-        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/vcfE1/test/info3_Dlineage_chr11_chr";
-        new syntenic_Sgenome(infileS,outfileS);
+//        String infileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/vcfE1/test/info3_Dlineage_chr11";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/vcfE1/test/info3_Dlineage_chr11_chr";
+//        new syntenic_Sgenome(infileS,outfileS);
 
 //        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/introgression/scanAe/TaxaRefBam";
 //        new tree(outfileS);
@@ -146,6 +146,11 @@ public class speciationEntrace {
 //        String infileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/Cytoscape/B/BInvariantSite.phy";
 //        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/Cytoscape/B/BInvariantSite.phy2";
 //        new Cytoscape(infileS,outfileS);
+
+        String infileS1 = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/vcfE1/E3_QC/chr1.1K.vcf";
+        String infileS2 = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/vcfE1/E3_QC/siteQCfileS.txt";
+        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/vcfE1/E3_QC/taxaQCFileS.txt";
+        new vcf_QualityControl(infileS1,infileS2,outfileS);
 
     }
 }

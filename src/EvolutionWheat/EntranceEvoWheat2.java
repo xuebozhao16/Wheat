@@ -71,10 +71,38 @@ public class EntranceEvoWheat2 {
 //        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/snp_calling/depth/test.txt";    
 //        new Countsnp(infileS1,infileS2,outfileS);
 
-        String infileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/introgression/Dstatistic/individuals/test/finalA_1.txt";
-        String infileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/introgression/Dstatistic/individuals/test/finalAB_1.txt";
-        String outfileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/introgression/Dstatistic/individuals/test/finalall_1.txt";    
-        String outfileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/introgression/Dstatistic/individuals/test/finalcount_A.txt";    
-        new fd_individual(infileS1,infileS2,outfileS1,outfileS2);
+//        String infileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/introgression/Dstatistic/individuals/test/finalA_1.txt";
+//        String infileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/introgression/Dstatistic/individuals/test/finalAB_1.txt";
+//        String outfileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/introgression/Dstatistic/individuals/test/finalall_1.txt";    
+//        String outfileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/introgression/Dstatistic/individuals/test/finalcount_A.txt";    
+//        new fd_individual(infileS1,infileS2,outfileS1,outfileS2);
+
+//        String infileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/introgression/Dstatistic/individuals/1to1_indi/TUR-L3.sortABMinDxy";
+//        String infileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/introgression/Dstatistic/individuals/1to1_indi/TUR-L3.sortMinDxy";
+//        String infileS3 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/introgression/Dstatistic/individuals/ABmerged_for_final.txt";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/introgression/Dstatistic/individuals/1to1_indi/land.txt";     
+//        new fd_individual(infileS1, infileS2, infileS3,outfileS);
+
+//        String infileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/introgression/Dstatistic/individuals/Archive/individual_intro/individual_contribution.txt";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/introgression/Dstatistic/individuals/Archive/individual_intro/individual_contribution2.txt";     
+//        new fd_individual(infileS,outfileS);
+
+//        String infileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/introgression/Dstatistic/distance_intro/Dall.txt";
+//        String infileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/introgression/Dstatistic/individuals/landrace1_99.txt";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/introgression/Dstatistic/distance_intro/disD_99";     
+//        new fd_individual(infileS1,infileS2,outfileS);
+
+//        String infileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/introgression/Dstatistic/distance_intro/dis_99";
+//        String infileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/introgression/Dstatistic/distance_intro/group_wildEmmer.txt";
+//        String infileS3 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/introgression/Dstatistic/distance_intro/group_domEmmer.txt";
+//        String infileS4 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/introgression/Dstatistic/distance_intro/group_free_threshing.txt";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/introgression/Dstatistic/distance_intro/dis_99.txt";     
+//        new fd_individual(infileS1,infileS2,infileS3,infileS4,outfileS);
+
+        String infileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/introgression/Dstatistic/distance_intro/disD_99";
+        String infileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/introgression/Dstatistic/distance_intro/group_strangulata.txt";
+        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/introgression/Dstatistic/distance_intro/disD_99.txt";     
+        new fd_individual(infileS1,infileS2,outfileS);
     }
+    
 }

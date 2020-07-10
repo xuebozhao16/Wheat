@@ -11,6 +11,7 @@ import EvolutionWheat.ForManhattanPlot;
 import EvolutionWheat.Redundancy_selection;
 import EvolutionWheat.XPCLR_intersection;
 import EvolutionWheat.XPEHHandXPCLRregion;
+import EvolutionWheat.fd_individual;
 import EvolutionWheat.top1_XPCLRandPi;
 import fasta.wheatFastaToAppend;
 import fasta.parralleFas;
@@ -79,10 +80,10 @@ public class GetWheatCDSsequence {
                     infileS2 = args[i+1];
                     i++;
                     break;  
-//                case "--file3":
-//                    infileS3 = args[i+1];
-//                    i++;
-//                    break;  
+                case "--file3":
+                    infileS3 = args[i+1];
+                    i++;
+                    break;  
                 case "--out":
                     outfileS = args[i+1];
                     i++;
@@ -109,6 +110,7 @@ public class GetWheatCDSsequence {
         //new XPEHHandXPCLRregion(infileS1,infileS2,outfileS);
         //new XPCLR_intersection(infileS1,infileS2);
         //new RandomLine(infileS1,infileS2,outfileS);
-        new Countsnp(infileS1,infileS2,outfileS);
+        //new Countsnp(infileS1,infileS2,outfileS);
+        new fd_individual(infileS1,infileS2,infileS3,outfileS);
     }
 }

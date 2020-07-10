@@ -67,9 +67,13 @@ public class EntranceVcf {
 //        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/geneTree/genomebed/10M";
 //        new bedfileSplitchr(infileS,outfileS);
         
-        String infileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/per_gene/code/normXp1.r";
-        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/per_gene/code/DurumCul";
-        new NewRcode(infileS,outfileS);
+//        String infileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/per_gene/code/normXp1.r";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/per_gene/code/DurumCul";
+//        new NewRcode(infileS,outfileS);
+        
+        String infileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatScan/hapScanner2/Parameters_hapScanner2_chr1.txt";
+        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatScan/hapScanner2/parameters_file_V11_outgroup";
+        new NewTaxafile(infileS,outfileS);
         
     }
 }

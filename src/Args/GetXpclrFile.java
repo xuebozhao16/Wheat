@@ -14,6 +14,7 @@ import fasta.wheatFastaToAppend;
 import fasta.parralleFas;
 import gff3.wheatkgfTo42map;
 import speciation.syntenic_Sgenome;
+import speciation.vcf_QualityControl;
 
 /**
  *
@@ -37,10 +38,10 @@ public class GetXpclrFile {
                     infileS1 = args[i+1];
                     i++;
                     break;
-                case "--file2":
-                    infileS2 = args[i+1];
-                    i++;
-                    break;    
+//                case "--file2":
+//                    infileS2 = args[i+1];
+//                    i++;
+//                    break;    
                 case "--out":
                     outfileS1 = args[i+1];
                     i++;
@@ -57,6 +58,7 @@ public class GetXpclrFile {
         //new Synteny_site(infileS,outfileS);
         //new Filefolder_pip(infileS,outfileS);
         //new syntenic_Sgenome(infileS1, outfileS1, outfileS2);
-        new fd_individual(infileS1,infileS2,outfileS1,outfileS2);
+        //new fd_individual(infileS1,infileS2,outfileS1,outfileS2);
+        new vcf_QualityControl(infileS1, outfileS1, outfileS2);
     }
 }

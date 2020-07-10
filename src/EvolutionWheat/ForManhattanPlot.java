@@ -24,14 +24,16 @@ import utils.IOUtils;
 public class ForManhattanPlot {
     public ForManhattanPlot(String infileS1,String infileS2,String outfileS){
         //this.FortheRealPosFromXPCLR(infileS1, infileS2, outfileS);
-        this.FortheRealPosFromNomXPCLR(infileS1, infileS2, outfileS);
+        //this.FortheRealPosFromNomXPCLR(infileS1, infileS2, outfileS);
         //this.FortheRealPosFromPi(infileS1, infileS2, outfileS);
         //this.FortheRealPosFromPi2(infileS1, infileS2, outfileS);
         //this.FortheRealPosFromFst(infileS1, infileS2, outfileS);
         //this.FortheRealPosFromTajimaD(infileS1, infileS2, outfileS);
         //this.FortheRealPosFromFd(infileS1, infileS2, outfileS);
+        //this.FortheRealPosFromFd2(infileS1, infileS2, outfileS);
         //this.FortheRealPosFromFd_smooth(infileS1, infileS2, outfileS);
         //this.FortheRealPosFromTree(infileS1, infileS2, outfileS);
+        this.FortheRealPosSNPdensi(infileS1, infileS2, outfileS);
     }
     //这个是对XPCLR出来的直接结果进行染色体的转换
     public void FortheRealPosFromXPCLR(String infileS1,String infileS2,String outfileS){
@@ -380,6 +382,60 @@ public class ForManhattanPlot {
         }
     }
     
+    //输入文件是.gz
+    public void FortheRealPosFromFd2(String infileS1,String infileS2,String outfileS){
+        try{
+            String temp = null;
+            RowTable<String> genometable = new RowTable<>(infileS1);
+            BufferedReader br = IOUtils.getTextReader(infileS2);
+            BufferedWriter bw = IOUtils.getTextWriter(outfileS);
+            br.readLine();
+            while((temp = br.readLine()) != null){
+                String[] tem = temp.split("\t");
+                System.out.println(tem[8]);
+                if(tem[8].equals("nan")){
+                    
+                }
+                else if(tem[9].equals("-Inf") || tem[9].equals("nan")|| tem[9].equals("NA")){
+                    
+                }
+                else {
+                    if(Double.valueOf(tem[8])>=0){
+                        int chr = Integer.valueOf(tem[0]);
+                        //Double value = getDoubleNumber(tem[7]);
+                        String value = tem[9];
+                        String pos = tem[1];
+                        if (Double.valueOf(tem[9]) < 0){
+                          value = "0";
+                        }
+    //                    if (value.contains("e")){
+    //                      value = "0";
+    //                    }
+                        if (Double.valueOf(tem[9]) > 1){
+                          value = "0";
+                        }
+                        if(chr % 2 == 1){
+                            String outchr = genometable.getCell(chr-1, 3);
+                            //System.out.println(outchr);
+                            bw.write(outchr + "\t" + pos + "\t" + value + "\n");
+                        }else{
+                            String outchr = genometable.getCell(chr-1, 3);
+                            //System.out.println(outchr);
+                            int outpos = Integer.valueOf(genometable.getCell(chr-1, 4)) + Integer.valueOf(pos);
+                            bw.write(outchr + "\t" + outpos + "\t" + value + "\n");
+                        }
+                    }
+                    
+                }
+            }
+            bw.flush();
+            bw.close();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+    
         private double getDoubleNumber(String str){
             double number = 0;
             BigDecimal bd = new BigDecimal(str);  
@@ -444,7 +500,8 @@ public class ForManhattanPlot {
             e.printStackTrace();
         }
     }
-        
+    
+
         public void FortheRealPosFromTree(String infileS1,String infileS2,String outfileS){
         try{
             String temp = null;
@@ -468,6 +525,44 @@ public class ForManhattanPlot {
                         String outchr = genometable.getCell(chr-1, 3);
                         int outpos = Integer.valueOf(genometable.getCell(chr-1, 4)) + Integer.valueOf(pos);
                         bw.write(outchr + "\t" + outpos + "\t" + value + "\n");
+                    }
+                }
+            }
+            bw.flush();
+            bw.close();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+        
+        
+        
+        public void FortheRealPosSNPdensi(String infileS1,String infileS2,String outfileS){
+        try{
+            String temp = null;
+            RowTable<String> genometable = new RowTable<>(infileS1);
+            BufferedReader br = IOUtils.getTextReader(infileS2);
+            BufferedWriter bw = IOUtils.getTextWriter(outfileS);
+            bw.write(br.readLine() + "\n");
+            while((temp = br.readLine()) != null){
+                String[] tem = temp.split("\t");
+                if(tem[3].equals("NA")){
+                    
+                }
+                else {
+                    int chr = Integer.valueOf(tem[0]);
+                    String value1 = tem[2];
+                    String value2 = tem[3];
+                    String pos = tem[1];
+                    if(chr % 2 == 1){
+                        String outchr = genometable.getCell(chr-1, 3);
+                        //System.out.println(outchr);
+                        bw.write(outchr + "\t" + pos + "\t" + value1 + "\t" + value2 +  "\n");
+                    }else{
+                        String outchr = genometable.getCell(chr-1, 3);
+                        int outpos = Integer.valueOf(genometable.getCell(chr-1, 4)) + Integer.valueOf(pos);
+                        bw.write(outchr + "\t" + outpos + "\t" + value1 + "\t" + value2 +  "\n");
                     }
                 }
             }

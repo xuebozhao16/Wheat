@@ -49,7 +49,7 @@ public class NewTaxafile {
                     }
                     else if(line==15){
                         bw.write(Integer.toString(i));
-                        bw.newLine();
+                        bw.newLine();                  
                     }else if(line==21){
                         bw.write("/data1/home/yaozhou/Projects/EVO/data/lineage/final/V7/outchr"+i);
                         bw.newLine();
@@ -154,7 +154,7 @@ public class NewTaxafile {
         }
     }
     
-    //这是Scanner对V1进行的操作
+    //这是Scanner对V11进行的操作
     public void getNewTaxafileV11(String infileS,String outfileS){
         try {            
             BufferedWriter bw = null;
@@ -166,21 +166,25 @@ public class NewTaxafile {
                 bw = IOUtils.getTextWriter(outfileS+"/parameters_hapScanner11_chr"+i+".txt");
                 while((temp = br.readLine())!=null){
                     if(line==9){
-                        bw.write("/data1/home/yaozhou/Projects/EVO/data/lineage/final/V11/ori/hapScan/TaxaRefBam/TaxaRefBamChr"+i);
+                        bw.write("/data1/home/yaozhou/Projects/EVO/data/lineage/final/V11/density/withoutOutgroup/noSyn/hapScan/TaxaRefBam/TaxaRefBamChr"+i);
                         bw.newLine();
                     }else if(line==11){
-                        bw.write("/data1/home/yaozhou/Projects/EVO/data/lineage/final/V11/ori/hapScan/posAllele/chr"+i+".allele.txt");
+                        bw.write("/data1/home/yaozhou/Projects/EVO/data/lineage/final/V11/density/withoutOutgroup/noSyn/hapScan/posAllele/chr"+i+".allele.txt");
                         bw.newLine();
                     }
                     else if(line==13){
-                        bw.write("/data1/home/yaozhou/Projects/EVO/data/lineage/final/V11/ori/hapScan/hapPos/chr"+i+".pos.txt");
+                        bw.write("/data1/home/yaozhou/Projects/EVO/data/lineage/final/V11/density/withoutOutgroup/noSyn/hapScan/hapPos/chr"+i+".pos.txt");
                         bw.newLine();
                     }
                     else if(line==15){
                         bw.write(Integer.toString(i));
                         bw.newLine();
+                    }
+                    else if(line==17){
+                        bw.write("/data1/home/yaozhou/anaconda3/bin/samtools");
+                        bw.newLine();
                     }else if(line==21){
-                        bw.write("/data1/home/yaozhou/Projects/EVO/data/lineage/final/V11/ori/hapScan/outchr"+i);
+                        bw.write("/data1/home/yaozhou/Projects/EVO/data/lineage/final/V11/density/withoutOutgroup/noSyn/hapScan/outchr"+i);
                         bw.newLine();
                     }else{
                         bw.write(temp);
