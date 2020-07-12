@@ -21,6 +21,7 @@ import speciation.geneTree;
 import speciation.introgression;
 import speciation.syntenic_Sgenome;
 import speciation.tree;
+import speciation.vcf_QualityControl;
 import vcf.CompareTwoVCFfile;
 import vcf.RandomLine;
 
@@ -80,10 +81,10 @@ public class GetWheatCDSsequence {
                     infileS2 = args[i+1];
                     i++;
                     break;  
-                case "--file3":
-                    infileS3 = args[i+1];
-                    i++;
-                    break;  
+//                case "--file3":
+//                    infileS3 = args[i+1];
+//                    i++;
+//                    break;  
                 case "--out":
                     outfileS = args[i+1];
                     i++;
@@ -111,6 +112,7 @@ public class GetWheatCDSsequence {
         //new XPCLR_intersection(infileS1,infileS2);
         //new RandomLine(infileS1,infileS2,outfileS);
         //new Countsnp(infileS1,infileS2,outfileS);
-        new fd_individual(infileS1,infileS2,infileS3,outfileS);
+        //new fd_individual(infileS1,infileS2,infileS3,outfileS);
+        new vcf_QualityControl(infileS1,infileS2,outfileS);
     }
 }

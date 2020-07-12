@@ -147,9 +147,14 @@ public class speciationEntrace {
 //        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/Cytoscape/B/BInvariantSite.phy2";
 //        new Cytoscape(infileS,outfileS);
 
-        String infileS1 = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/vcfE1/E3_QC/chr1.1K.vcf";
-        String infileS2 = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/vcfE1/E3_QC/siteQCfileS.txt";
-        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/vcfE1/E3_QC/taxaQCFileS.txt";
+//        String infileS1 = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/vcfE1/E3_QC/chr1.1K.vcf";
+//        String infileS2 = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/vcfE1/E3_QC/siteQCfileS.txt";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/vcfE1/E3_QC/taxaQCFileS.txt";
+//        new vcf_QualityControl(infileS1,infileS2,outfileS);
+
+        String infileS1 = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/more_accessions/test.fa";
+        String infileS2 = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/more_accessions/testseq.bed";
+        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/more_accessions/testseq.txt";
         new vcf_QualityControl(infileS1,infileS2,outfileS);
 
     }

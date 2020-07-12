@@ -6,10 +6,18 @@
 package speciation;
 
 import gnu.trove.list.array.TDoubleArrayList;
+
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
+import pgl.infra.dna.FastaByte;
+import pgl.infra.dna.FastaRecordByte;
+
 import pgl.infra.dna.genot.GenoIOFormat;
 import pgl.infra.dna.genot.GenotypeGrid;
 import pgl.infra.dna.genot.GenotypeOperation;
@@ -20,10 +28,12 @@ import pgl.infra.utils.IOUtils;
  * @author xuebozhao
  */
 public class vcf_QualityControl {
-    public vcf_QualityControl(String infileS, String outfileS1,String outfileS2){
-        this.C36_checkQuality(infileS, outfileS1, outfileS2);
+//    public vcf_QualityControl(String infileS, String outfileS1,String outfileS2){
+//        this.C36_checkQuality(infileS, outfileS1, outfileS2);
+//    }
+    public vcf_QualityControl(String infileS1, String infileS2,String outfileS){
+            this.C37_getReference_seq(infileS1,infileS2,outfileS);
     }
-    
     public void C36_checkQuality (String infileS, String outfileS1,String outfileS2){
         try {
             //现在是开始计算
@@ -77,7 +87,40 @@ public class vcf_QualityControl {
         }
     }
     
-    
+    //现在这个方法是3 bit的操作，截取基因组上面的指定位置信息的fasta
+    //输入文件是小麦的基因组，bed文件，得到的是序列的信息
+    public void C37_getReference_seq (String infileS1, String infileS2,String outfileS){
+        try {
+            String temp2 = null;
+            String chrseq  = null;
+            BufferedReader br2 = utils.IOUtils.getTextReader(infileS2);
+            BufferedWriter bw = utils.IOUtils.getTextWriter(outfileS);
+            bw.write("Chr\tPos\tRef");
+            bw.newLine();
+            //Set vcfset = new HashSet();
+            FastaByte chrFa=new FastaByte(infileS1);
+            while((temp2 = br2.readLine())!= null){
+                int chr = Integer.valueOf(temp2.split("\t")[0]);
+                int vcfpos = Integer.valueOf(temp2.split("\t")[1]);
+                int chrIndex = chrFa.getIndexByName(String.valueOf(chr));
+                chrseq = chrFa.getSeq(chrIndex);
+                //System.out.println(chrseq);
+                String ref = chrseq.substring(vcfpos-1,vcfpos);
+                //gt.getSequence();
+                //System.out.println(ref);
+                bw.write(chr + "\t" + vcfpos + "\t" + ref + "\n");
+            }
+            bw.flush();
+            bw.close();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+
     
     
     
