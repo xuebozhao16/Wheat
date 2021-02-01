@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Wheat">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/dist/Wheat.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
