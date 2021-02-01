@@ -99,12 +99,12 @@ public class WheatEntrance2 {
 //        String outfileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/XPCLR_recom_rate/norm20M_10k/top5/GO/Go_annotation_GOslim.csv";
 //        new XPEHHandXPCLRregion(infileS,outfileS1,outfileS2);
         
-        String infileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/dom_related_genes/maize_rice_ortho/rice/rice_TaA.genes";
-        String infileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/convergentEvo/mart_export.txt";
-        String outfileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/dom_related_genes/maize_rice_ortho/rice/dom_rice_Go_gene_onlyGO.csv";
-        String outfileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/dom_related_genes/maize_rice_ortho/rice/dom_rice_Go_annotation_onlyGO.csv";
-        String outfileS3 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/dom_related_genes/maize_rice_ortho/rice/dom_rice_gene_onlyGO.csv";
-        new XPEHHandXPCLRregion(infileS1,infileS2,outfileS1,outfileS2,outfileS3);
+//        String infileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/dom_related_genes/maize_rice_ortho/rice/rice_TaA.genes";
+//        String infileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/convergentEvo/mart_export.txt";
+//        String outfileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/dom_related_genes/maize_rice_ortho/rice/dom_rice_Go_gene_onlyGO.csv";
+//        String outfileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/dom_related_genes/maize_rice_ortho/rice/dom_rice_Go_annotation_onlyGO.csv";
+//        String outfileS3 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/dom_related_genes/maize_rice_ortho/rice/dom_rice_gene_onlyGO.csv";
+//        new XPEHHandXPCLRregion(infileS1,infileS2,outfileS1,outfileS2,outfileS3);
         
         
 //        String infileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/convergentEvo/xpclr_region/2kNew/A_gene.csv";
@@ -136,6 +136,10 @@ public class WheatEntrance2 {
 //        String infileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/per_gene/neg2_WW_WDemmer/nohupneg2_topmili_1";
 //        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/per_gene/neg2_WW_WDemmer/neg2_WW_WDemmer_topmili_1.txt";
 //        new XPCLR_intersection(infileS,outfileS);
+
+        String infileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/lostruct/test_block/Haplo_chr5_104_105M_ABD.vcf";
+        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/lostruct/test_block/Haplo_chr5_104_105M_ABD.txt";
+        new ForHeatmap(infileS,outfileS);
 
     }
 }

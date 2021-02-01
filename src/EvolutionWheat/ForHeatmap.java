@@ -23,7 +23,8 @@ public class ForHeatmap {
         //this.getQgeneHeatmap(infileS, outfileS);
         //this.getQgeneHeatmap_noBeagle(infileS, outfileS);
         //this.getgeneHeatmap_noBeagle_SNP(infileS, outfileS);
-        this.getgeneHeatmap_noBeagle_indel(infileS, outfileS);
+        //this.getgeneHeatmap_noBeagle_indel(infileS, outfileS);
+        this.getgeneHeatmap_Beagle_SNP(infileS, outfileS);
     }
     public ForHeatmap(String infileS1,String infileS2,String outfileS){
         this.getgeneHeatmap_noBeagle_merge(infileS1, infileS2, outfileS);
@@ -538,4 +539,71 @@ public class ForHeatmap {
         }
     }
 
+        //这个方法是为了把vcf的信息装换成0，1，2，NA的信息，
+    public void getgeneHeatmap_Beagle_SNP(String infileS,String outfileS){
+        try{
+            String temp = null;
+            String prefix = null;
+            int i;
+            //BufferedReader br = IOUtils.getTextReader(infileS);
+            BufferedReader br = null;
+            if (infileS.endsWith("gz")) {
+                br = IOUtils.getTextGzipReader(infileS);
+            } else {
+                br = IOUtils.getTextReader(infileS);
+            }
+            BufferedWriter bw = IOUtils.getTextWriter(outfileS);
+            while((temp = br.readLine()) != null){
+                String tem[] = temp.split("\t");
+                if(temp.startsWith("#")){
+                    prefix = tem[0].substring(0, 2);
+                    if(prefix.equals("##")){
+
+                    }
+                    else if(prefix.equals("#C")){
+                        //String headline = br.readLine();
+                        String headtem[] = temp.split("\t");
+                        StringBuilder headlineSB = new StringBuilder();
+                        for(int j=9; j<headtem.length;j++){
+                            headlineSB.append(headtem[j]).append("\t");
+                        }
+                        bw.write(headtem[0].substring(1,headtem[0].length()) + "\t" + headtem[1] + "\t" + headtem[3] + "\t" + headtem[4] + "\t" + headlineSB + "\n");
+                    }
+                }           
+                else {
+                    //String tem[] = temp.split("\t");
+                    StringBuilder haplo = new StringBuilder();
+                    for(i=9; i<tem.length;i++){
+                        String temtem = tem[i].split(":")[0];
+                        if(temtem.equals("0|0")){
+                            tem[i] = "0";
+                        }
+                        if(temtem.equals("1|0")){
+                            tem[i] = "1";
+                        }
+                        if(temtem.equals("0|1")){
+                            tem[i] = "1";
+                        }
+                        if(temtem.equals("1|1")){
+                            tem[i] = "2";
+                        }
+                        if(temtem.equals(".|.")){
+                            tem[i] = "NA";
+                        }
+                        haplo.append(tem[i]).append("\t");
+                    }
+                    String Str_haplo = haplo.toString();
+                    System.out.println(Str_haplo);
+                    if(Str_haplo.contains("1") | Str_haplo.contains("2")){
+                        bw.write(tem[0] + "\t" + tem[1] + "\t" + tem[3] + "\t" + tem[4] + "\t" + haplo + "\n");
+                    }
+                }
+            }
+            bw.flush();
+            bw.close();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
 }

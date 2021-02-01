@@ -30,10 +30,11 @@ public class ForManhattanPlot {
         //this.FortheRealPosFromFst(infileS1, infileS2, outfileS);
         //this.FortheRealPosFromTajimaD(infileS1, infileS2, outfileS);
         //this.FortheRealPosFromFd(infileS1, infileS2, outfileS);
-        //this.FortheRealPosFromFd2(infileS1, infileS2, outfileS);
+        this.FortheRealPosFromFd2(infileS1, infileS2, outfileS);
         //this.FortheRealPosFromFd_smooth(infileS1, infileS2, outfileS);
         //this.FortheRealPosFromTree(infileS1, infileS2, outfileS);
-        this.FortheRealPosSNPdensi(infileS1, infileS2, outfileS);
+        //this.FortheRealPosSNPdensi(infileS1, infileS2, outfileS);
+        //this.FortheRealPosFromVCF(infileS1, infileS2, outfileS);
     }
     //这个是对XPCLR出来的直接结果进行染色体的转换
     public void FortheRealPosFromXPCLR(String infileS1,String infileS2,String outfileS){
@@ -573,6 +574,56 @@ public class ForManhattanPlot {
             e.printStackTrace();
         }
     }
+        
+    //这个方法是为了得到VCF的真正的位置,这是为了转V11，转成可以发表的版本
+    public void FortheRealPosFromVCF(String infileS1,String infileS2,String outfileS){
+        try{
+            String temp = null;
+            BufferedReader br;
+            String vcfID = null;
+            RowTable<String> genometable = new RowTable<>(infileS1);
+            if (infileS2.endsWith("gz")) {
+                br = IOUtils.getTextGzipReader(infileS2);
+            } else {
+                br = IOUtils.getTextReader(infileS2);
+            }
+            BufferedWriter bw = IOUtils.getTextWriter(outfileS);
+            while((temp = br.readLine()) != null){
+                if(temp.startsWith("#")){
+                    if(temp.startsWith("#C")){
+                         bw.write(temp + "\n");
+                    }                  
+                }else{
+                    StringBuilder headlineSB = new StringBuilder();
+                    String[] tem = temp.split("\t");
+                    int chr = Integer.valueOf(tem[0]);
+                    for(int i = 3;i<tem.length;i++){
+                        headlineSB.append(tem[i]).append("\t");
+                    }
+                    //String value = tem[3];
+                    String pos = tem[1];
+                    if(chr % 2 == 1){
+                        String outchr = genometable.getCell(chr-1, 3);
+                        //System.out.println(outchr);
+                        vcfID = outchr + "-" + pos;
+                        bw.write(outchr + "\t" + pos + "\t" + vcfID + "\t"+ headlineSB + "\n");
+                    }else{
+                        String outchr = genometable.getCell(chr-1, 3);
+                        //System.out.println(outchr);
+                        int outpos = Integer.valueOf(genometable.getCell(chr-1, 4)) + Integer.valueOf(pos);
+                        vcfID = outchr + "-" + String.valueOf(outpos);
+                        bw.write(outchr + "\t" + outpos + "\t" + vcfID + "\t"+ headlineSB + "\n");
+                    }
+                }
+            }
+            bw.flush();
+            bw.close();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+        
 }
 
 

@@ -8,6 +8,7 @@ package speciation;
 import static EvolutionWheat.ForVcftoolsGroup.getTextReader;
 import static EvolutionWheat.ForVcftoolsGroup.listFilesEndsWith;
 import static EvolutionWheat.ForVcftoolsGroup.listRecursiveFiles;
+import format.table.RowTable;
 import gnu.trove.list.array.TDoubleArrayList;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -23,6 +24,7 @@ import utils.IOUtils;
 public class introgression {
     public introgression(String infileS1,String infileS2,String outfileS){
         this.C27_mergeTwoVCFbycol(infileS1, infileS2, outfileS);
+        this.E3_FortheRealPosFromFd(infileS1, infileS2, outfileS);
     }
     
     //这个方法是为了合并两个列相同的VCF的文件
@@ -72,6 +74,60 @@ public class introgression {
             bw.flush();
             bw.close();
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    //fd算出来的文件转染色体的真实位置
+    public void E3_FortheRealPosFromFd(String infileS1,String infileS2,String outfileS){
+        try{
+            String temp = null;
+            RowTable<String> genometable = new RowTable<>(infileS1);
+            BufferedReader br = IOUtils.getTextReader(infileS2);
+            BufferedWriter bw = IOUtils.getTextWriter(outfileS);
+            br.readLine();
+            while((temp = br.readLine()) != null){
+                String[] tem = temp.split(",");
+                System.out.println(tem[8]);
+                if(tem[8].equals("nan")){
+                    
+                }
+                else if(tem[9].equals("-Inf") || tem[9].equals("nan")|| tem[9].equals("NA")){
+                    
+                }
+                else {
+                    if(Double.valueOf(tem[8])>=0){
+                        int chr = Integer.valueOf(tem[0]);
+                        //Double value = getDoubleNumber(tem[7]);
+                        String value = tem[9];
+                        String pos = tem[1];
+                        if (Double.valueOf(tem[9]) < 0){
+                          value = "0";
+                        }
+    //                    if (value.contains("e")){
+    //                      value = "0";
+    //                    }
+                        if (Double.valueOf(tem[9]) > 1){
+                          value = "0";
+                        }
+                        if(chr % 2 == 1){
+                            String outchr = genometable.getCell(chr-1, 3);
+                            //System.out.println(outchr);
+                            bw.write(outchr + "\t" + pos + "\t" + value + "\n");
+                        }else{
+                            String outchr = genometable.getCell(chr-1, 3);
+                            //System.out.println(outchr);
+                            int outpos = Integer.valueOf(genometable.getCell(chr-1, 4)) + Integer.valueOf(pos);
+                            bw.write(outchr + "\t" + outpos + "\t" + value + "\n");
+                        }
+                    }
+                    
+                }
+            }
+            bw.flush();
+            bw.close();
+        }
+        catch (Exception e){
             e.printStackTrace();
         }
     }

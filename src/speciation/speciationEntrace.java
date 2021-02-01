@@ -6,8 +6,12 @@
 package speciation;
 
 import EvolutionWheat.ForDiversityMean;
+import EvolutionWheat.ForHeatmap;
+import EvolutionWheat.ForManhattanPlot;
 import com.google.common.collect.Sets;
 import java.util.Set;
+
+import gnu.trove.list.array.TIntArrayList;
 import speciation.syntenic_Sgenome;
 
 /**
@@ -40,7 +44,7 @@ public class speciationEntrace {
 //        new syntenic_Sgenome(infileS1,outfileS1,outfileS2);
 
 //        String infileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatScan/hapScanner2/Parameters_hapScanner2_chr1.txt";
-//        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/introgression/scanAe/parameters_file";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/introgression/scanTu/parameters_file";
 //        new syntenic_Sgenome(infileS,outfileS);
 
 //        String infileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/bwamap/test/depth11.txt";
@@ -76,7 +80,7 @@ public class speciationEntrace {
 //        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/vcfE1/test/info3_Dlineage_chr11_chr";
 //        new syntenic_Sgenome(infileS,outfileS);
 
-//        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/introgression/scanAe/TaxaRefBam";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/introgression/scanTu/TaxaRefBam";
 //        new tree(outfileS);
 
 //        String infileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/vcfE1/test.chr4.all.vcf.gz";
@@ -152,10 +156,75 @@ public class speciationEntrace {
 //        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/vcfE1/E3_QC/taxaQCFileS.txt";
 //        new vcf_QualityControl(infileS1,infileS2,outfileS);
 
-        String infileS1 = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/more_accessions/test.fa";
-        String infileS2 = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/more_accessions/testseq.bed";
-        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/more_accessions/testseq.txt";
-        new vcf_QualityControl(infileS1,infileS2,outfileS);
+//        String infileS1 = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/more_accessions/test.fa";
+//        String infileS2 = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/more_accessions/testseq.bed";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/more_accessions/testseq.txt";
+//        new vcf_QualityControl(infileS1,infileS2,outfileS);
 
+//        String infileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/species_split_time/single_copy_gene/singlecopygene1_1.gene100D.bed";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/species_split_time/single_copy_gene/singlecopygene1_1.gene100D";
+//        new split_time(infileS,outfileS);
+
+//        String infileS1 = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/species_split_time/single_copy_gene/singlecopygene1_1.txt";
+//        String infileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatgenome/V1_1/GeneLulab1_1onlyGene.txt";
+//        String outfileS1 = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/species_split_time/single_copy_gene/singlecopygene1_1.A.bed";
+//        String outfileS2 = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/species_split_time/single_copy_gene/singlecopygene1_1.B.bed";
+//        String outfileS3 = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/species_split_time/single_copy_gene/singlecopygene1_1.D.bed";
+//        new split_time(infileS1,infileS2,outfileS1,outfileS2,outfileS3);
+
+//        String infileS1 = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/species_split_time/single_copy_gene/A_1.alin.fa";
+//        String infileS2 = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/species_split_time/single_copy_gene/A_2.xml";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/species_split_time/single_copy_gene/test_mcmc/A_1.xml";
+//        new split_time(infileS1,infileS2,outfileS);
+
+//        String infileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatgenome/readmeByFei_table.txt";
+//        String infileS2 = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/species_split_time/single_copy_gene/singlecopygene1_1.D.bed";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/species_split_time/single_copy_gene/singlecopygene1_1.D_Chr.bed";
+//        new split_time(infileS1,infileS2,outfileS);
+        
+//        String infileS1 = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/IBS_dis/test_ibs_file1.vcf";
+//        String infileS2 = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/IBS_dis/test_ibs_file2.vcf";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/IBS_dis/test_ibs.txt";
+//        new IBS_distance(infileS1,infileS2,outfileS);
+
+//        String infileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/IBS_dis/test_ibs_file1.vcf";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/IBS_dis/test_ibs2.txt";
+//        new IBS_distance(infileS,outfileS);
+
+//        String infileS1 = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/species_split_time/single_copy_gene/singlecopygene1_1_more1000.txt";
+//        String infileS2 = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/species_split_time/assembly_gene/test";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/species_split_time/assembly_gene/test1.txt";
+//        new split_time(infileS1,infileS2,outfileS);
+
+//        String infileS1 = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/species_split_time/assembly_gene/D/D_1line_204.alin.fa";
+//        String infileS2 = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/species_split_time/assembly_gene/D/D_1line_4963.xml";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/species_split_time/assembly_gene/D/D_1line_204.xml";
+//        new split_time(infileS1,infileS2,outfileS);
+
+//        String infileS1 = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/volcanofinder/GO/Yunan_wheat.txt";
+//        String infileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/convergentEvo/mart_export.txt";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/volcanofinder/GO/Yunan_wheat_gene_Go.csv";
+//        new GO_analysis(infileS1,infileS2,outfileS);
+
+//        String infileS1 = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/volcanofinder/GO/Yunan_wheat.txt";
+//        String infileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/convergentEvo/mart_export.txt";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/volcanofinder/GO/Yunan_wheat_gene_Go.csv";
+//        new GO_analysis(infileS1,infileS2,outfileS);
+
+//        String infileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatgenome/readmeByFei_table.txt";
+//        String infileS2 = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/introgression/Speltoides/fd_Speltoides_domemmer.csv";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/introgression/Speltoides/fd_Speltoides_domemmer.txt";
+//        new introgression(infileS1,infileS2,outfileS);
+
+        //String infileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/introgression/Speltoides/fd_1B_1M.vcf";
+        //String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/introgression/Speltoides/fd_1B_1M.txt";
+        //new ForHeatmap(infileS,outfileS);
+
+         String infileS1 = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/climate_change/gene/window_region_gene/North_top1.txt";
+         String infileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/convergentEvo/mart_export.txt";
+         String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/climate_change/gene/window_region_gene/North_top1_GO.txt";
+         new GO_analysis(infileS1,infileS2,outfileS);
+        //TIntArrayList tIntArrayList=new TIntArrayList();
+        //System.out.println(tIntArrayList.size());
     }
 }

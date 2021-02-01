@@ -15,10 +15,14 @@ import EvolutionWheat.fd_individual;
 import EvolutionWheat.top1_XPCLRandPi;
 import fasta.wheatFastaToAppend;
 import fasta.parralleFas;
+import fasta.vcf2fasta;
 import gff3.wheatkgfTo42map;
 import speciation.BWA;
+import speciation.GO_analysis;
+import speciation.IBS_distance;
 import speciation.geneTree;
 import speciation.introgression;
+import speciation.split_time;
 import speciation.syntenic_Sgenome;
 import speciation.tree;
 import speciation.vcf_QualityControl;
@@ -113,6 +117,11 @@ public class GetWheatCDSsequence {
         //new RandomLine(infileS1,infileS2,outfileS);
         //new Countsnp(infileS1,infileS2,outfileS);
         //new fd_individual(infileS1,infileS2,infileS3,outfileS);
-        new vcf_QualityControl(infileS1,infileS2,outfileS);
+        //new vcf_QualityControl(infileS1,infileS2,outfileS);
+        //new vcf2fasta(infileS1,outfileS);
+        //new split_time (infileS1,infileS2,outfileS);
+        //new IBS_distance(infileS1,infileS2,outfileS);
+        //new IBS_distance(infileS1,outfileS);
+        new GO_analysis(infileS1,infileS2,outfileS);
     }
 }

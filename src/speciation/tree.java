@@ -20,7 +20,8 @@ import utils.IOUtils;
 public class tree {
     public tree(String outfile){
         //this.gethapScan_barley_taxaBAMfile(outfile);
-        this.gethapScan_Ae_taxaBAMfile(outfile);
+        //this.gethapScan_Ae_taxaBAMfile(outfile);
+        this.gethapScan_Tu_taxaBAMfile(outfile);
     }
     
     public tree(String infileS,String outfileS){
@@ -80,6 +81,24 @@ public class tree {
         }
     }
     
+    public void gethapScan_Tu_taxaBAMfile(String outfileS){
+        try {            
+            BufferedWriter bw = null;
+            String[] te = null;    
+            int chrA[] = {5,6,11,12,17,18,23,24,29,30,35,36,41,42};
+            for(int i = 0; i < chrA.length;i++ ){                
+                bw = IOUtils.getTextWriter(outfileS+"/TaxaRefBamChr"+chrA[i]);
+                bw.write("Taxa" + "\t" + "Reference" + "\t" + "BamPath" + "\n");
+                bw.write("Tu" + "\t" + "/data1/home/xuebo/Project/reference/abd_iwgscV1.fa.gz" + "\t" + 
+                                "/data2/xuebo/Projects/Speciation/introgression/outgroup/Tu/chr"+chrA[i]+".sorted.bam" + "\n");
+                bw.flush();
+                bw.close();
+            }
+            
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
     
     //这个方法是为了row_chr.withBarley.vcf里面barley是./.的去掉
     public void getwithBarleyVCF(String infileS,String outfileS){

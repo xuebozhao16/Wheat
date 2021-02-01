@@ -60,11 +60,11 @@ public class syntenic_Sgenome {
     }
     
     public syntenic_Sgenome(String infileS,String outfileS){
-        //this.getNewTaxafile(infileS, outfileS);
+        this.getNewTaxafile(infileS, outfileS);
         //this.getVCFfile_info1(infileS, outfileS);  
         //this.C3_DepthandSD(infileS, outfileS);
         //this.C4_DepthandSD(infileS, outfileS);
-        this.getVCFfile_info4(infileS, outfileS);
+        //this.getVCFfile_info4(infileS, outfileS);
     }
    
     public syntenic_Sgenome(String infileS1,String infileS2,String infileS3,String outfileS){
@@ -623,9 +623,9 @@ public class syntenic_Sgenome {
             
             //int chrA[] = {1,2,7,8,13,14,19,20,25,26,31,32,37,38};
             //int chrA[] = {3,4,9,10,15,16,21,22,27,28,33,34,39,40};
-            int chrA[] = {1,2,7,8,13,14,19,20,25,26,31,32,37,38,3,4,9,10,15,16,21,22,27,28,33,34,39,40};
+            //int chrA[] = {1,2,7,8,13,14,19,20,25,26,31,32,37,38,3,4,9,10,15,16,21,22,27,28,33,34,39,40};
             //int chrA[] = {1,2,7,8,13,14,19,20,25,26,31,32,37,38,3,4,9,10,15,16,21,22,27,28,33,34,39,40,5,6,11,12,17,18,23,24,29,30,35,36,41,42};
-            //int chrA[] = {5,6,11,12,17,18,23,24,29,30,35,36,41,42};
+            int chrA[] = {5,6,11,12,17,18,23,24,29,30,35,36,41,42};
             //int chrA[] = {1,2,7,8,13,14,19,20,25,26,31,32,37,38,5,6,11,12,17,18,23,24,29,30,35,36,41,42};
             
             for(int i = 0; i < chrA.length;i++ ){
@@ -633,10 +633,12 @@ public class syntenic_Sgenome {
                 int line = 1;
                 //bw = IOUtils.getTextWriter(outfileS+"/parameters_hapScannerAABBDD_chr"+chrA[i]+".txt");
                 //bw = IOUtils.getTextWriter(outfileS+"/parameters_hapScannerBarley_chr"+chrA[i]+".txt");
-                bw = IOUtils.getTextWriter(outfileS+"/parameters_hapScannerAe_chr"+chrA[i]+".txt");
+                //bw = IOUtils.getTextWriter(outfileS+"/parameters_hapScannerAe_chr"+chrA[i]+".txt");
+                bw = IOUtils.getTextWriter(outfileS+"/parameters_hapScannerTu_chr"+chrA[i]+".txt");
                 while((temp = br.readLine())!=null){
                     if(line==9){
-                        bw.write("/data2/xuebo/Projects/Speciation/introgression/scanAe/TaxaRefBam/TaxaRefBamChr" + chrA[i]);
+                        //bw.write("/data2/xuebo/Projects/Speciation/introgression/scanAe/TaxaRefBam/TaxaRefBamChr" + chrA[i]);
+                        bw.write("/data2/xuebo/Projects/Speciation/introgression/scanTu/TaxaRefBam/TaxaRefBamChr" + chrA[i]);
                         //bw.write("/data2/xuebo/Projects/Speciation/E5/hapSacn/TaxaRefBam/TaxaRefBamAABBDD.txt");
                         bw.newLine();
                     }else if(line==11){
@@ -656,7 +658,8 @@ public class syntenic_Sgenome {
                         bw.write("/data1/home/xuebo/anaconda3/bin/samtools");
                         bw.newLine();
                     }else if(line==21){
-                        bw.write("/data2/xuebo/Projects/Speciation/introgression/scanAe/outchr"+chrA[i]);
+                        //bw.write("/data2/xuebo/Projects/Speciation/introgression/scanAe/outchr"+chrA[i]);
+                        bw.write("/data2/xuebo/Projects/Speciation/introgression/scanTu/outchr"+chrA[i]);
                         bw.newLine();
                     }else{
                         bw.write(temp);

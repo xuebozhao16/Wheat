@@ -21,9 +21,10 @@ import utils.IOUtils;
  */
 public class vcf2fasta {
     public vcf2fasta(String infileS,String outfileS){
-        this.getBtrgenevcf_noBeagle(infileS, outfileS);
+        //this.getBtrgenevcf_noBeagle(infileS, outfileS);
         //this.getBtrgenevcf_Beagle(infileS, outfileS);
         //this.fastatoencodemap(infileS, outfileS);
+        this.C38_getvcf2fasta_fotree(infileS, outfileS);
     }
     public vcf2fasta(String infileS1,String infileS2,String outfileS){
         this.getvcf2fasta(infileS1, infileS2, outfileS);
@@ -120,7 +121,8 @@ public class vcf2fasta {
             e.printStackTrace();
         }
     }
-    
+
+
     public void getvcf2fasta(String infileS1,String infileS2,String outfileS){
         try{
             String temp = null;
@@ -193,6 +195,58 @@ public class vcf2fasta {
             e.printStackTrace();
         }
     }
+
+    //这是周姚写的代码,写的是在作树的时候vcf文件转成fa文件,和之前我写的那个不一样
+    //我转的是VCF to fasta 转出来的是全部的序列，其他的是不是snp的用参考基因补齐
+    //周姚的代码是只转出来snp
+    public void C38_getvcf2fasta_fotree(String infile, String outfile){
+        try {
+            BufferedReader br = IOUtils.getTextGzipReader(infile);
+            if(!infile.endsWith(".gz")) br = IOUtils.getTextReader(infile);
+            StringBuilder[] fa = null;
+            String[] sample = null;
+            String temp = "";
+            int SN = 0;
+            String[] te = null;
+            while ((temp = br.readLine())!=null){
+                if(temp.startsWith("##")){
+                    continue;
+                }else if (temp.startsWith("#")){
+                    te = temp.split("\t");
+                    SN = te.length - 9;
+                    sample = new String[SN];
+                    fa = new StringBuilder[SN];
+                    for(int i = 0; i < SN; i++){
+                        sample[i] = te[i+9];
+                        fa[i] = new StringBuilder("");
+                    }
+                }else{
+                    te = temp.split("\t");
+                    for (int i = 0; i < SN; i++){
+                        if(te[i+9].startsWith("0/0") || te[i+9].startsWith("0|0")){
+                            fa[i].append(te[3]);
+                        }else if (te[i+9].startsWith("1/1") || te[i+9].startsWith("1|1")){
+                            fa[i].append(te[4]);
+                        }else {
+                            fa[i].append("-");
+                        }
+                    }
+                }
+            }
+            BufferedWriter bw = IOUtils.getTextWriter(outfile);
+            for (int i = 0 ; i < SN;i++){
+                bw.write(">"+sample[i]);
+                bw.newLine();
+                bw.write(fa[i].toString());
+                bw.newLine();
+            }
+            bw.flush();
+            bw.close();
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
 
 public void fastatoencodemap(String infileS,String outfileS){
     try{
