@@ -220,10 +220,13 @@ public class speciationEntrace {
         //String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/introgression/Speltoides/fd_1B_1M.txt";
         //new ForHeatmap(infileS,outfileS);
 
-         String infileS1 = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/climate_change/gene/window_region_gene/North_top1.txt";
+         String infileS1 = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/climate_change/gene/window_region_gene/North_top1_A.txt";
          String infileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/convergentEvo/mart_export.txt";
-         String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/climate_change/gene/window_region_gene/North_top1_GO.txt";
+         String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/climate_change/gene/window_region_gene/North_top1_A_GO.txt";
          new GO_analysis(infileS1,infileS2,outfileS);
+
+         //2021.3.7
+
         //TIntArrayList tIntArrayList=new TIntArrayList();
         //System.out.println(tIntArrayList.size());
     }
