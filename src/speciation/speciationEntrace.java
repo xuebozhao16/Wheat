@@ -225,8 +225,6 @@ public class speciationEntrace {
          String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/climate_change/gene/window_region_gene/North_top1_A_GO.txt";
          new GO_analysis(infileS1,infileS2,outfileS);
 
-         //2021.3.7
-        //
 
         //TIntArrayList tIntArrayList=new TIntArrayList();
         //System.out.println(tIntArrayList.size());
