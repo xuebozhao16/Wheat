@@ -224,7 +224,6 @@ public class speciationEntrace {
          String infileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/convergentEvo/mart_export.txt";
          String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/climate_change/gene/window_region_gene/North_top1_A_GO.txt";
          new GO_analysis(infileS1,infileS2,outfileS);
-//test
 
         //IntArrayList tIntArrayList=new TIntArrayList();
         //System.out.println(tIntArrayList.size());
