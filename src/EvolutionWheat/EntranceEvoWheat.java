@@ -143,10 +143,16 @@ public class EntranceEvoWheat {
 //        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/snp_calling/snpdensity/2line/Chr_NoOutgroup_noSyn.snpden";
 //        new ForManhattanPlot(infileS1,infileS2,outfileS);
 
+//        String infileS1 ="/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatgenome/readmeByFei_table.txt";
+//        String infileS2 ="/Users/xuebozhao/Documents/LuLab/wheatSpeciation/vcfE1/test.chr4.all.vcf";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/vcfE1/test.chr4_CHR.vcf";
+//        new ForManhattanPlot(infileS1,infileS2,outfileS);
+
+
         String infileS1 ="/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatgenome/readmeByFei_table.txt";
-        String infileS2 ="/Users/xuebozhao/Documents/LuLab/wheatSpeciation/vcfE1/test.chr4.all.vcf";
-        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/vcfE1/test.chr4_CHR.vcf";
+        String infileS2 ="/Users/xuebozhao/Documents/LuLab/WheatEpigenome/cooperation/cooperation_ding/AB_14.xpclr";
+        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/cooperation/cooperation_ding/Wildemmer_vs_Durum.xpclr.txt";
         new ForManhattanPlot(infileS1,infileS2,outfileS);
-//        
+////
     }
 }

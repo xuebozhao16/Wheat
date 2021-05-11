@@ -24,13 +24,13 @@ import utils.IOUtils;
 public class ForManhattanPlot {
     public ForManhattanPlot(String infileS1,String infileS2,String outfileS){
         //this.FortheRealPosFromXPCLR(infileS1, infileS2, outfileS);
-        //this.FortheRealPosFromNomXPCLR(infileS1, infileS2, outfileS);
+        this.FortheRealPosFromNomXPCLR(infileS1, infileS2, outfileS);
         //this.FortheRealPosFromPi(infileS1, infileS2, outfileS);
         //this.FortheRealPosFromPi2(infileS1, infileS2, outfileS);
         //this.FortheRealPosFromFst(infileS1, infileS2, outfileS);
         //this.FortheRealPosFromTajimaD(infileS1, infileS2, outfileS);
         //this.FortheRealPosFromFd(infileS1, infileS2, outfileS);
-        this.FortheRealPosFromFd2(infileS1, infileS2, outfileS);
+        //this.FortheRealPosFromFd2(infileS1, infileS2, outfileS);
         //this.FortheRealPosFromFd_smooth(infileS1, infileS2, outfileS);
         //this.FortheRealPosFromTree(infileS1, infileS2, outfileS);
         //this.FortheRealPosSNPdensi(infileS1, infileS2, outfileS);
