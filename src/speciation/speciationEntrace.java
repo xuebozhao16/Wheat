@@ -222,7 +222,7 @@ public class speciationEntrace {
 
          String infileS1 = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/climate_change/gene/window_region_gene/North_top1_A.txt";
          String infileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/convergentEvo/mart_export.txt";
-         String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/climate_change/gene/window_region_gene/North_top1_A_GO.txt";
+         String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/climate_change/gene/window_region_gene/North_top1_A_GO2.txt";
          new GO_analysis(infileS1,infileS2,outfileS);
 //test_vpn
         //IntArrayList tIntArrayList=new TIntArrayList();
