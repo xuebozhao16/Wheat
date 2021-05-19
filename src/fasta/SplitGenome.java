@@ -7,8 +7,8 @@ package fasta;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import utils.IOUtils;
-//import utils.IOUtils;
+import pgl.infra.table.RowTable;
+import pgl.infra.utils.IOUtils;
 
 /**
  *

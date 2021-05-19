@@ -5,7 +5,8 @@
  */
 package EvolutionWheat;
 
-import format.table.RowTable;
+import pgl.infra.table.RowTable;
+import pgl.infra.utils.IOUtils;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.math.BigDecimal;
@@ -14,7 +15,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import utils.IOUtils;
+
 
 /**
  *

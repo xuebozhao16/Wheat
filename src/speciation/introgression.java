@@ -8,14 +8,16 @@ package speciation;
 import static EvolutionWheat.ForVcftoolsGroup.getTextReader;
 import static EvolutionWheat.ForVcftoolsGroup.listFilesEndsWith;
 import static EvolutionWheat.ForVcftoolsGroup.listRecursiveFiles;
-import format.table.RowTable;
-import gnu.trove.list.array.TDoubleArrayList;
+//import format.table.RowTable;
+//import gnu.trove.list.array.TDoubleArrayList;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import utils.IOUtils;
+//import utils.IOUtils;
+import pgl.infra.table.RowTable;
+import pgl.infra.utils.IOUtils;
 
 /**
  *

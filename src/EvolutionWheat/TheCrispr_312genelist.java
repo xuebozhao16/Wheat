@@ -5,7 +5,8 @@
  */
 package EvolutionWheat;
 
-import format.table.RowTable;
+import pgl.infra.table.RowTable;
+import pgl.infra.utils.IOUtils;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import xuebo.analysis.annotation.IOUtils;
+
 
 /**
  *
@@ -408,7 +409,7 @@ public class TheCrispr_312genelist {
         try{
             String temp = null;
             RowTable<String> genometable = new RowTable<>(infileS1);
-            BufferedWriter bw = utils.IOUtils.getTextWriter(outfileS);
+            BufferedWriter bw = IOUtils.getTextWriter(outfileS);
             //br.readLine();
             //System.out.print(genometable.getCell(1, 1)+ "\t");
             for(int i=4;i<genometable.getColumnNumber();i++){

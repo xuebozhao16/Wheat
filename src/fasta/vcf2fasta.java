@@ -5,7 +5,7 @@
  */
 package fasta;
 
-import format.table.RowTable;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.util.ArrayList;
@@ -13,7 +13,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import utils.IOUtils;
+import pgl.infra.table.RowTable;
+import pgl.infra.utils.IOUtils;
 
 /**
  *

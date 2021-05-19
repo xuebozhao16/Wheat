@@ -1,6 +1,7 @@
 package gff3;
 
-import utils.IOUtils;
+import pgl.infra.table.RowTable;
+import pgl.infra.utils.IOUtils;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

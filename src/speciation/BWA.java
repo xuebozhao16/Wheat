@@ -12,11 +12,16 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
-import utils.IOUtils;
-import static utils.IOUtils.getTextReader;
-import static utils.IOUtils.getTextWriter;
-import static utils.IOUtils.listFilesEndsWith;
-import static utils.IOUtils.listRecursiveFiles;
+
+import pgl.infra.utils.IOUtils;
+//import utils.IOUtils;
+
+import static pgl.infra.utils.IOUtils.listFilesEndsWith;
+import static pgl.infra.utils.IOUtils.listRecursiveFiles;
+//import static utils.IOUtils.getTextReader;
+//import static utils.IOUtils.getTextWriter;
+//import static utils.IOUtils.listFilesEndsWith;
+//import static utils.IOUtils.listRecursiveFiles;
 
 /**
  *
@@ -39,7 +44,7 @@ public class BWA {
     public void bwa_file(String infileS1,String infileS2,String outfileS){
         try{    
             String temp = null;
-            BufferedReader br = IOUtils.getTextReader(infileS1); 
+            BufferedReader br = IOUtils.getTextReader(infileS1);
             BufferedWriter bw = IOUtils.getTextWriter(outfileS);
             HashMap<String, String> hashMap1 = new HashMap<String, String>();
             while((temp = br.readLine()) != null){
@@ -74,8 +79,8 @@ public class BWA {
             e.printStackTrace();
         }
     }
-    
-    
+
+
     ///data3/wgs/fastq/xuebo_S20/AT19767A/190923_I013_V300031142_L3_AE07750767-510 随机挑100K的reads 要成对哦
     //这个和RandomLine.java这个代码不一样，因为这个要记录文件的位置，下一个文件也要挑这些
     //这个文件122085404行，，122085404/4 = 30521351 ,,在30521351(0-30521350)里面随机抽100,000,得到的位点*4+1即可

@@ -93,8 +93,8 @@ public class vcf_QualityControl {
         try {
             String temp2 = null;
             String chrseq  = null;
-            BufferedReader br2 = utils.IOUtils.getTextReader(infileS2);
-            BufferedWriter bw = utils.IOUtils.getTextWriter(outfileS);
+            BufferedReader br2 = IOUtils.getTextReader(infileS2);
+            BufferedWriter bw = IOUtils.getTextWriter(outfileS);
             bw.write("Chr\tPos\tRef");
             bw.newLine();
             //Set vcfset = new HashSet();

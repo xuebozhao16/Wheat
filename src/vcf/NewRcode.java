@@ -5,12 +5,14 @@
  */
 package vcf;
 
+import pgl.infra.utils.IOUtils;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import utils.IOUtils;
+//import utils.IOUtils;
 
 /**
  *

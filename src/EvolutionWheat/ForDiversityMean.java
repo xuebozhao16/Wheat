@@ -5,6 +5,8 @@
  */
 package EvolutionWheat;
 
+import pgl.infra.utils.IOUtils;
+
 import static EvolutionWheat.ForVcftoolsGroup.getTextReader;
 import static EvolutionWheat.ForVcftoolsGroup.getTextWriter;
 import static EvolutionWheat.ForVcftoolsGroup.listFilesEndsWith;
@@ -15,7 +17,7 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import utils.IOUtils;
+//import utils.IOUtils;
 
 /**
  *

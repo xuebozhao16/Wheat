@@ -2,8 +2,10 @@ package speciation;
 
 import static EvolutionWheat.ForVcftoolsGroup.*;
 import static com.sun.scenario.Settings.set;
-import format.table.RowTable;
-import utils.IOUtils;
+//import format.table.RowTable;
+import pgl.infra.table.RowTable;
+import pgl.infra.utils.IOUtils;
+//import utils.IOUtils;
 
 import java.io.*;
 import java.lang.reflect.Array;

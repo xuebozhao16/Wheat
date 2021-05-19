@@ -5,16 +5,21 @@
  */
 package gff3;
 
-import format.position.ChrPos;
-import format.range.Range;
+//import format.position.ChrPos;
+//import format.range.Range;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import utils.IOUtils;
-import utils.PStringUtils;
+
+import pgl.infra.pos.ChrPos;
+import pgl.infra.range.Range;
+import pgl.infra.table.RowTable;
+import pgl.infra.utils.IOUtils;
+import pgl.infra.utils.PStringUtils;
+//import utils.PStringUtils;
 
 
 

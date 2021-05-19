@@ -12,7 +12,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import pipeline.cpScore.IOUtils;
+import pgl.infra.table.RowTable;
+import pgl.infra.utils.IOUtils;
 
 /**
  *
@@ -220,9 +221,9 @@ public class top1_XPCLRandPi {
             HashMap<String, String> hashMap1 = new HashMap<String, String>();
             List<Integer> pos = new ArrayList<>();
             Set  gene = new HashSet();
-            BufferedReader brregion1 = utils.IOUtils.getTextReader(infileS1);
-            BufferedReader brregion2 = utils.IOUtils.getTextReader(infileS2);
-            BufferedWriter bw = utils.IOUtils.getTextWriter(outfileS);
+            BufferedReader brregion1 = IOUtils.getTextReader(infileS1);
+            BufferedReader brregion2 = IOUtils.getTextReader(infileS2);
+            BufferedWriter bw = IOUtils.getTextWriter(outfileS);
             while((temp2 = brregion1.readLine()) != null){
                 String tem2[] = temp2.split("\t");
                 pos.add(Integer.valueOf(tem2[0]));

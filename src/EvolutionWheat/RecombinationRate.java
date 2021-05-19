@@ -5,13 +5,14 @@
  */
 package EvolutionWheat;
 
-import format.table.RowTable;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import utils.IOUtils;
+import pgl.infra.table.RowTable;
+import pgl.infra.utils.IOUtils;
 
 /**
  *

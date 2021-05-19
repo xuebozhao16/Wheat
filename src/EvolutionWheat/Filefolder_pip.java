@@ -8,7 +8,7 @@ package EvolutionWheat;
 import static EvolutionWheat.ForVcftoolsGroup.getTextReader;
 import static EvolutionWheat.ForVcftoolsGroup.listFilesEndsWith;
 import static EvolutionWheat.ForVcftoolsGroup.listRecursiveFiles;
-import format.table.RowTable;
+//import format.table.RowTable;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -18,8 +18,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import utils.IOUtils;
-import static utils.IOUtils.getTextWriter;
+//import utils.IOUtils;
+//import static utils.IOUtils.getTextWriter;
+import pgl.infra.table.RowTable;
+import pgl.infra.utils.IOUtils;
 
 /**
  *

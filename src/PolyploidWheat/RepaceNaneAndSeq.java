@@ -5,11 +5,13 @@
  */
 package PolyploidWheat;
 
+import pgl.infra.utils.IOUtils;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.util.HashMap;
-import utils.IOUtils;
+//import utils.IOUtils;
 
 /**
  * 这个方法是为了重复science的文章，使用BEAST计算每个保守基因的进化时间，BEAST会产生一个xml的文件，用这个一个文件为模板，对一个文件夹内的所有比对文件进行操作

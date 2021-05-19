@@ -8,10 +8,10 @@ package speciation;
 import EvolutionWheat.ForDiversityMean;
 import EvolutionWheat.ForHeatmap;
 import EvolutionWheat.ForManhattanPlot;
-import com.google.common.collect.Sets;
+//import com.google.common.collect.Sets;
 import java.util.Set;
 
-import gnu.trove.list.array.TIntArrayList;
+//import gnu.trove.list.array.TIntArrayList;
 import speciation.syntenic_Sgenome;
 
 /**

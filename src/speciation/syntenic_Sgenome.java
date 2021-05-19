@@ -28,11 +28,13 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.stream.IntStream;
 import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
-import utils.IOUtils;
+import pgl.infra.table.RowTable;
+import pgl.infra.utils.IOUtils;
+import pgl.infra.utils.PArrayUtils;
 //import static utils.IOUtils.getTextReader;
 //import static utils.IOUtils.listFilesEndsWith;
 //import static utils.IOUtils.listRecursiveFiles;
-import utils.PArrayUtils;
+//import utils.PArrayUtils;
 
 /**
  *
@@ -518,7 +520,8 @@ public class syntenic_Sgenome {
                         }
                     }
                     
-                    int[] indices = PArrayUtils.getIndexByDescendingValue(fre);
+                    //int[] indices = PArrayUtils.getIndexByDescendingValue(fre);
+                    int[] indices = PArrayUtils.getIndicesByAscendingValue(fre);
                     sb.append(chr1).append("\t").append(posList1.get(index1)).append("\t").append(referList1.get(index1)).append("\t");
                     for (int j = 0; j < 2; j++) {
                         if (fre[indices[j]] > 0) {
@@ -540,8 +543,8 @@ public class syntenic_Sgenome {
             e.printStackTrace();
         }
     }
-    
-    
+
+
     //现在是整理hapscan的文件 Taxa    Reference       BamPath
     //读文件夹里面的所有的以我想要的后缀(.bam)的文件
     //java -jar /data2/xuebo/Projects/Speciation/javaCode/getFileTaxa.jar  --file /data3/wgs/bam/A --out /data2/xuebo/Projects/Speciation/hapScan/TaxaRefBam/aoyue_A.txt --p /data1/home/xuebo/Projects/Speciation/reference/a_iwgscV1_forGATK.fa.gz

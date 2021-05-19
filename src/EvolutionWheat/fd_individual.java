@@ -5,7 +5,7 @@
  */
 package EvolutionWheat;
 
-import format.table.RowTable;
+//import format.table.RowTable;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -19,7 +19,9 @@ import pgl.infra.dna.genot.GenotypeGrid;
 import static pgl.infra.utils.IOUtils.getTextReader;
 import static pgl.infra.utils.IOUtils.listFilesEndsWith;
 import static pgl.infra.utils.IOUtils.listRecursiveFiles;
-import utils.IOUtils;
+
+import pgl.infra.table.RowTable;
+import pgl.infra.utils.IOUtils;
 //import pgl.infra.pgl.infra.dna.genotype;
 
 /**
