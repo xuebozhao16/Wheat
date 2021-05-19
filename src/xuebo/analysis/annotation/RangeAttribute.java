@@ -14,8 +14,10 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.util.Arrays;
 import java.util.List;
-import utils.IOFileFormat;
-import utils.IOUtils;
+
+import pgl.infra.utils.IOFileFormat;
+import pgl.infra.utils.IOUtils;
+import pgl.infra.utils.PArrayUtils;
 
 /**
  * Hold range attributes with strand and value in each range, non-overlap ranges

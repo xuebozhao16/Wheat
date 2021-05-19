@@ -17,7 +17,8 @@ import java.util.Comparator;
 import java.util.List;
 //import net.maizegenetics.dna.BaseEncoder;
 //import utils.FStringUtils;
-import utils.IOUtils;
+import pgl.infra.utils.IOUtils;
+import pgl.infra.utils.PArrayUtils;
 
 /**
  * Holding FastA format sequence, providing functions of sorting, searching and collecting statistics

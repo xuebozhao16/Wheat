@@ -3,11 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package xuebo.analysis.annotation;
 
-import format.genomeAnnotation.*;
-import format.range.Range;
-import format.range.Ranges;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.util.ArrayList;
@@ -16,7 +12,10 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import utils.IOUtils;
+
+import pgl.infra.range.Range;
+import pgl.infra.utils.IOUtils;
+import pgl.infra.utils.PArrayUtils;
 import xuebo.analysis.annotation.FStringUtils;
 
 

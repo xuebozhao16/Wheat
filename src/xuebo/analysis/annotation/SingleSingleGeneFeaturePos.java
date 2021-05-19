@@ -24,14 +24,14 @@ public class SingleSingleGeneFeaturePos {
             String outfileS2,String outfileS3,String outfileS4,String outfileS5,String outfileS6,String outfileS7) {
         try {
             
-            BufferedReader br = utils.IOUtils.getTextReader(infileS);
-            BufferedWriter bw1 = utils.IOUtils.getTextWriter(outfileS1);
-            BufferedWriter bw2 = utils.IOUtils.getTextWriter(outfileS2);
-            BufferedWriter bw3 = utils.IOUtils.getTextWriter(outfileS3);
-            BufferedWriter bw4 = utils.IOUtils.getTextWriter(outfileS4);
-            BufferedWriter bw5 = utils.IOUtils.getTextWriter(outfileS5);
-            BufferedWriter bw6 = utils.IOUtils.getTextWriter(outfileS6);
-            BufferedWriter bw7 = utils.IOUtils.getTextWriter(outfileS7);
+            BufferedReader br = IOUtils.getTextReader(infileS);
+            BufferedWriter bw1 = IOUtils.getTextWriter(outfileS1);
+            BufferedWriter bw2 = IOUtils.getTextWriter(outfileS2);
+            BufferedWriter bw3 = IOUtils.getTextWriter(outfileS3);
+            BufferedWriter bw4 = IOUtils.getTextWriter(outfileS4);
+            BufferedWriter bw5 = IOUtils.getTextWriter(outfileS5);
+            BufferedWriter bw6 = IOUtils.getTextWriter(outfileS6);
+            BufferedWriter bw7 = IOUtils.getTextWriter(outfileS7);
             
             String temp = null;
             int i = 0 ;

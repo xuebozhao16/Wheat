@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="wheat_xuebo_JAR">
-    <output-path>$PROJECT_DIR$/out/artifacts/wheat_xuebo_JAR</output-path>
-    <root id="archive" name="Wheat.jar">
-      <element id="library" level="project" name="Wheat" />
-    </root>
-  </artifact>
-</component>

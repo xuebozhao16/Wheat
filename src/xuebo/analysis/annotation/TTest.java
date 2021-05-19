@@ -5,12 +5,13 @@
  */
 package xuebo.analysis.annotation;
 
-import format.dna.FastaByte;
-import format.genomeAnnotation.GeneFeature;
+import pgl.infra.utils.IOUtils;
+import pgl.infra.utils.PArrayUtils;
 import java.io.BufferedReader;
 import java.util.ArrayList;
 import java.util.List;
-import utils.IOUtils;
+import pgl.infra.utils.IOUtils;
+import pgl.infra.utils.PArrayUtils;
 
 /**
  *
