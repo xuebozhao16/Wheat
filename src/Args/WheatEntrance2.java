@@ -137,8 +137,16 @@ public class WheatEntrance2 {
 //        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/permutation/per_gene/neg2_WW_WDemmer/neg2_WW_WDemmer_topmili_1.txt";
 //        new XPCLR_intersection(infileS,outfileS);
 
-        String infileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/lostruct/test_block/Haplo_chr5_104_105M_ABD.vcf";
-        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/lostruct/test_block/Haplo_chr5_104_105M_ABD.txt";
+//        String infileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/lostruct/test_block/Haplo_chr5_104_105M_ABD.vcf";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/lostruct/test_block/Haplo_chr5_104_105M_ABD.txt";
+//        new ForHeatmap(infileS,outfileS);
+
+//        String infileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/cooperation_fu/Rht/mac_chr23_TraesCS4D02G040400_2K_2_6.vcf";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/cooperation_fu/Rht/mac_chr23_TraesCS4D02G040400_2K_2_6.txt";
+//        new ForHeatmap(infileS,outfileS);
+
+        String infileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/introgression/emmer_intro/fd_4B_emmer1_200_350M_shuf5000.vcf";
+        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/introgression/emmer_intro/fd_4B_emmer1_200_350M_shuf5000.txt";
         new ForHeatmap(infileS,outfileS);
 
     }

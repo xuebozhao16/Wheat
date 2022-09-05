@@ -22,12 +22,19 @@ public class WheatEntrance {
 //        String outfile = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatgenome/V1_1/GeneLulab1_1.gtf";
 //        new LabNumChrGFF31_1(infile, outfile);
 
+//        String infile = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/cooperation/cooperation_zhangwenli/GWAS_significant_SNP.bed";
+//        String outfile = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/cooperation/cooperation_zhangwenli/Change_CHR_GWAS_significant_SNP.bed";
+//        new LabNumChrGFF31_1(infile, outfile);
+
+        String infile = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatgenome/V1_1/iwgsc_refseqv1.1_genes_2017July06/IWGSC_v1.1_LC_20170706.gff3";
+        String outfile = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatgenome/V1_1/GeneLulab1_1_LC.gff3";
+        new LabNumChrGFF31_1(infile, outfile);
 //        String infile = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatgenome/V1_1/GeneLulab1_1onlyGene.txt";
 //        new LabNumChrGFF31_1(infile);
 
-        String infile = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/dom_related_genes/maize_rice_ortho/maize/ortho_all_onlyWheat.txt";
-        String outfile = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/dom_related_genes/maize_rice_ortho/maize/maize_TaA.genes";
-        new Ricegff(infile, outfile);
+//        String infile = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/dom_related_genes/maize_rice_ortho/maize/ortho_all_onlyWheat.txt";
+//        String outfile = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/dom_related_genes/maize_rice_ortho/maize/maize_TaA.genes";
+//        new Ricegff(infile, outfile);
 
         
 //        String infileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatgenome/GeneFeature/AllCDSsequence.fa";

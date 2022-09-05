@@ -122,6 +122,7 @@ public class GetWheatCDSsequence {
         //new split_time (infileS1,infileS2,outfileS);
         //new IBS_distance(infileS1,infileS2,outfileS);
         //new IBS_distance(infileS1,outfileS);
-        new GO_analysis(infileS1,infileS2,outfileS);
+        //new GO_analysis(infileS1,infileS2,outfileS);
+        new syntenic_Sgenome(infileS1,infileS2,outfileS);
     }
 }
