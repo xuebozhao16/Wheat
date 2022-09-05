@@ -28,6 +28,10 @@ public class introgression {
         this.C27_mergeTwoVCFbycol(infileS1, infileS2, outfileS);
         this.E3_FortheRealPosFromFd(infileS1, infileS2, outfileS);
     }
+    public introgression(String infileS1,String infileS2){
+        //this.individualNe_contribution(infileS1, infileS2);
+        this.individualNe_contribution2(infileS1, infileS2);
+    }
     
     //这个方法是为了合并两个列相同的VCF的文件
     public void C27_mergeTwoVCFbycol(String infileS1,String infileS2,String outfileS){
@@ -130,6 +134,62 @@ public class introgression {
             bw.close();
         }
         catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    //现在要做的是对individual_contribution.txt这个文件进行改造
+    public void individualNe_contribution(String infileS1,String outfileS2){
+        try {
+            String temp = null;
+            BufferedReader br = IOUtils.getTextReader(infileS1);
+            BufferedWriter bw = IOUtils.getTextWriter(outfileS2);
+            bw.write("Time" + "\t" + "Subspecies" + "\t" + "Contribution" + "\n");
+            br.readLine();
+            while((temp = br.readLine())!= null){
+                String tem[] = temp.split("\t");
+                bw.write(tem[0] + "\t" + "wild_einkorn" + "\t" + tem[1] + "\n");
+                bw.write(tem[0] + "\t" + "dom_einkorn" + "\t" + tem[2] + "\n");
+                bw.write(tem[0] + "\t" + "Urartu" + "\t" + tem[3] + "\n");
+                bw.write(tem[0] + "\t" + "Speltoilds" + "\t" + tem[4] + "\n");
+                bw.write(tem[0] + "\t" + "tauschii" + "\t" + tem[5] + "\n");
+                bw.write(tem[0] + "\t" + "Strangulata" + "\t" + tem[6] + "\n");
+                bw.write(tem[0] + "\t" + "Wild_emmer" + "\t" + tem[7] + "\n");
+                bw.write(tem[0] + "\t" + "Domesticated_emmer" + "\t" + tem[8] + "\n");
+                bw.write(tem[0] + "\t" + "Free_threshing" + "\t" + tem[9] + "\n");
+                bw.write(tem[0] + "\t" + "Bread_wheat" + "\t" + tem[10] + "\n");
+            }
+            bw.flush();
+            bw.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //现在要做的是对individual_contribution.txt这个文件进行改造
+    public void individualNe_contribution2 (String infileS1,String outfileS2){
+        try {
+            String temp = null;
+            BufferedReader br = IOUtils.getTextReader(infileS1);
+            BufferedWriter bw = IOUtils.getTextWriter(outfileS2);
+            bw.write("Time" + "\t" + "Subspecies" + "\t" + "Contribution" + "\n");
+            br.readLine();
+            while((temp = br.readLine())!= null){
+                String tem[] = temp.split("\t");
+                bw.write(tem[0] + "\t" + "wild_einkorn" + "\t" + tem[1] + "\n");
+                bw.write(tem[0] + "\t" + "dom_einkorn" + "\t" + tem[2] + "\n");
+                bw.write(tem[0] + "\t" + "Urartu" + "\t" + tem[3] + "\n");
+//                bw.write(tem[0] + "\t" + "Speltoilds" + "\t" + tem[4] + "\n");
+//                bw.write(tem[0] + "\t" + "tauschii" + "\t" + tem[5] + "\n");
+//                bw.write(tem[0] + "\t" + "Strangulata" + "\t" + tem[6] + "\n");bw
+                bw.write(tem[0] + "\t" + "Wild_emmer" + "\t" + tem[4] + "\n");
+                bw.write(tem[0] + "\t" + "Domesticated_emmer" + "\t" + tem[5] + "\n");
+                bw.write(tem[0] + "\t" + "Free_threshing" + "\t" + tem[6] + "\n");
+                bw.write(tem[0] + "\t" + "Bread_wheat" + "\t" + tem[7] + "\n");
+            }
+            bw.flush();
+            bw.close();
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

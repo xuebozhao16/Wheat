@@ -1,10 +1,15 @@
 package speciation;
 
+import com.sun.org.apache.xerces.internal.xs.StringList;
 import pgl.infra.dna.genot.GenoIOFormat;
 import pgl.infra.dna.genot.GenotypeGrid;
 import pgl.infra.dna.genot.GenotypeOperation;
 import pgl.infra.dna.genot.summa.SumTaxaDivergence;
+import pgl.infra.table.RowTable;
 import pgl.infra.utils.IOFileFormat;
+import pgl.infra.utils.IOUtils;
+
+import java.io.BufferedWriter;
 
 public class IBS_distance {
     public IBS_distance(String infileS1,String infileS2,String outfileS){

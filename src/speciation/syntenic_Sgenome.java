@@ -55,11 +55,10 @@ public class syntenic_Sgenome {
 //        //this.readfilder(infileS, outfileS, ref);
 //    }
     
-    public syntenic_Sgenome(String infileS1,String outfileS1,String outfileS2){
-        //this.getScan_hapPosANDposAllelefiles(infileS1, outfileS1, outfileS2);
-        this.C19_getScan_hapPosANDposAllelefiles(infileS1, outfileS1, outfileS2);
-          
-    }
+//    public syntenic_Sgenome(String infileS1,String outfileS1,String outfileS2){
+//        //this.getScan_hapPosANDposAllelefiles(infileS1, outfileS1, outfileS2);
+//        //this.C19_getScan_hapPosANDposAllelefiles(infileS1, outfileS1, outfileS2);
+//    }
     
     public syntenic_Sgenome(String infileS,String outfileS){
         this.getNewTaxafile(infileS, outfileS);
@@ -68,7 +67,11 @@ public class syntenic_Sgenome {
         //this.C4_DepthandSD(infileS, outfileS);
         //this.getVCFfile_info4(infileS, outfileS);
     }
-   
+
+    public syntenic_Sgenome(String infileS1,String infileS2,String outfileS){
+        this.getVCFfile_info1_2(infileS1, infileS2, outfileS);
+    }
+
     public syntenic_Sgenome(String infileS1,String infileS2,String infileS3,String outfileS){
         //this.getVCFfile_info2(infileS1, infileS2, infileS3, outfileS);
         this.getVCFfile_info3(infileS1, infileS2, infileS3, outfileS);
@@ -627,31 +630,31 @@ public class syntenic_Sgenome {
             //int chrA[] = {1,2,7,8,13,14,19,20,25,26,31,32,37,38};
             //int chrA[] = {3,4,9,10,15,16,21,22,27,28,33,34,39,40};
             //int chrA[] = {1,2,7,8,13,14,19,20,25,26,31,32,37,38,3,4,9,10,15,16,21,22,27,28,33,34,39,40};
-            //int chrA[] = {1,2,7,8,13,14,19,20,25,26,31,32,37,38,3,4,9,10,15,16,21,22,27,28,33,34,39,40,5,6,11,12,17,18,23,24,29,30,35,36,41,42};
-            int chrA[] = {5,6,11,12,17,18,23,24,29,30,35,36,41,42};
+            int chrA[] = {1,2,7,8,13,14,19,20,25,26,31,32,37,38,3,4,9,10,15,16,21,22,27,28,33,34,39,40,5,6,11,12,17,18,23,24,29,30,35,36,41,42};
+            //int chrA[] = {5,6,11,12,17,18,23,24,29,30,35,36,41,42};
             //int chrA[] = {1,2,7,8,13,14,19,20,25,26,31,32,37,38,5,6,11,12,17,18,23,24,29,30,35,36,41,42};
             
             for(int i = 0; i < chrA.length;i++ ){
                 BufferedReader br = IOUtils.getTextReader(infileS);
                 int line = 1;
-                //bw = IOUtils.getTextWriter(outfileS+"/parameters_hapScannerAABBDD_chr"+chrA[i]+".txt");
+                bw = IOUtils.getTextWriter(outfileS+"/parameters_hapScannerAABBDD_chr"+chrA[i]+".txt");
                 //bw = IOUtils.getTextWriter(outfileS+"/parameters_hapScannerBarley_chr"+chrA[i]+".txt");
                 //bw = IOUtils.getTextWriter(outfileS+"/parameters_hapScannerAe_chr"+chrA[i]+".txt");
-                bw = IOUtils.getTextWriter(outfileS+"/parameters_hapScannerTu_chr"+chrA[i]+".txt");
+                //bw = IOUtils.getTextWriter(outfileS+"/parameters_hapScannerTu_chr"+chrA[i]+".txt");
                 while((temp = br.readLine())!=null){
                     if(line==9){
                         //bw.write("/data2/xuebo/Projects/Speciation/introgression/scanAe/TaxaRefBam/TaxaRefBamChr" + chrA[i]);
-                        bw.write("/data2/xuebo/Projects/Speciation/introgression/scanTu/TaxaRefBam/TaxaRefBamChr" + chrA[i]);
-                        //bw.write("/data2/xuebo/Projects/Speciation/E5/hapSacn/TaxaRefBam/TaxaRefBamAABBDD.txt");
+                        //bw.write("/data2/xuebo/Projects/Speciation/introgression/scanTu/TaxaRefBam/TaxaRefBamChr" + chrA[i]);
+                        bw.write("/data2/xuebo/Projects/Speciation/E7/hapScan/Scan/TaxaRefBamAABBDD.txt");
                         bw.newLine();
                     }else if(line==11){
                         //bw.write("/data2/xuebo/Projects/Speciation/E5/hapSacn/posAllele/chr"+chrA[i]+".allele.txt");
-                        bw.write("/data2/xuebo/Projects/Speciation/hapScan/posAllele/chr"+chrA[i]+".allele.txt");
+                        bw.write("/data2/xuebo/Projects/Speciation/E7/hapScan/posAllele/chr"+chrA[i]+".allele.txt");
                         bw.newLine();
                     }
                     else if(line==13){
                         //bw.write("/data2/xuebo/Projects/Speciation/E5/hapSacn/hapPos/chr"+chrA[i]+".pos.txt");
-                        bw.write("/data2/xuebo/Projects/Speciation/hapScan/hapPos/chr"+chrA[i]+".pos.txt");
+                        bw.write("/data2/xuebo/Projects/Speciation/E7/hapScan/hapPos/chr"+chrA[i]+".pos.txt");
                         bw.newLine();
                     }
                     else if(line==15){
@@ -662,7 +665,7 @@ public class syntenic_Sgenome {
                         bw.newLine();
                     }else if(line==21){
                         //bw.write("/data2/xuebo/Projects/Speciation/introgression/scanAe/outchr"+chrA[i]);
-                        bw.write("/data2/xuebo/Projects/Speciation/introgression/scanTu/outchr"+chrA[i]);
+                        bw.write("/data2/xuebo/Projects/Speciation/E7/hapScan/Scan/outchr"+chrA[i]);
                         bw.newLine();
                     }else{
                         bw.write(temp);
@@ -723,7 +726,86 @@ public class syntenic_Sgenome {
             e.printStackTrace();
         }
     }
-    
+
+
+    //在各个群体里面的分离情况进行统计
+    //对Alineage来说，输入文件有2个，AA的个体的VCF文件，AABB的个体的VCF文件，也就是说要求的是两个文件的交并补集
+//    java -jar -Xms50g -Xmx70g /data2/xuebo/Projects/Speciation/javaCode/getVCFfile_info2.jar --file1 /data2/xuebo/Projects/Speciation/E2_all/macSS/chr${chr}.macSS.vcf.gz \
+//	--file2 /data2/xuebo/Projects/Speciation/E2_all/macAABB/chr${chr}.macAABB.vcf.gz --out /data2/xuebo/Projects/Speciation/E2_all/macSS/info2_chr${chr}.txt &
+
+    public void getVCFfile_info1_2(String infileS1,String infileS2,String outfileS){
+        try{
+            //String temp = null;
+            String temp1 = null;
+            String temp2 = null;
+            //int countall = 0;
+            Set AAset = new HashSet();
+            Set AABBset = new HashSet();
+            //HashMap<Integer, String> hashMap1 = new HashMap<Integer, String>();
+            BufferedReader br1; //这里读的是AA个体的文件夹
+            if (infileS1.endsWith("gz")) {
+                br1 = IOUtils.getTextGzipReader(infileS1);
+            } else {
+                br1 = IOUtils.getTextReader(infileS1);
+            }
+            BufferedReader br2; //这里读的是AABB个体的文件夹
+            if (infileS2.endsWith("gz")) {
+                br2 = IOUtils.getTextGzipReader(infileS2);
+            } else {
+                br2 = IOUtils.getTextReader(infileS2);
+            }
+            //开始读genome的VCF文件
+            while((temp1 = br1.readLine()) != null){
+                String tem1[] = temp1.split("\t");
+                if(tem1[0].startsWith("#")){
+                    //前边的不要,带有注释信息的那一行也不要
+                }
+                else { //现在开始读的是没有注释的文件
+                    AAset.add(Integer.valueOf(tem1[1]));
+                }
+            }
+            System.out.println("Readed AA" + "\n");
+            while((temp2 = br2.readLine()) != null){
+                String tem2[] = temp2.split("\t");
+                if(tem2[0].startsWith("#")){
+                    //前边的不要,带有注释信息的那一行也不要
+                }
+                else { //现在开始读的是没有注释的文件
+                    AABBset.add(Integer.valueOf(tem2[1]));
+                }
+            }
+            System.out.println("Readed AABB" + "\n");
+            //现在开始统计交并补集
+            BufferedWriter bw = IOUtils.getTextWriter(outfileS); //写出文件，文件格式是txt格式
+            bw.write("Set11\tSet10\tSet01\n");
+            int a1 = SetOperations_11(AAset,AABBset);
+            int a2 = SetOperations_10(AAset,AABBset);
+            int a3 = SetOperations_01(AAset,AABBset);
+            bw.write(a1 + "\t" + a2 + "\t" + a3 +  "\n");
+            bw.flush();
+            bw.close();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+
+    public Integer SetOperations_11(Set<Integer> AA,Set<Integer> AABB){
+        SetView<Integer> intersectionAA_AABB = Sets.intersection(AA, AABB);
+        return intersectionAA_AABB.size();
+    }
+
+    public Integer SetOperations_10(Set<Integer> AA,Set<Integer> AABB){
+        SetView<Integer> difference_AA = Sets.difference(AA, AABB);
+        return difference_AA.size();
+    }
+
+    public Integer SetOperations_01(Set<Integer> AA,Set<Integer> AABB){
+        SetView<Integer> difference_AABB = Sets.difference(AABB, AA);
+        return difference_AABB.size();
+    }
+
     //在各个群体里面的分离情况进行统计
     //对Alineage来说，输入文件有3个，AA的个体的VCF文件，AABB的个体的VCF文件，AABBDD的个体的VCF文件
 //    java -jar -Xms50g -Xmx70g /data2/xuebo/Projects/Speciation/javaCode/getVCFfile_info2.jar --file1 /data2/xuebo/Projects/Speciation/E2_all/macSS/chr${chr}.macSS.vcf.gz \
@@ -1023,7 +1105,7 @@ public class syntenic_Sgenome {
      /** 这是对三个集合的操作,使用SetView完成对交集并集补集的操作,之前是为了得到交集，并集，补集的大小，现在是为了得到位点
  * 集合的操作：交集、差集、并集  
  * Sets.intersection()交集
- * Sets.difference()差集
+ * Sets.difference()差集 这个是有顺序的，指的是set1里面有的set2里面没有
  * Sets.union()并集
  */
     

@@ -5,9 +5,7 @@
  */
 package speciation;
 
-import EvolutionWheat.ForDiversityMean;
-import EvolutionWheat.ForHeatmap;
-import EvolutionWheat.ForManhattanPlot;
+import EvolutionWheat.*;
 //import com.google.common.collect.Sets;
 import java.util.Set;
 
@@ -187,8 +185,8 @@ public class speciationEntrace {
 //        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/IBS_dis/test_ibs.txt";
 //        new IBS_distance(infileS1,infileS2,outfileS);
 
-//        String infileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/IBS_dis/test_ibs_file1.vcf";
-//        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/IBS_dis/test_ibs2.txt";
+//        String infileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/IBSdis_fst/testcode/test_ibs_file1.vcf";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/IBSdis_fst/testcode/test_ibs1.txt";
 //        new IBS_distance(infileS,outfileS);
 
 //        String infileS1 = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/species_split_time/single_copy_gene/singlecopygene1_1_more1000.txt";
@@ -220,12 +218,76 @@ public class speciationEntrace {
         //String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/introgression/Speltoides/fd_1B_1M.txt";
         //new ForHeatmap(infileS,outfileS);
 
-         String infileS1 = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/climate_change/gene/window_region_gene/North_top1_A.txt";
-         String infileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/convergentEvo/mart_export.txt";
-         String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/climate_change/gene/window_region_gene/North_top1_A_GO2.txt";
-         new GO_analysis(infileS1,infileS2,outfileS);
-//test_vpn
+//         String infileS1 = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/climate_change/gene/window_region_gene/North_top1_A.txt";
+//         String infileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/convergentEvo/mart_export.txt";
+//         String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/climate_change/gene/window_region_gene/North_top1_A_GO2.txt";
+//         new GO_analysis(infileS1,infileS2,outfileS);
+
+//        String infileS1 ="/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatgenome/readmeByFei_table.txt";
+//        String infileS2 ="/Users/xuebozhao/Documents/LuLab/wheatSpeciation/IBSdis_fst/pop_ibs/Free_Land_ibs.txt";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/IBSdis_fst/pop_ibs/Chr_Free_Land_ibs.txt";
+//        new ForManhattanPlot(infileS1,infileS2,outfileS);
+
         //IntArrayList tIntArrayList=new TIntArrayList();
         //System.out.println(tIntArrayList.size());
+
+//        String infileS1 = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/smcpp/getpoints/count3.txt";
+//        String outfileS2 = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/smcpp/getpoints/count4.txt";
+//        new introgression(infileS1,outfileS2);
+
+//        String infileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/convergentEvo/mart_export.txt";
+//        String outfileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/pi/functional_pi/bioticgene.txt";
+//        String outfileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/pi/functional_pi/abioticgene.txt";
+//        String outfileS3 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/pi/functional_pi/backgroudgene.txt";
+//        new XPEHHandXPCLRregion(infileS,outfileS1,outfileS2,outfileS3);
+
+//        String infileS1 = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/climate_change/GeneAnnoMap_271.txt";
+//        String infileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/convergentEvo/mart_export.txt";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/climate_change/GeneAnnoMap_271_GO.txt";
+//        new GO_analysis(infileS1,infileS2,outfileS);
+
+        //String infileS1 = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/climate_change/GeneAnnoMap_271.txt";
+        //String infileS2 = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/climate_change/GeneAnnoMap_271_GO.txt";
+        //String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/climate_change/GeneAnnoMap_271_GOA.txt";
+        //new GO_analysis(infileS1,infileS2,outfileS);
+
+//        String infileS1 = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/smcpp/getpoints/countall_format3.txt";
+//        String outfileS2 = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/smcpp/getpoints/countall_format4.txt";
+//        new introgression(infileS1,outfileS2);
+
+        String infileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatScan/hapScanner2/Parameters_hapScanner2_chr1.txt";
+        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/hapscan/parameters_file/CAAS/";
+        new syntenic_Sgenome(infileS,outfileS);
+
+//        int len = args.length;
+//        String infileS1 = "";
+//        String infileS2 = "";
+//        String infileS3 = "";
+//        String outfileS = "";
+//        for (int i = 0; i < len; i++){
+//            if (null != args[i])switch (args[i]) {
+//                case "--file1":
+//                    infileS1 = args[i+1];
+//                    i++;
+//                    break;
+//                case "--file2":
+//                    infileS2 = args[i+1];
+//                    i++;
+//                    break;
+////                case "--file3":
+////                    infileS3 = args[i+1];
+////                    i++;
+////                    break;
+//                case "--out":
+//                    outfileS = args[i+1];
+//                    i++;
+//                    break;
+//                default:
+//                    break;
+//            }
+//        }
+
+        //new syntenic_Sgenome(infileS1,infileS2,outfileS);
+
     }
 }
