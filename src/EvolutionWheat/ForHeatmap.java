@@ -23,9 +23,9 @@ public class ForHeatmap {
         //this.getXpehh_bin(infileS, outfileS);
         //this.getQgeneHeatmap(infileS, outfileS);
         //this.getQgeneHeatmap_noBeagle(infileS, outfileS);
-        //this.getgeneHeatmap_noBeagle_SNP(infileS, outfileS);
+        this.getgeneHeatmap_noBeagle_SNP(infileS, outfileS);
         //this.getgeneHeatmap_noBeagle_indel(infileS, outfileS);
-        this.getgeneHeatmap_Beagle_SNP(infileS, outfileS);
+        //this.getgeneHeatmap_Beagle_SNP(infileS, outfileS);
     }
     public ForHeatmap(String infileS1,String infileS2,String outfileS){
         this.getgeneHeatmap_noBeagle_merge(infileS1, infileS2, outfileS);

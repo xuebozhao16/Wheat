@@ -145,8 +145,8 @@ public class WheatEntrance2 {
 //        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/cooperation_fu/Rht/mac_chr23_TraesCS4D02G040400_2K_2_6.txt";
 //        new ForHeatmap(infileS,outfileS);
 
-        String infileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/introgression/emmer_intro/fd_4B_emmer1_200_350M_shuf5000.vcf";
-        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/introgression/emmer_intro/fd_4B_emmer1_200_350M_shuf5000.txt";
+        String infileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/cooperation/cooperation_zhao_2/chr9_157658564-157726518.vcf.gz";
+        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/cooperation/cooperation_zhao_2/chr9_157658564-157726518.txt";
         new ForHeatmap(infileS,outfileS);
 
     }

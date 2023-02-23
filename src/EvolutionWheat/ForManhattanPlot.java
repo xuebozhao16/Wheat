@@ -25,17 +25,18 @@ import java.util.Set;
 public class ForManhattanPlot {
     public ForManhattanPlot(String infileS1,String infileS2,String outfileS){
         //this.FortheRealPosFromXPCLR(infileS1, infileS2, outfileS);
-        this.FortheRealPosFromNomXPCLR(infileS1, infileS2, outfileS);
+        //this.FortheRealPosFromNomXPCLR(infileS1, infileS2, outfileS);
         //this.FortheRealPosFromPi(infileS1, infileS2, outfileS);
         //this.FortheRealPosFromPi2(infileS1, infileS2, outfileS);
         //this.FortheRealPosFromFst(infileS1, infileS2, outfileS);
         //this.FortheRealPosFromTajimaD(infileS1, infileS2, outfileS);
         //this.FortheRealPosFromFd(infileS1, infileS2, outfileS);
-        //this.FortheRealPosFromFd2(infileS1, infileS2, outfileS);
+        this.FortheRealPosFromFd2(infileS1, infileS2, outfileS);
         //this.FortheRealPosFromFd_smooth(infileS1, infileS2, outfileS);
         //this.FortheRealPosFromTree(infileS1, infileS2, outfileS);
         //this.FortheRealPosSNPdensi(infileS1, infileS2, outfileS);
         //this.FortheRealPosFromVCF(infileS1, infileS2, outfileS);
+        //this.FortheRealPosFromIBS(infileS1, infileS2, outfileS);
     }
     //这个是对XPCLR出来的直接结果进行染色体的转换
     public void FortheRealPosFromXPCLR(String infileS1,String infileS2,String outfileS){
@@ -389,11 +390,11 @@ public class ForManhattanPlot {
         try{
             String temp = null;
             RowTable<String> genometable = new RowTable<>(infileS1);
-            BufferedReader br = IOUtils.getTextReader(infileS2);
+            BufferedReader br = IOUtils.getTextGzipReader(infileS2);
             BufferedWriter bw = IOUtils.getTextWriter(outfileS);
             br.readLine();
             while((temp = br.readLine()) != null){
-                String[] tem = temp.split("\t");
+                String[] tem = temp.split(",");
                 System.out.println(tem[8]);
                 if(tem[8].equals("nan")){
                     
@@ -624,7 +625,46 @@ public class ForManhattanPlot {
             e.printStackTrace();
         }
     }
-        
+
+    //这是群体IBS的数据转换染色体
+    public void FortheRealPosFromIBS(String infileS1,String infileS2,String outfileS){
+        try{
+            String temp = null;
+            RowTable<String> genometable = new RowTable<>(infileS1);
+            BufferedReader br = IOUtils.getTextReader(infileS2);
+            BufferedWriter bw = IOUtils.getTextWriter(outfileS);
+            br.readLine();
+            while((temp = br.readLine()) != null){
+                String[] tem = temp.split("\t");
+                if(tem[3].equals("NA")){
+
+                }
+                else {
+                    int chr = Integer.valueOf(tem[0]);
+                    String value = tem[3];
+                    String pos = tem[1];
+                    if (Double.valueOf(value) < 0){
+                        value = "0";
+                    }
+                    if(chr % 2 == 1){
+                        String outchr = genometable.getCell(chr-1, 3);
+                        //System.out.println(outchr);
+                        bw.write(outchr + "\t" + pos + "\t" + value + "\n");
+                    }else{
+                        String outchr = genometable.getCell(chr-1, 3);
+                        //System.out.println(outchr);
+                        int outpos = Integer.valueOf(genometable.getCell(chr-1, 4)) + Integer.valueOf(pos);
+                        bw.write(outchr + "\t" + outpos + "\t" + value + "\n");
+                    }
+                }
+            }
+            bw.flush();
+            bw.close();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }
 
 

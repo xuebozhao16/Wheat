@@ -14,19 +14,23 @@ import pgl.infra.utils.IOUtils;
  *
  * @author xuebozhao
  */
+
+//这个是转染色体的代码
 public class LabNumChrGFF31_1 {
     public LabNumChrGFF31_1(String infileS,String outfileS){
         this.ReplaceGFF3ToNum1_1(infileS,outfileS);
+        //this.ReplaceGFF3ToNum1_1_bed(infileS,outfileS);
     }
     public LabNumChrGFF31_1(String infileS){
         this.SumAandBandDgene(infileS);
     }
+
     public void ReplaceGFF3ToNum1_1(String infileS,String outfileS){
         try{
             int chrNum = 0;
             int i = 0;
             String temp = null;
-            //String tem = null;  
+            //String tem = null;
             BufferedReader br = IOUtils.getTextReader(infileS);
             BufferedWriter bw = IOUtils.getTextWriter(outfileS);
             while((temp = br.readLine()) != null){
@@ -49,7 +53,7 @@ public class LabNumChrGFF31_1 {
                         temp = "2" + "\t" + tem[1] + "\t" + tem[2] + "\t" + aa + "\t" + bb + "\t" + tem[5] + "\t" + tem[6] + "\t" + tem[7] + "\t" + tem[8];
                     }
                     bw.write(temp + "\n");
-                } 
+                }
                 else if(temp.startsWith("chr1B"))  {
                     if(Integer.valueOf(tem[4]) < 438720154){
                         temp = temp.replaceAll("chr1B", "3");
@@ -59,7 +63,7 @@ public class LabNumChrGFF31_1 {
                         temp = "4" + "\t" + tem[1] + "\t" + tem[2] + "\t" + aa + "\t" + bb + "\t" + tem[5] + "\t" + tem[6] + "\t" + tem[7] + "\t" + tem[8];
                     }
                     bw.write(temp + "\n");
-                } 
+                }
                 else if(temp.startsWith("chr1D"))  {
                     if(Integer.valueOf(tem[4]) < 452179604){
                         temp = temp.replaceAll("chr1D", "5");
@@ -69,7 +73,7 @@ public class LabNumChrGFF31_1 {
                         temp = "6" + "\t" + tem[1] + "\t" + tem[2] + "\t" + aa + "\t" + bb + "\t" + tem[5] + "\t" + tem[6] + "\t" + tem[7] + "\t" + tem[8];
                     }
                     bw.write(temp + "\n");
-                } 
+                }
                 else if(temp.startsWith("chr2A"))  {
                     if(Integer.valueOf(tem[4]) < 462376173){
                         temp = temp.replaceAll("chr2A", "7");
@@ -79,7 +83,7 @@ public class LabNumChrGFF31_1 {
                         temp = "8" + "\t" + tem[1] + "\t" + tem[2] + "\t" + aa + "\t" + bb + "\t" + tem[5] + "\t" + tem[6] + "\t" + tem[7] + "\t" + tem[8];
                     }
                     bw.write(temp + "\n");
-                } 
+                }
                 else if(temp.startsWith("chr2B"))  {
                     if(Integer.valueOf(tem[4]) < 453218924){
                         temp = temp.replaceAll("chr2B", "9");
@@ -89,7 +93,7 @@ public class LabNumChrGFF31_1 {
                         temp = "10" + "\t" + tem[1] + "\t" + tem[2] + "\t" + aa + "\t" + bb + "\t" + tem[5] + "\t" + tem[6] + "\t" + tem[7] + "\t" + tem[8];
                     }
                     bw.write(temp + "\n");
-                } 
+                }
                 else if(temp.startsWith("chr2D"))  {
                     if(Integer.valueOf(tem[4]) < 462216879){
                         temp = temp.replaceAll("chr2D", "11");
@@ -99,7 +103,7 @@ public class LabNumChrGFF31_1 {
                         temp = "12" + "\t" + tem[1] + "\t" + tem[2] + "\t" + aa + "\t" + bb + "\t" + tem[5] + "\t" + tem[6] + "\t" + tem[7] + "\t" + tem[8];
                     }
                     bw.write(temp + "\n");
-                } 
+                }
                 else if(temp.startsWith("chr3A"))  {
                     if(Integer.valueOf(tem[4]) < 454103970){
                         temp = temp.replaceAll("chr3A", "13");
@@ -109,7 +113,7 @@ public class LabNumChrGFF31_1 {
                         temp = "14" + "\t" + tem[1] + "\t" + tem[2] + "\t" + aa + "\t" + bb + "\t" + tem[5] + "\t" + tem[6] + "\t" + tem[7] + "\t" + tem[8];
                     }
                     bw.write(temp + "\n");
-                } 
+                }
                 else if(temp.startsWith("chr3B"))  {
                     if(Integer.valueOf(tem[4]) < 448155269){
                         temp = temp.replaceAll("chr3B", "15");
@@ -119,7 +123,7 @@ public class LabNumChrGFF31_1 {
                         temp = "16" + "\t" + tem[1] + "\t" + tem[2] + "\t" + aa + "\t" + bb + "\t" + tem[5] + "\t" + tem[6] + "\t" + tem[7] + "\t" + tem[8];
                     }
                     bw.write(temp + "\n");
-                } 
+                }
                 else if(temp.startsWith("chr3D"))  {
                     if(Integer.valueOf(tem[4]) < 476235359){
                         temp = temp.replaceAll("chr3D", "17");
@@ -129,7 +133,7 @@ public class LabNumChrGFF31_1 {
                         temp = "18" + "\t" + tem[1] + "\t" + tem[2] + "\t" + aa + "\t" + bb + "\t" + tem[5] + "\t" + tem[6] + "\t" + tem[7] + "\t" + tem[8];
                     }
                     bw.write(temp + "\n");
-                } 
+                }
                 else if(temp.startsWith("chr4A"))  {
                     if(Integer.valueOf(tem[4]) < 452555092){
                         temp = temp.replaceAll("chr4A", "19");
@@ -139,7 +143,7 @@ public class LabNumChrGFF31_1 {
                         temp = "20" + "\t" + tem[1] + "\t" + tem[2] + "\t" + aa + "\t" + bb + "\t" + tem[5] + "\t" + tem[6] + "\t" + tem[7] + "\t" + tem[8];
                     }
                     bw.write(temp + "\n");
-                } 
+                }
                 else if(temp.startsWith("chr4B"))  {
                     if(Integer.valueOf(tem[4]) < 451014251){
                         temp = temp.replaceAll("chr4B", "21");
@@ -149,7 +153,7 @@ public class LabNumChrGFF31_1 {
                         temp = "22" + "\t" + tem[1] + "\t" + tem[2] + "\t" + aa + "\t" + bb + "\t" + tem[5] + "\t" + tem[6] + "\t" + tem[7] + "\t" + tem[8];
                     }
                     bw.write(temp + "\n");
-                } 
+                }
                 else if(temp.startsWith("chr4D"))  {
                     if(Integer.valueOf(tem[4]) < 451004620){
                         temp = temp.replaceAll("chr4D", "23");
@@ -159,7 +163,7 @@ public class LabNumChrGFF31_1 {
                         temp = "24" + "\t" + tem[1] + "\t" + tem[2] + "\t" + aa + "\t" + bb + "\t" + tem[5] + "\t" + tem[6] + "\t" + tem[7] + "\t" + tem[8];
                     }
                     bw.write(temp + "\n");
-                } 
+                }
                 else if(temp.startsWith("chr5A"))  {
                     if(Integer.valueOf(tem[4]) < 453230519){
                         temp = temp.replaceAll("chr5A", "25");
@@ -169,7 +173,7 @@ public class LabNumChrGFF31_1 {
                         temp = "26" + "\t" + tem[1] + "\t" + tem[2] + "\t" + aa + "\t" + bb + "\t" + tem[5] + "\t" + tem[6] + "\t" + tem[7] + "\t" + tem[8];
                     }
                     bw.write(temp + "\n");
-                } 
+                }
                 else if(temp.startsWith("chr5B"))  {
                     if(Integer.valueOf(tem[4]) < 451372872){
                         temp = temp.replaceAll("chr5B", "27");
@@ -179,7 +183,7 @@ public class LabNumChrGFF31_1 {
                         temp = "28" + "\t" + tem[1] + "\t" + tem[2] + "\t" + aa + "\t" + bb + "\t" + tem[5] + "\t" + tem[6] + "\t" + tem[7] + "\t" + tem[8];
                     }
                     bw.write(temp + "\n");
-                } 
+                }
                 else if(temp.startsWith("chr5D"))  {
                     if(Integer.valueOf(tem[4]) < 451901030){
                         temp = temp.replaceAll("chr5D", "29");
@@ -189,7 +193,7 @@ public class LabNumChrGFF31_1 {
                         temp = "30" + "\t" + tem[1] + "\t" + tem[2] + "\t" + aa + "\t" + bb + "\t" + tem[5] + "\t" + tem[6] + "\t" + tem[7] + "\t" + tem[8];
                     }
                     bw.write(temp + "\n");
-                } 
+                }
                 else if(temp.startsWith("chr6A"))  {
                     if(Integer.valueOf(tem[4]) < 452440856){
                         temp = temp.replaceAll("chr6A", "31");
@@ -199,7 +203,7 @@ public class LabNumChrGFF31_1 {
                         temp = "32" + "\t" + tem[1] + "\t" + tem[2] + "\t" + aa + "\t" + bb + "\t" + tem[5] + "\t" + tem[6] + "\t" + tem[7] + "\t" + tem[8];
                     }
                     bw.write(temp + "\n");
-                } 
+                }
                 else if(temp.startsWith("chr6B"))  {
                     if(Integer.valueOf(tem[4]) < 452077197){
                         temp = temp.replaceAll("chr6B", "33");
@@ -209,7 +213,7 @@ public class LabNumChrGFF31_1 {
                         temp = "34" + "\t" + tem[1] + "\t" + tem[2] + "\t" + aa + "\t" + bb + "\t" + tem[5] + "\t" + tem[6] + "\t" + tem[7] + "\t" + tem[8];
                     }
                     bw.write(temp + "\n");
-                } 
+                }
                 else if(temp.startsWith("chr6D"))  {
                     if(Integer.valueOf(tem[4]) < 450509124){
                         temp = temp.replaceAll("chr6D", "35");
@@ -219,7 +223,7 @@ public class LabNumChrGFF31_1 {
                         temp = "36" + "\t" + tem[1] + "\t" + tem[2] + "\t" + aa + "\t" + bb + "\t" + tem[5] + "\t" + tem[6] + "\t" + tem[7] + "\t" + tem[8];
                     }
                     bw.write(temp + "\n");
-                } 
+                }
                 else if(temp.startsWith("chr7A"))  {
                     if(Integer.valueOf(tem[4]) < 450046986){
                         temp = temp.replaceAll("chr7A", "37");
@@ -229,7 +233,7 @@ public class LabNumChrGFF31_1 {
                         temp = "38" + "\t" + tem[1] + "\t" + tem[2] + "\t" + aa + "\t" + bb + "\t" + tem[5] + "\t" + tem[6] + "\t" + tem[7] + "\t" + tem[8];
                     }
                     bw.write(temp + "\n");
-                } 
+                }
                 else if(temp.startsWith("chr7B"))  {
                     if(Integer.valueOf(tem[4]) < 453822637){
                         temp = temp.replaceAll("chr7B", "39");
@@ -239,7 +243,7 @@ public class LabNumChrGFF31_1 {
                         temp = "40" + "\t" + tem[1] + "\t" + tem[2] + "\t" + aa + "\t" + bb + "\t" + tem[5] + "\t" + tem[6] + "\t" + tem[7] + "\t" + tem[8];
                     }
                     bw.write(temp + "\n");
-                } 
+                }
                 else if(temp.startsWith("chr7D"))  {
                     if(Integer.valueOf(tem[4]) < 453812268){
                         temp = temp.replaceAll("chr7D", "41");
@@ -249,15 +253,15 @@ public class LabNumChrGFF31_1 {
                         temp = "42" + "\t" + tem[1] + "\t" + tem[2] + "\t" + aa + "\t" + bb + "\t" + tem[5] + "\t" + tem[6] + "\t" + tem[7] + "\t" + tem[8];
                     }
                     bw.write(temp + "\n");
-                }  
+                }
 //                else if(temp.startsWith("chrUn"))  {
-//                    
-//                } 
+//
+//                }
                 else {
                     //System.out.println(temp);
                     bw.write(temp + "\n");
                     System.out.println(temp);
-                } 
+                }
                 //bw.write(temp + "\n");
             }
             bw.flush();
@@ -303,5 +307,252 @@ public class LabNumChrGFF31_1 {
             e.printStackTrace();
         }
     }
-    
+
+    //转坐标，bed文件
+    public void ReplaceGFF3ToNum1_1_bed(String infileS,String outfileS){
+        try{
+            int chrNum = 0;
+            int i = 0;
+            String temp = null;
+            //String tem = null;
+            BufferedReader br = IOUtils.getTextReader(infileS);
+            BufferedWriter bw = IOUtils.getTextWriter(outfileS);
+            while((temp = br.readLine()) != null){
+                ++i;
+                if(i % 10000 == 0){
+                    System.out.println("It's time to" + i);
+                }
+                String[] tem = temp.split("\t");
+                if(temp.startsWith("chrUn")){
+                    temp = temp.replaceAll("chrUn", "0");
+                    bw.write(temp + "\n");
+                    //System.out.println(temp.split("\t")[2]);
+                }
+                else if(temp.startsWith("chr1A"))  {
+                    if(Integer.valueOf(tem[2]) < 471304005){
+                        temp = temp.replaceAll("chr1A", "1");
+                    }else{
+                        int aa = Integer.valueOf(tem[1]) - 471304005;
+                        int bb = Integer.valueOf(tem[2]) - 471304005;
+                        temp = "2" + "\t" + aa + "\t" + bb ;
+                    }
+                    bw.write(temp + "\n");
+                }
+                else if(temp.startsWith("chr1B"))  {
+                    if(Integer.valueOf(tem[2]) < 438720154){
+                        temp = temp.replaceAll("chr1B", "3");
+                    }else{
+                        int aa = Integer.valueOf(tem[1]) - 438720154;
+                        int bb = Integer.valueOf(tem[2]) - 438720154;
+                        temp = "4" + "\t" + aa + "\t" + bb ;
+                    }
+                    bw.write(temp + "\n");
+                }
+                else if(temp.startsWith("chr1D"))  {
+                    if(Integer.valueOf(tem[2]) < 452179604){
+                        temp = temp.replaceAll("chr1D", "5");
+                    }else{
+                        int aa = Integer.valueOf(tem[1]) - 452179604;
+                        int bb = Integer.valueOf(tem[2]) - 452179604;
+                        temp = "6" + "\t" + aa + "\t" + bb ;
+                    }
+                    bw.write(temp + "\n");
+                }
+                else if(temp.startsWith("chr2A"))  {
+                    if(Integer.valueOf(tem[2]) < 462376173){
+                        temp = temp.replaceAll("chr2A", "7");
+                    }else{
+                        int aa = Integer.valueOf(tem[1]) - 462376173;
+                        int bb = Integer.valueOf(tem[2]) - 462376173;
+                        temp = "8" + "\t" + aa + "\t" + bb ;
+                    }
+                    bw.write(temp + "\n");
+                }
+                else if(temp.startsWith("chr2B"))  {
+                    if(Integer.valueOf(tem[2]) < 453218924){
+                        temp = temp.replaceAll("chr2B", "9");
+                    }else{
+                        int aa = Integer.valueOf(tem[1]) - 453218924;
+                        int bb = Integer.valueOf(tem[2]) - 453218924;
+                        temp = "10" + "\t" + aa + "\t" + bb ;
+                    }
+                    bw.write(temp + "\n");
+                }
+                else if(temp.startsWith("chr2D"))  {
+                    if(Integer.valueOf(tem[2]) < 462216879){
+                        temp = temp.replaceAll("chr2D", "11");
+                    }else{
+                        int aa = Integer.valueOf(tem[1]) - 462216879;
+                        int bb = Integer.valueOf(tem[2]) - 462216879;
+                        temp = "12" + "\t" + aa + "\t" + bb ;
+                    }
+                    bw.write(temp + "\n");
+                }
+                else if(temp.startsWith("chr3A"))  {
+                    if(Integer.valueOf(tem[2]) < 454103970){
+                        temp = temp.replaceAll("chr3A", "13");
+                    }else{
+                        int aa = Integer.valueOf(tem[1]) - 454103970;
+                        int bb = Integer.valueOf(tem[2]) - 454103970;
+                        temp = "14" + "\t" + aa + "\t" + bb ;
+                    }
+                    bw.write(temp + "\n");
+                }
+                else if(temp.startsWith("chr3B"))  {
+                    if(Integer.valueOf(tem[2]) < 448155269){
+                        temp = temp.replaceAll("chr3B", "15");
+                    }else{
+                        int aa = Integer.valueOf(tem[1]) - 448155269;
+                        int bb = Integer.valueOf(tem[2]) - 448155269;
+                        temp = "16" + "\t" + aa + "\t" + bb ;
+                    }
+                    bw.write(temp + "\n");
+                }
+                else if(temp.startsWith("chr3D"))  {
+                    if(Integer.valueOf(tem[2]) < 476235359){
+                        temp = temp.replaceAll("chr3D", "17");
+                    }else{
+                        int aa = Integer.valueOf(tem[1]) - 476235359;
+                        int bb = Integer.valueOf(tem[2]) - 476235359;
+                        temp = "18" + "\t" + aa + "\t" + bb ;
+                    }
+                    bw.write(temp + "\n");
+                }
+                else if(temp.startsWith("chr4A"))  {
+                    if(Integer.valueOf(tem[2]) < 452555092){
+                        temp = temp.replaceAll("chr4A", "19");
+                    }else{
+                        int aa = Integer.valueOf(tem[1]) - 452555092;
+                        int bb = Integer.valueOf(tem[2]) - 452555092;
+                        temp = "20" + "\t" + aa + "\t" + bb ;
+                    }
+                    bw.write(temp + "\n");
+                }
+                else if(temp.startsWith("chr4B"))  {
+                    if(Integer.valueOf(tem[2]) < 451014251){
+                        temp = temp.replaceAll("chr4B", "21");
+                    }else{
+                        int aa = Integer.valueOf(tem[1]) - 451014251;
+                        int bb = Integer.valueOf(tem[2]) - 451014251;
+                        temp = "22" + "\t" + aa + "\t" + bb ;
+                    }
+                    bw.write(temp + "\n");
+                }
+                else if(temp.startsWith("chr4D"))  {
+                    if(Integer.valueOf(tem[2]) < 451004620){
+                        temp = temp.replaceAll("chr4D", "23");
+                    }else{
+                        int aa = Integer.valueOf(tem[1]) - 451004620;
+                        int bb = Integer.valueOf(tem[2]) - 451004620;
+                        temp = "24" + "\t" + aa + "\t" + bb ;
+                    }
+                    bw.write(temp + "\n");
+                }
+                else if(temp.startsWith("chr5A"))  {
+                    if(Integer.valueOf(tem[2]) < 453230519){
+                        temp = temp.replaceAll("chr5A", "25");
+                    }else{
+                        int aa = Integer.valueOf(tem[1]) - 453230519;
+                        int bb = Integer.valueOf(tem[2]) - 453230519;
+                        temp = "26" + "\t" + aa + "\t" + bb ;
+                    }
+                    bw.write(temp + "\n");
+                }
+                else if(temp.startsWith("chr5B"))  {
+                    if(Integer.valueOf(tem[2]) < 451372872){
+                        temp = temp.replaceAll("chr5B", "27");
+                    }else{
+                        int aa = Integer.valueOf(tem[1]) - 451372872;
+                        int bb = Integer.valueOf(tem[2]) - 451372872;
+                        temp = "28" + "\t" + aa + "\t" + bb ;
+                    }
+                    bw.write(temp + "\n");
+                }
+                else if(temp.startsWith("chr5D"))  {
+                    if(Integer.valueOf(tem[2]) < 451901030){
+                        temp = temp.replaceAll("chr5D", "29");
+                    }else{
+                        int aa = Integer.valueOf(tem[1]) - 451901030;
+                        int bb = Integer.valueOf(tem[2]) - 451901030;
+                        temp = "30" + "\t" + aa + "\t" + bb ;
+                    }
+                    bw.write(temp + "\n");
+                }
+                else if(temp.startsWith("chr6A"))  {
+                    if(Integer.valueOf(tem[2]) < 452440856){
+                        temp = temp.replaceAll("chr6A", "31");
+                    }else{
+                        int aa = Integer.valueOf(tem[1]) - 452440856;
+                        int bb = Integer.valueOf(tem[2]) - 452440856;
+                        temp = "32" + "\t" + aa + "\t" + bb ;
+                    }
+                    bw.write(temp + "\n");
+                }
+                else if(temp.startsWith("chr6B"))  {
+                    if(Integer.valueOf(tem[2]) < 452077197){
+                        temp = temp.replaceAll("chr6B", "33");
+                    }else{
+                        int aa = Integer.valueOf(tem[1]) - 452077197;
+                        int bb = Integer.valueOf(tem[2]) - 452077197;
+                        temp = "34" + "\t" + aa + "\t" + bb ;
+                    }
+                    bw.write(temp + "\n");
+                }
+                else if(temp.startsWith("chr6D"))  {
+                    if(Integer.valueOf(tem[2]) < 450509124){
+                        temp = temp.replaceAll("chr6D", "35");
+                    }else{
+                        int aa = Integer.valueOf(tem[1]) - 450509124;
+                        int bb = Integer.valueOf(tem[2]) - 450509124;
+                        temp = "36" + "\t" + aa + "\t" + bb ;
+                    }
+                    bw.write(temp + "\n");
+                }
+                else if(temp.startsWith("chr7A"))  {
+                    if(Integer.valueOf(tem[2]) < 450046986){
+                        temp = temp.replaceAll("chr7A", "37");
+                    }else{
+                        int aa = Integer.valueOf(tem[1]) - 450046986;
+                        int bb = Integer.valueOf(tem[2]) - 450046986;
+                        temp = "38" + "\t" + aa + "\t" + bb ;
+                    }
+                    bw.write(temp + "\n");
+                }
+                else if(temp.startsWith("chr7B"))  {
+                    if(Integer.valueOf(tem[2]) < 453822637){
+                        temp = temp.replaceAll("chr7B", "39");
+                    }else{
+                        int aa = Integer.valueOf(tem[1]) - 453822637;
+                        int bb = Integer.valueOf(tem[2]) - 453822637;
+                        temp = "40" + "\t" + aa + "\t" + bb ;
+                    }
+                    bw.write(temp + "\n");
+                }
+                else if(temp.startsWith("chr7D"))  {
+                    if(Integer.valueOf(tem[2]) < 453812268){
+                        temp = temp.replaceAll("chr7D", "41");
+                    }else{
+                        int aa = Integer.valueOf(tem[1]) - 453812268;
+                        int bb = Integer.valueOf(tem[2]) - 453812268;
+                        temp = "42" + "\t" + aa + "\t" + bb ;
+                    }
+                    bw.write(temp + "\n");
+                }
+//                else if(temp.startsWith("chrUn"))  {
+//
+//                }
+                else {
+                    //System.out.println(temp);
+                    bw.write(temp + "\n");
+                    System.out.println(temp);
+                }
+                //bw.write(temp + "\n");
+            }
+            bw.flush();
+            bw.close();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
 }

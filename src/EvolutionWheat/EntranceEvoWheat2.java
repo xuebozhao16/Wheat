@@ -99,10 +99,12 @@ public class EntranceEvoWheat2 {
 //        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/introgression/Dstatistic/distance_intro/dis_99.txt";     
 //        new fd_individual(infileS1,infileS2,infileS3,infileS4,outfileS);
 
-        String infileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/introgression/Dstatistic/distance_intro/disD_99";
-        String infileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/introgression/Dstatistic/distance_intro/group_strangulata.txt";
-        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/introgression/Dstatistic/distance_intro/disD_99.txt";     
-        new fd_individual(infileS1,infileS2,outfileS);
+//        String infileS1 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/introgression/Dstatistic/distance_intro/disD_99";
+//        String infileS2 = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/introgression/Dstatistic/distance_intro/group_strangulata.txt";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/introgression/Dstatistic/distance_intro/disD_99.txt";
+//        new fd_individual(infileS1,infileS2,outfileS);
+
+
     }
     
 }

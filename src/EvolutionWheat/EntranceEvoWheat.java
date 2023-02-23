@@ -149,9 +149,28 @@ public class EntranceEvoWheat {
 //        new ForManhattanPlot(infileS1,infileS2,outfileS);
 
 
+//        String infileS1 ="/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatgenome/readmeByFei_table.txt";
+//        String infileS2 ="/Users/xuebozhao/Documents/LuLab/WheatEpigenome/cooperation/cooperation_ding/AB_14.xpclr";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/cooperation/cooperation_ding/Wildemmer_vs_Durum.xpclr.txt";
+//        new ForManhattanPlot(infileS1,infileS2,outfileS);
+
+//        String infileS1 ="/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatgenome/readmeByFei_table.txt";
+   //        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/introgression/Persian/fd_Rivet_wheat_Persian_wheat.txt";
+//        new ForManhattanPlot(infileS1,infileS2,outfileS);
+
+//        String infileS1 ="/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatgenome/readmeByFei_table.txt";
+//        String infileS2 ="/Users/xuebozhao/Documents/LuLab/wheatSpeciation/introgression/Persian/fd_Rivet_wheat_Persian_wheat.csv.gz";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/introgression/Persian/fd_Rivet_wheat_Persian_wheat.txt";
+//        new ForManhattanPlot(infileS1,infileS2,outfileS);
+
+//        String infileS1 ="/Users/xuebozhao/Documents/LuLab/wheatSpeciation/introgression/Persian/fd_Rivet_wheat_Persian_wheat.txt";
+//        String infileS2 ="/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatEvolution/introgression/Dstatistic/fd_allchr/smooth/wheatgenomebed2M.txt";
+//        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/introgression/Persian/Smooth2M_Rivet_wheat_Persian_wheat.txt";
+//        new ForManhattanPlot(infileS1,infileS2,outfileS);
+
         String infileS1 ="/Users/xuebozhao/Documents/LuLab/WheatEpigenome/wheatgenome/readmeByFei_table.txt";
-        String infileS2 ="/Users/xuebozhao/Documents/LuLab/WheatEpigenome/cooperation/cooperation_ding/AB_14.xpclr";
-        String outfileS = "/Users/xuebozhao/Documents/LuLab/WheatEpigenome/cooperation/cooperation_ding/Wildemmer_vs_Durum.xpclr.txt";
+        String infileS2 ="/Users/xuebozhao/Documents/LuLab/wheatSpeciation/introgression/emmer_intro/AB_emmer1.csv.gz";
+        String outfileS = "/Users/xuebozhao/Documents/LuLab/wheatSpeciation/introgression/emmer_intro/AB_emmer1_allchr_2.txt";
         new ForManhattanPlot(infileS1,infileS2,outfileS);
 ////
     }
